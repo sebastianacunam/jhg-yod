@@ -29,5 +29,5 @@ const anuncioSchema = mongoose.Schema({
     }
 );
 
-const Anuncio = mongoose.model("Destiny", anuncioSchema);
+const Anuncio = mongoose.model("Anuncio", anuncioSchema);
 export default Anuncio;
