@@ -1,13 +1,13 @@
 import express from "express";
 
-import { anuncios } from '../controllers/anuncio.js';
+import { anuncios, createAnuncio, deleteAnuncio, findAnuncio, editAnuncio } from '../controllers/anuncio.js';
 
 const router = express.Router();
 
-router.get('/anuncios', anuncios);
-// router.get('/destiny/:id', findDestiny);
-// router.post('/create', createDestiny);
-// router.delete('/delete/:id', deleteDestiny);
-// router.put('/update/:id', updatedDestiny);
+router.get('/', anuncios);
+router.post('/crear', createAnuncio);
+router.delete('/delete/:id', deleteAnuncio);
+router.get('/:id', findAnuncio);
+router.put('/edit/:id', editAnuncio);
 
 export default router;
