@@ -3,6 +3,6 @@ import anuncio from './anuncioRoutes.js';
 
 const router = Router();
 
-router.use("/", anuncio)
+router.use("/anuncios/", anuncio)
 
 export default router;
