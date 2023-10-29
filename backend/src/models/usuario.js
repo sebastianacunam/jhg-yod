@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 
 const usuarioSchema = mongoose.Schema({
@@ -7,15 +8,53 @@ const usuarioSchema = mongoose.Schema({
         required: true,
         trim: true,
     },
-    imagen:{
+    password: {
         type: String,
-        required:true,
+        require: true,
+        trim: true,
     },
+    email: {
+        type: String,
+        require: true,
+        trim: true,
+        unique: true,
+    },
+    image: {
+        public_id: String,
+        url: String,
+    },
+    admin: {
+        type: Boolean,
+        default: false,
+    },
+    confirmed:{
+        type: Boolean,
+        default: false,
+    },
+    token: {
+        type: String,
+    },
+
 },
     {
         timestamps: true,
     }
 );
+
+/*************************************************************************/
+//Aqui se lee todo el modelo y se toma el password para hashearlo
+usuarioSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
+        next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+});
+usuarioSchema.methods.comprobarPassword = async function (passwordFormulario) {
+    return await bcrypt.compare(passwordFormulario, this.password);
+};
+/*************************************************************************/
+
 
 const Usuario = mongoose.model("Usuario", usuarioSchema);
 export default Usuario;
