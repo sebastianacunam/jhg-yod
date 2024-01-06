@@ -1,0 +1,21 @@
+.bgcontainer{
+    background-image: url('../../../assets/images/bg-sign-in-basic.jpeg');
+    background-repeat: no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    opacity: 0.85;
+} 
+
+.bg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.fuentes{
+    color: white;
+}

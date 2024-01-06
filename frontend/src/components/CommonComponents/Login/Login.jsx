@@ -5,10 +5,10 @@ import s from '../Login/Login.module.css'
 
 export default function Login() {
   return (
-    <div className={s.bgcontainer}>
-        <div className={s.bg}> 
+    <div className='bgcontainer'>
+        <div className='bg'> 
             <MenuLogin/>
-            <h1 className={s.fuentes}>Log in to Material Dashboard NodeJS Live Preview</h1>
+            <h1 className='fuentes'>Log in to Material Dashboard NodeJS Live Preview</h1>
             <FormLogin/>
         </div>
     </div>

@@ -5,7 +5,6 @@ export default function FormLogin() {
     <div>
         <section>
             <form>
-
                 <input type='text' placeholder='Email'/>
                 <input type='text' placeholder='Password'/>
                 <button type='submit'>sign in</button>
