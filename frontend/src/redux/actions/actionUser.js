@@ -2,8 +2,6 @@ import clienteAxios from '../../config/clienteAxios'
 import { toast } from "react-toastify";
 
 
-
-//no tengo todavía el componente armado para registrar usuarios... 8-1-2023
 export function registerUser({name, email, password1}){
     return async function(dispatch){
         try {
@@ -40,6 +38,7 @@ export function loginUser(payload){
     }
 }
 
+
 export function resetErrorLoginUser() {
     return function (dispatch) {
       let nada = [];
@@ -74,7 +73,7 @@ export function validateUser(id) {
 export function authenticateUser(config) {
     return async function (dispatch) {
         try {
-            let json = await clienteAxios(`/usuarios/confirm/`, config);
+            let json = await clienteAxios(`/users/confirm/`, config);
             return dispatch({
                 type: "AUTH_USER",
                 payload: json.data,
