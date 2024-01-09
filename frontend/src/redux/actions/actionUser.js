@@ -48,13 +48,33 @@ export function resetErrorLoginUser() {
         payload: nada,
       });
     };
-  }
+}
+
+
+export function validateUser(id) {
+    return async function (dispatch) {
+      try {
+        var json = await clienteAxios(`/users/confirm/${id}`);
+        toast.success("User validated successfully");
+        return dispatch({
+          type: "VALIDATE_USER",
+          payload: json.data,
+        });
+      } catch (error) {
+        toast.error("There was an error validating the user");
+        return dispatch({
+          type: "VALIDATE_USER",
+          payload: error.response.data,
+        });
+      }
+    };
+}
 
 
 export function authenticateUser(config) {
     return async function (dispatch) {
         try {
-            let json = await clienteAxios(`/usuarios/perfil`, config);
+            let json = await clienteAxios(`/usuarios/confirm/`, config);
             return dispatch({
                 type: "AUTH_USER",
                 payload: json.data,

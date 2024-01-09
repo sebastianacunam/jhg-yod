@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export const emailRegistro = async (datos) => {
   const { email, name, token } = datos;
-    console.log(datos, 'a ver qué trae datos ')
+    // console.log(datos, 'a ver qué trae datos ')
   var transport = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
@@ -14,13 +14,13 @@ export const emailRegistro = async (datos) => {
   });
 
   const info = await transport.sendMail({
-    from: '"Joshua Herrera Group" <joshuaherreragroup@gmail.com>',
+    from: '"Nestify" <nestifyla@gmail.com>',
     to: email,
-    subject: "Joshua Herrera Group - Confirma tu cuenta",
-    text: "Confirma tu cuenta en Joshua Herrera Group",
+    subject: "Nestify - Confirma tu cuenta",
+    text: "Confirma tu cuenta en Nestify",
     html: `
         <h3>Hola, ${name} por favor, sigue el link de abajo para confirmar tu cuenta</h3>
-        <a href="http://localhost:3001/users/confirm/${token}"><h4>Confirmar Cuenta</h4></a>
+        <a href="${process.env.FRONTEND_URL}/users/confirm/${token}"><h4>Confirmar Cuenta</h4></a>
         <p>Si no fuiste quién creó la cuenta, entonces por favor, desestima este correo.</p>
             `,
     // html: `

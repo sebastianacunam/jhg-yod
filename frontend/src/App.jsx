@@ -7,6 +7,7 @@ import AuthLayout from './layouts/AuthLayout'
 import Home from './components/CommonComponents/Home/Home'
 import Login from './components/CommonComponents/Login/Login'
 import Register from './components/CommonComponents/Register/Register'
+import ConfirmAccount from './components/CommonComponents/ConfirmAccount/ConfirmAccount'
 
 /* ----------------------------------Registered User----------------------------------------- */
 import FormAnuncio from './components/UserRegisteredComponents/FormAnuncio/FormAnuncio'
@@ -23,6 +24,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/confirm/:id' element={<ConfirmAccount />} />
         </Route>
 
         <Route path='/' element={<VerificationUser />}>
