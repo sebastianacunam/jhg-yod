@@ -5,9 +5,13 @@ import { createUser, deleteUser, allUsers, authenticate, confirm } from '../cont
 const router = express.Router();
 
 router.post('/create', createUser)
-router.get('/confirm/:token', confirm)
 router.post('/login', authenticate)
+router.get('/confirm/:token', confirm)
 router.get('/allusers/', allUsers)
+
+
+
+//Admin
 router.delete('/delete/:id', deleteUser)
 
 

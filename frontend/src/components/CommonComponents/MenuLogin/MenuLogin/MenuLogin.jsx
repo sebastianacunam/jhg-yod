@@ -1,25 +1,31 @@
 import React from 'react'
-import s from '../MenuLogin/MenuLogin.module.css'
+import '../../../../assets/scss/layout/_menuLogin.scss'
+import logo from '../../../../assets/images/logos/logo.png'
+import { Link } from 'react-router-dom'
 
 
 export default function MenuLogin() {
-  return (
-    <div className={s.bgcontainer}>
-        <div className={s.menu1}>
-            <p>LOGO NESTIFY </p>
-        </div>
-        <div className={s.menu2}>
-            <div className={s.submenu2}>
-                <p>Registrar </p>
-            </div>
-            <div className={s.submenu2}>
-                <p>Login </p>
-            </div>
-        </div>
-        <div  className={s.menu3}> 
-            <p>BUTTON  </p>
-        </div>
-    </div>
+    // const navigate = useNavigate();
 
-  )
+    return (
+        <div className='bg-menu-login'>
+            <div className='bg-login'>
+                <div className='menu1'>
+                    <img className='logoLogin' src={logo} alt='img not found' />
+                </div>
+                <div className='menu2'>
+                    <div className='submenu2'>
+                        <Link to='/register'>Registrar</Link>
+                    </div>
+                    <div className='submenu2'>
+                        <Link to='/login'>Login</Link>
+                    </div>
+                </div>
+                <div  className='menu3'> 
+                    <p>botón  </p>
+                </div>
+            </div>
+        </div>
+
+    )
 }   

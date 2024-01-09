@@ -1,9 +1,9 @@
 import React from 'react'
 import MenuLogin from '../MenuLogin/MenuLogin/MenuLogin'
 import FormLogin from '../FormLogin/FormLogin'
-import s from '../Login/Login.module.css'
+import '../../../assets/scss/layout/_login.scss'
 
-export default function Login() {
+export default function Login() {  
   return (
     <div className='bgcontainer'>
         <div className='bg'> 
