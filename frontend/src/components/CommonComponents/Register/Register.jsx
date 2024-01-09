@@ -1,12 +1,13 @@
 import React from 'react'
 import MenuRegister from '../MenuLogin/MenuRegister/MenuRegister'
-import FromRegister from '../FormRegister/FromRegister'
+import FormRegister from '../FormRegister/FormRegister'
+import '../../../assets/scss/layout/_register.scss'
 
 export default function Register() {
   return (
-    <div>
+    <div className='bg-register'>
       <MenuRegister/>
-      <FromRegister />
+      <FormRegister />
     </div>
   )
 }

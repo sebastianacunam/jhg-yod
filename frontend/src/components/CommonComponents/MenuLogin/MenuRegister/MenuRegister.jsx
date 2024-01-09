@@ -14,11 +14,15 @@ export default function MenuRegister() {
                     <img className='logoLogin' src={logo} alt='img not found' />
                 </div>
                 <div className='menu2-register'>
-                    <div className='submenu2'>
-                        <Link to='/register'>Registrar</Link>
+                    <div>
+                        <div className='submenu2'>
+                            <Link to='/register'>Registrar</Link>
+                        </div>
                     </div>
-                    <div className='submenu2'>
-                        <Link to='/login'>Login</Link>
+                    <div>
+                        <div className='submenu2'>
+                            <Link to='/login'>Login</Link>
+                        </div>
                     </div>
                 </div>
                 <div  className='menu3-register'> 
