@@ -1,7 +1,7 @@
+import { emailRegistro } from '../helpers/emailjs.js';
 import { generateId } from '../helpers/generateId.js';
 import generateJWT from '../helpers/generateJWT.js';
 import Usuario from '../models/usuario.js';
-
 
 
 /*************************************************************************/
@@ -21,12 +21,20 @@ export const createUser = async (req, res) => {
         })
         user.token = generateId() //id hasheado
         const userAlmacenado = await user.save();
+
+        emailRegistro({
+            email: user.email,
+            name: user.name,
+            token: user.token,
+        });
+
         res.status(201).json(userAlmacenado)
 
     } catch (error) {
         res.status(404).json({ msg: error.message })
     }
 }
+
 
 /*************************************************************************/
 //Confirmar usuario
@@ -49,6 +57,7 @@ export const confirm = async (req, res) => {
         console.log(error)
     }
 };
+
 
 /*************************************************************************/
 //Autenticar información del usuario al momento del login
@@ -122,5 +131,4 @@ export const deleteUser = async(req, res) => {
         console.log(error)
     }
 }
-
 /*************************************************************************/

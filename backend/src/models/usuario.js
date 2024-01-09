@@ -23,6 +23,21 @@ const usuarioSchema = mongoose.Schema({
         public_id: String,
         url: String,
     },
+    github:{
+        type: String,
+        require: false,
+        default: ""
+    },
+    linkedin:{
+        type: String,
+        require: false,
+        default: ""
+    },
+    portfolio:{
+        type: String,
+        require: false,
+        default: ""
+    },
     admin: {
         type: Boolean,
         default: false,

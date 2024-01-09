@@ -1,0 +1,140 @@
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-padding-top: 0rem;
+  min-height: 100%;
+  position: relative;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  margin: 0;
+  margin-bottom: 40px;
+}
+body.fijar-body {
+  overflow: hidden;
+}
+body.body-scroll {
+  padding-top: 8.6rem;
+}
+
+p {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.contenedor {
+  width: 95%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+}
+
+.a {
+  text-decoration: none;
+}
+.a:hover {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 5rem 0;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3.6rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bgcontainer {
+  background-image: url("../../../assets/images/bg-sign-in-basic.jpeg");
+  background-repeat: no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  opacity: 0.85;
+}
+
+.bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.fuentes {
+  color: white;
+}
+
+.bg-menu-login {
+  display: flex;
+  justify-content: center;
+}
+
+.bg-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  margin: 24px 0;
+  width: 70%;
+}
+
+.menu1 {
+  margin-left: 16px;
+}
+
+.menu2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu3 {
+  margin-right: 16px;
+}
+
+.submenu2 {
+  display: flex;
+  flex-direction: row;
+  margin: 0 30px;
+}
+
+.logoLogin {
+  width: 280px;
+  height: 60px;
+  margin: 6px 0;
+}/*# sourceMappingURL=app.css.map */
