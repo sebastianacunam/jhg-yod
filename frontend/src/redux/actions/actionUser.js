@@ -1,5 +1,19 @@
 import clienteAxios from '../../config/clienteAxios'
 import { toast } from "react-toastify";
+import { 
+    // GOOGLE_LOGIN, 
+    LOGIN_USER, 
+    // LOGOUT_USER, 
+    AUTH_USER, 
+    RESET_ERROR_LOGUIN_USER,
+    VALIDATE_USER,
+    SEND_EMAIL_TO_RESET_PASSWORD,
+    RESET_PASSWORD,
+    // RESET_ERROR,
+    // IS_ADMIN,
+    // UPDATE_NOMBRE,
+    // BORRAR_USUARIO,
+} from '../utils/constants.js'
 
 
 export function registerUser({name, email, password1}){
@@ -26,12 +40,12 @@ export function loginUser(payload){
             let json = await clienteAxios.post(`/users/login`, payload);
             localStorage.setItem("token", json.data.token);
             return dispatch({
-                type: "LOGIN_USER",
+                type: LOGIN_USER,
                 payload: json.data,
             });
         } catch (e) {
             return dispatch({
-                type: "LOGIN_USER",
+                type: LOGIN_USER,
                 payload: { error: error.response.data.msg },
             });
         }
@@ -43,7 +57,7 @@ export function resetErrorLoginUser() {
     return function (dispatch) {
       let nada = [];
       return dispatch({
-        type: "RESET_ERROR_LOGUIN_USER",
+        type: RESET_ERROR_LOGUIN_USER,
         payload: nada,
       });
     };
@@ -56,13 +70,13 @@ export function validateUser(id) {
         var json = await clienteAxios(`/users/confirm/${id}`);
         toast.success("User validated successfully");
         return dispatch({
-          type: "VALIDATE_USER",
+          type: VALIDATE_USER,
           payload: json.data,
         });
       } catch (error) {
         toast.error("There was an error validating the user");
         return dispatch({
-          type: "VALIDATE_USER",
+          type: VALIDATE_USER,
           payload: error.response.data,
         });
       }
@@ -75,7 +89,7 @@ export function authenticateUser(config) {
         try {
             let json = await clienteAxios(`/users/confirm/`, config);
             return dispatch({
-                type: "AUTH_USER",
+                type: AUTH_USER,
                 payload: json.data,
             });
         } catch (error) {
@@ -83,3 +97,45 @@ export function authenticateUser(config) {
         }
     };
 }
+
+export function setToResetPassword(data) {
+    return async function (dispatch) {
+      try {
+        let json = await clienteAxios.post(`/users/olvide-password/`, {
+          email: data,
+        });
+  
+        toast.success(json.data.msg);
+  
+        return dispatch({
+          type: SEND_EMAIL_TO_RESET_PASSWORD,
+          payload: json.data,
+        });
+      } catch (error) {
+        toast.error(error.response.data.msg);
+        return dispatch({
+          type: SEND_EMAIL_TO_RESET_PASSWORD,
+          payload: { error: error.response.data.msg },
+        });
+      }
+    };
+  }
+  export function resetPassword(data) {
+    const { token, password } = data;
+    return async function (dispatch) {
+      try {
+        let json = await clienteAxios.post(`/users/olvide-password/${token}`, {
+          password,
+        });
+        return dispatch({
+          type: RESET_PASSWORD,
+          payload: json.data,
+        });
+      } catch (error) {
+        return dispatch({
+          type: RESET_PASSWORD,
+          payload: { error: error.response.data.msg },
+        });
+      }
+    };
+  }

@@ -8,6 +8,8 @@ import Home from './components/CommonComponents/Home/Home'
 import Login from './components/CommonComponents/Login/Login'
 import Register from './components/CommonComponents/Register/Register'
 import ConfirmAccount from './components/CommonComponents/ConfirmAccount/ConfirmAccount'
+import ForgotPassword from './components/CommonComponents/ForgotPassword/ForgotPassword'
+import NewPassword from './components/CommonComponents/NewPassword/NewPassword'
 
 /* ----------------------------------Registered User----------------------------------------- */
 import FormAnuncio from './components/UserRegisteredComponents/FormAnuncio/FormAnuncio'
@@ -25,6 +27,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/confirm/:id' element={<ConfirmAccount />} />
+          <Route path='/olvide-password' element={<ForgotPassword />} />
+          <Route path='/olvide-password/:token' element={<NewPassword />} />
         </Route>
 
         <Route path='/' element={<VerificationUser />}>
