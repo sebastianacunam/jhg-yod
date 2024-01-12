@@ -1,4 +1,4 @@
-import { emailRegistro } from '../helpers/emailjs.js';
+import { emailOlvidePassword, emailRegistro } from '../helpers/emailjs.js';
 import { generateId } from '../helpers/generateId.js';
 import generateJWT from '../helpers/generateJWT.js';
 import Usuario from '../models/usuario.js';
@@ -43,15 +43,15 @@ export const confirm = async (req, res) => {
     const usuarioConfirmar = await Usuario.findOne({ token });
     
     if (!usuarioConfirmar) {
-        const error = new Error("Token inválido");
+        const error = new Error('Token inválido');
         return res.status(403).json({ msg: error.message });
     }
 
     try {
         usuarioConfirmar.confirmed = true;
-        usuarioConfirmar.token = "";
+        usuarioConfirmar.token = '';
         await usuarioConfirmar.save();
-        res.json({ msg: "¡¡¡Usuario confirmado satisfactoriamente!!!" });
+        res.json({ msg: '¡¡¡Usuario confirmado satisfactoriamente!!!' });
 
     } catch (error) {
         console.log(error)
@@ -88,7 +88,7 @@ export const authenticate = async (req, res) => {
             token: generateJWT(usuario._id), //mandar el id por JWT
         })
     } else {
-        const error = new Error("La contraseña es incorrecta");
+        const error = new Error('La contraseña es incorrecta');
         return res.status(403).json({ msg: error.message });
     }
 }
@@ -132,3 +132,65 @@ export const deleteUser = async(req, res) => {
     }
 }
 /*************************************************************************/
+//Olvide password de un usuario
+export const olvidePassword = async(req, res) => {
+    try {
+        const { email } = req.body;
+    const usuario = await Usuario.findOne({ email });
+    if (!usuario) {
+        const error = new Error('Username does not exist');
+        return res.status(404).json({ msg: error.message });
+    }
+    try {
+        usuario.token = generarId();
+        await usuario.save();
+
+        emailOlvidePassword({
+            email: usuario.email,
+            nombre: usuario.nombre,
+            token: usuario.token,
+        });
+
+        res.json({ msg: 'We have sent an email with the instructions' });
+    } catch (error) {
+        console.log(error)
+
+    }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const comprobarToken = async (req, res) => {
+    const { token } = req.params;
+
+    const tokenValido = await Usuario.findOne({ token });
+
+    if (tokenValido) {
+        res.json({ msg: 'Token valido y el usuario existe!' })
+    } else {
+        const error = new Error('Invalid token');
+        return res.status(404).json({ msg: error.message });
+    }
+};
+
+export const nuevoPassword = async (req, res) => {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    const usuario = await Usuario.findOne({ token });
+
+    if (usuario) {
+        usuario.password = password;
+        usuario.token = '';
+        try {
+            await usuario.save();
+            res.json({ msg: 'Contraseña modificada satisfactoriamente' });
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        const error = new Error('Invalid Token');
+        return res.status(404).json({ msg: error.message });
+    }
+}
