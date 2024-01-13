@@ -142,7 +142,7 @@ export const olvidePassword = async(req, res) => {
         return res.status(404).json({ msg: error.message });
     }
     try {
-        usuario.token = generarId();
+        usuario.token = generateId();
         await usuario.save();
 
         emailOlvidePassword({

@@ -27,7 +27,7 @@ export const emailRegistro = async (datos) => {
 }
 
 export const emailOlvidePassword = async (datos) => {
-  const { email, nombre, token } = datos;
+  const { email, token } = datos;
 
   var transport = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -45,7 +45,7 @@ export const emailOlvidePassword = async (datos) => {
     subject: "Nestify - Resetea tu contraseña",
     text: "Resetea tu contraseña en Nestifyla",
     html: `
-        <p>Hola, ${nombre}, haz click en el link para cambiar tu contraseña</p>
+        <p>Hola, haz click en el link para cambiar tu contraseña</p>
         <a href="${process.env.FRONTEND_URL}/olvide-password/${token}"> CAMBIAR CONTRASEÑA </a>
         <p>Si no fuiste quién solicitó el cambio de contraseña, entonces por favor, desestima este correo.</p>
             `,
