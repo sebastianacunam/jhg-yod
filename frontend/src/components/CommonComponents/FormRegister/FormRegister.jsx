@@ -31,7 +31,7 @@ export default function FromRegister() {
         name: '',
         password1: '',
       });
-      navigate('/')
+      navigate('/login')
     }
   };
 

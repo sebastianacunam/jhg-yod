@@ -22,7 +22,7 @@ export default function ConfirmarCuenta() {
       </h2>
       <div className="response">{respuesta.msg}</div>
       <br/>
-      <Link to="/">
+      <Link to="/dashboard">
         <button className="btnConfirm">Volver a HOME</button>
       </Link>
     </div>

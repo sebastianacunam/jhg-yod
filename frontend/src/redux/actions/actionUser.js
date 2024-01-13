@@ -9,7 +9,8 @@ import {
     VALIDATE_USER,
     SEND_EMAIL_TO_RESET_PASSWORD,
     RESET_PASSWORD,
-    // RESET_ERROR,
+    RESET_ERROR,
+    ACTUAL,
     // IS_ADMIN,
     // UPDATE_NOMBRE,
     // BORRAR_USUARIO,
@@ -87,13 +88,13 @@ export function validateUser(id) {
 export function authenticateUser(config) {
   return async function (dispatch) {
     try {
-      let json = await clienteAxios(`/users/confirm/`, config);
+      let json = await clienteAxios(`/users/perfil/`, config);
       return dispatch({
         type: AUTH_USER,
         payload: json.data,
       });
     } catch (error) {
-        console.log(error.response.data.msg);
+        console.log(error.response.data);
     }
   };
 }
@@ -148,8 +149,31 @@ export function setStateEmail() {
   return async function (dispatch) {
     let reset = [];
     return dispatch({
-      type: "RESET_ERROR",
+      type: RESET_ERROR,
       payload: reset,
     });
+  };
+}
+
+
+export function usuarioActual() {
+  return async function (dispatch) {
+    const id = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${id}`,
+      },
+    };
+    try {
+      const json = await clienteAxios('/users/actual', config);
+      console.log(json.data, "desde el actions")
+      return dispatch({
+        type: ACTUAL,
+        payload: json.data,
+      });
+    } catch (e) {
+      console.log(e.response.data);
+    }
   };
 }

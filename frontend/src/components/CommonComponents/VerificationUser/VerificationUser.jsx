@@ -20,5 +20,5 @@ export default function VerificationUser() {
   }, [])
   if (!token) "Cargando..."
 
-  return <>{token ? <Outlet /> : <Navigate to="/" />}</>
+  return <>{token ? <Outlet /> : <Navigate to="/login" />}</>
 }

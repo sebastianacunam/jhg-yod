@@ -1,4 +1,4 @@
-import { GOOGLE_LOGIN, LOGIN_USER, LOGOUT_USER, AUTH_USER, RESET_ERROR_LOGUIN_USER, VALIDATE_USER, SEND_EMAIL_TO_RESET_PASSWORD, RESET_PASSWORD, RESET_ERROR, IS_ADMIN, UPDATE_NOMBRE, BORRAR_USUARIO } from '../utils/constants'
+import { GOOGLE_LOGIN, LOGIN_USER, LOGOUT_USER, AUTH_USER, RESET_ERROR_LOGUIN_USER, VALIDATE_USER, SEND_EMAIL_TO_RESET_PASSWORD, RESET_PASSWORD, RESET_ERROR, IS_ADMIN, UPDATE_NOMBRE, BORRAR_USUARIO, ACTUAL } from '../utils/constants'
 
 const initialState = {
   usuario: [],
@@ -95,6 +95,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         borraUsuario: action.payload
       }
+    case ACTUAL:
+      return {
+        ...state,
+        usuarioActual: action.payload,
+      }
     //---------------------BOOKS----------------------------------------
     // case 'GET_BOOKS':
     //   return {
@@ -125,11 +130,7 @@ function rootReducer(state = initialState, action) {
     //     tempState: [],
     //   }
 
-    // case 'ACTUAL':
-    //   return {
-    //     ...state,
-    //     usuarioActual: action.payload,
-    //   }
+  
 
     // case GET_CATEGORIES:
     //   return {

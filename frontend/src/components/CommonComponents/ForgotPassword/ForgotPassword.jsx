@@ -68,7 +68,7 @@ export default function ForgotPassword() {
               </div>
             )}
             {respuesta.msg ? (
-              <Link to="/">
+              <Link to="/login">
                 {" "}
                 <button  type="submitForgot">VOLVER</button>{" "}
               </Link>

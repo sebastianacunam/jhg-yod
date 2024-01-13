@@ -136,26 +136,26 @@ export const deleteUser = async(req, res) => {
 export const olvidePassword = async(req, res) => {
     try {
         const { email } = req.body;
-    const usuario = await Usuario.findOne({ email });
-    if (!usuario) {
-        const error = new Error('Username does not exist');
-        return res.status(404).json({ msg: error.message });
-    }
-    try {
-        usuario.token = generateId();
-        await usuario.save();
-
-        emailOlvidePassword({
-            email: usuario.email,
-            nombre: usuario.nombre,
-            token: usuario.token,
-        });
-
-        res.json({ msg: 'We have sent an email with the instructions' });
-    } catch (error) {
-        console.log(error)
-
-    }
+        const usuario = await Usuario.findOne({ email });
+        if (!usuario) {
+            const error = new Error('Username does not exist');
+            return res.status(404).json({ msg: error.message });
+        }
+        try {
+            usuario.token = generateId();
+            await usuario.save();
+            
+            emailOlvidePassword({
+                email: usuario.email,
+                nombre: usuario.nombre,
+                token: usuario.token,
+            });
+            
+            res.json({ msg: 'We have sent an email with the instructions' });
+        } catch (error) {
+            console.log(error)
+            
+        }
     } catch (error) {
         console.log(error)
     }
@@ -163,9 +163,9 @@ export const olvidePassword = async(req, res) => {
 
 export const comprobarToken = async (req, res) => {
     const { token } = req.params;
-
+    
     const tokenValido = await Usuario.findOne({ token });
-
+    
     if (tokenValido) {
         res.json({ msg: 'Token valido y el usuario existe!' })
     } else {
@@ -177,9 +177,9 @@ export const comprobarToken = async (req, res) => {
 export const nuevoPassword = async (req, res) => {
     const { token } = req.params;
     const { password } = req.body;
-
+    
     const usuario = await Usuario.findOne({ token });
-
+    
     if (usuario) {
         usuario.password = password;
         usuario.token = '';
@@ -194,3 +194,21 @@ export const nuevoPassword = async (req, res) => {
         return res.status(404).json({ msg: error.message });
     }
 }
+
+/*************************************************************************/
+export const perfil = async (req, res) => {
+    const usuario = await Usuario.findOne({ name: req.usuario.name })
+    .select("-password -email -confirmed -createdAt -updatedAt -__v");
+    res.send(usuario);
+}
+
+export const usuario = async (req, res) => {
+    try {
+        const user = await Usuario.findOne({ name: req.usuario.name })
+            .select(" -password -confirmed -createdAt -updatedAt -__v ");
+            console.log(user, 'desde controllers')
+        res.send(user);
+    } catch (e) {
+        res.status(400).json({ msg: "Error" });
+    }
+};

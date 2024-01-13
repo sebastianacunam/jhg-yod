@@ -56,7 +56,7 @@ export default function FormLogin() {
 
                 } else {
                     dispatch(resetErrorLoginUser())
-                    loginData.payload.token ? navigate('/') : null
+                    loginData.payload.token ? navigate('/dashboard') : null
                 }
             } else setErrors(val)
         }
