@@ -1,16 +1,25 @@
 import Curso from "../models/cursos.js"
+import Usuario from "../models/usuario.js";
 
 /*************************************************************************/
 
 //Traer todos los cursos
 export const cursos = async (req, res) => {
-  const body = req.body;
   try {
-    const cursos = await Curso.find({ body });
-    res.send({ data: cursos });
+    await Curso.find({}).then((results)=>{
+      let prueba = results.map((e)=>{
+        return{
+          id: e._id,
+          name: e.name,
+          description: e.description
+        };
+      });
+      return res.json(prueba)
+    })
   } catch (error) {
-    res.status(404).json({ msg: error.message });
+    console.log(error)
   }
+
 }
 
 /*************************************************************************/
@@ -80,7 +89,35 @@ export const editCurso = async (req, res) => {
 }
 
 /*************************************************************************/
+//Relación entre el curso y el usuario que lo solicita/compra. 
 
+export const comprarCurso = async (req, res) => {
+  const cursoId = req.params.id;
+  const usuarioId = req.usuario._id
+  
+  try {
+      const usuario = await Usuario.findById(usuarioId)
+      const curso = await Curso.findById(cursoId).populate("_id")
+      
+      const cursoExistente = usuario.cursos.find(c => c.id.toString() === cursoId);
 
+      if (!usuario || !curso) return res.status(404).json({ msg: 'Usuario o curso no encontrado' });
 
+      if (!cursoExistente) {
+        usuario.cursos.push({
+            id: cursoId,
+            name: curso.name,
+            description: curso.description
+        });
+        await usuario.save();
+      }else{
+        return res.status(409).json({msg:"Ya posees este curso"})
+      }
+
+      res.json({ msg: 'Curso comprado exitosamente', usuario: usuario });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: 'Error al comprar el curso' });
+  }
+};
 

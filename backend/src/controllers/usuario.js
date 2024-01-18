@@ -110,6 +110,7 @@ export const allUsers = async(req, res) => {
                     password: el.password,
                     email: el.email,
                     token: el.token,
+                    cursos: el.cursos
                 };
             });
             return res.json(userMapeado);
@@ -196,6 +197,7 @@ export const nuevoPassword = async (req, res) => {
 }
 
 /*************************************************************************/
+//Mostrar información del perfil que está logueado.
 export const perfil = async (req, res) => {
     const usuario = await Usuario.findOne({ name: req.usuario.name })
     .select("-password -email -confirmed -createdAt -updatedAt -__v");
@@ -205,10 +207,11 @@ export const perfil = async (req, res) => {
 export const usuario = async (req, res) => {
     try {
         const user = await Usuario.findOne({ name: req.usuario.name })
-            .select(" -password -confirmed -createdAt -updatedAt -__v ");
-            console.log(user, 'desde controllers')
+        .select(" -password -confirmed -createdAt -updatedAt -__v ");
         res.send(user);
     } catch (e) {
         res.status(400).json({ msg: "Error" });
     }
 };
+
+/*************************************************************************/

@@ -1,6 +1,7 @@
 import express from "express";
 
-import { cursos, findCurso, createCurso, deleteCurso, editCurso } from '../controllers/cursos.js';
+import { cursos, findCurso, createCurso, deleteCurso, editCurso, comprarCurso } from '../controllers/cursos.js';
+import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
 
@@ -9,5 +10,9 @@ router.post('/create', createCurso);
 router.delete('/delete/:id', deleteCurso);
 router.get('/:id', findCurso);
 router.put('/edit/:id', editCurso);
+
+
+
+router.post('/comprar/:id', checkAuth, comprarCurso)
 
 export default router;
