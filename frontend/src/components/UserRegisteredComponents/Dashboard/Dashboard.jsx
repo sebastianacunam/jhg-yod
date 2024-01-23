@@ -10,7 +10,7 @@ import '../../../assets/scss/layout/_dashboard.scss'
 export default function Dashboard() {
 
   const dispatch = useDispatch()
-  const params = window.location.href
+  // const params = window.location.href
   const usuarioAct = useSelector((state) => state.usuarioActual)
   // const [showModal, setShowModal] = useState(false)
   // const [showModalNotification, setShowModalNotification] = useState(false)

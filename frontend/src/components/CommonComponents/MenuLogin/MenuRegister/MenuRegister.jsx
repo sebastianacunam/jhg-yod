@@ -9,7 +9,7 @@ export default function MenuRegister() {
 
     return (
         <div className='bgcontainermenuregister'>
-            <div className='prueba'>
+            <div className='register-container'>
                 <div className='menu1-register'>
                     <img className='logoLogin' src={logo} alt='img not found' />
                 </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import MenuLogin from '../MenuLogin/MenuLogin/MenuLogin'
 import FormLogin from '../FormLogin/FormLogin'
 import '../../../assets/scss/layout/_login.scss'
+import Footer from '../Footer/Footer'
 
 export default function Login() {  
   return (
@@ -10,6 +11,7 @@ export default function Login() {
             <MenuLogin/>
             <h1 className='fuentes'>Log in to Material Dashboard NodeJS Live Preview</h1>
             <FormLogin/>
+            <Footer/>
         </div>
     </div>
   )
