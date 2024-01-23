@@ -1,19 +1,19 @@
 import clienteAxios from '../../config/clienteAxios'
 import { toast } from "react-toastify";
 import { 
-    // GOOGLE_LOGIN, 
-    LOGIN_USER, 
-    // LOGOUT_USER, 
-    AUTH_USER, 
-    RESET_ERROR_LOGUIN_USER,
-    VALIDATE_USER,
-    SEND_EMAIL_TO_RESET_PASSWORD,
-    RESET_PASSWORD,
-    RESET_ERROR,
-    ACTUAL,
-    // IS_ADMIN,
-    // UPDATE_NOMBRE,
-    // BORRAR_USUARIO,
+  // GOOGLE_LOGIN, 
+  // LOGOUT_USER, 
+  // IS_ADMIN,
+  // UPDATE_NOMBRE,
+  // BORRAR_USUARIO,
+  LOGIN_USER, 
+  AUTH_USER, 
+  RESET_ERROR_LOGUIN_USER,
+  VALIDATE_USER,
+  SEND_EMAIL_TO_RESET_PASSWORD,
+  RESET_PASSWORD,
+  RESET_ERROR,
+  ACTUAL,
 } from '../utils/constants.js'
 
 

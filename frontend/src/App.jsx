@@ -9,6 +9,7 @@ import Register from './components/CommonComponents/Register/Register'
 import ConfirmAccount from './components/CommonComponents/ConfirmAccount/ConfirmAccount'
 import ForgotPassword from './components/CommonComponents/ForgotPassword/ForgotPassword'
 import NewPassword from './components/CommonComponents/NewPassword/NewPassword'
+import Cursos from './components/CommonComponents/Cursos/Cursos'
 
 /* ----------------------------------Registered User----------------------------------------- */
 import Dashboard from './components/UserRegisteredComponents/Dashboard/Dashboard'
@@ -31,6 +32,8 @@ function App() {
           <Route path='/confirm/:id' element={<ConfirmAccount />} />
           <Route path='/olvide-password' element={<ForgotPassword />} />
           <Route path='/olvide-password/:token' element={<NewPassword />} />
+          <Route path='/cursos' element={<Cursos />} />
+          
         </Route>
 
         <Route path='/' element={<VerificationUser />}>

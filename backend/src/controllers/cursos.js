@@ -19,7 +19,6 @@ export const cursos = async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-
 }
 
 /*************************************************************************/
@@ -37,7 +36,7 @@ export const findCurso = async (req, res) => {
 
 /*************************************************************************/
 
-// Crear un bootcamp nuevo
+// Crear un curso nuevo
 export const createCurso = async (req, res) => {
   const curso = new Curso(req.body)
   try {
@@ -63,7 +62,7 @@ export const deleteCurso = async (req, res) => {
   
 /*************************************************************************/
 
-//Modificar un bootcamp
+//Modificar un curso
 export const editCurso = async (req, res) => {
   const data = req.body   
   const id = req.params.id

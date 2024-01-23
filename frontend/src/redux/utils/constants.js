@@ -13,4 +13,9 @@ export const UPDATE_NOMBRE = 'UPDATE_NOMBRE'
 export const BORRAR_USUARIO = 'BORRAR_USUARIO'
 export const ACTUAL = 'ACTUAL'
 
+/* CURSOS... */
+export const UPDATE_CURSO = 'UPDATE_CURSO'
+export const DELETE_CURSO = 'DELETE_CURSO'
+export const GET_CURSOS = 'GET_CURSOS'
+
 /* EVERYTHING ELSE... */
