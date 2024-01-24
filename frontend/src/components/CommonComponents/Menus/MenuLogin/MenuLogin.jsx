@@ -21,9 +21,7 @@ export default function MenuLogin() {
                         <Link to='/login'>Login</Link>
                     </div>
                 </div>
-                <div  className='menu3'> 
-                    <p>botón  </p>
-                </div>
+
             </div>
         </div>
 

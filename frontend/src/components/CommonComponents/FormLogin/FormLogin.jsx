@@ -95,7 +95,7 @@ export default function FormLogin() {
             </div>
 
             <div className='input-group'>
-              <input className="input-register" required type="text" id='password' name="password" onChange={handleChange} value={usuario.password}/>
+              <input className="input-register" required type="password" id='password' name="password" onChange={handleChange} value={usuario.password}/>
               <label className='label-register' htmlFor="name">Password</label>
               {errors.password1 && <p className='register-form-error'>{errors.password}</p>}
             </div>

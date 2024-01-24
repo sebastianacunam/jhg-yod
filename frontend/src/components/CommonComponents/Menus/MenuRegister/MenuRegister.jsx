@@ -25,9 +25,7 @@ export default function MenuRegister() {
                         </div>
                     </div>
                 </div>
-                <div  className='menu3-register'> 
-                    <p>botón  </p>
-                </div>
+
 
             </div>
         </div>

@@ -31,17 +31,29 @@ export default function Dashboard() {
 
 
   return (
-
-      <div className="contenedorTotal">
+    
+    <div className="contenedorTotal">
+      {/* Dashboard's left side  */}
         <div className='dashboard-left'>
           {/* //menu */}
           <div className='inner-dashboard-left'>
-            <h3>Bienvenido a tu dashboard</h3>
-            <h1>{usuarioAct?.name}</h1>
-            <Link to='/cursos'>
-              <p>todos los cursos</p>
-            </Link>
-
+            <p className='welcome-dashboard'>Bienvenido a tu dashboard</p>
+            <p>{usuarioAct?.name}</p>
+            
+            <ul>
+              <li>
+                <Link className='font-white-left' to='/cursos'>Cursos</Link>
+              </li>              
+              <li>-Bootcamps</li>
+              <li>-Mentorías</li>
+              <li>-Comunidad "acá rrss ds y telegram" </li>
+              <li>-Bolsa de trabajo</li>
+              <li>-Beneficios</li>
+              <li>
+                <Link className='font-white-left' to='/perfil'>Perfil</Link>
+              </li>
+            </ul>
+            
               <div className='i-d-l-btn' onClick={() => logOut()}>
                 <Link to="/login">
                   <div className='btn-logout'>
@@ -51,32 +63,39 @@ export default function Dashboard() {
                 </Link>
               </div>
           </div>
-
         </div>
-        <div className='dashboard-right'>
+
+      {/* Dashboard's right side  */}
+        
+        <div className='dashboard-right'>  
           
-          <h1>cursos</h1>{
-          cursos?.length !== 0 ? 
-          usuarioAct.cursos?.map((e,i)=>{
-              return(
-                <div key={i}>
-                <Curso
-                  id={e?._id}
-                  name={e?.name}
-                  description={e?.description}
-                  />
-                </div>
-              )
-              }) 
-          // <div className='sin-datos'>No hay datos cargados</div>
-          : 
-          <div>
-            <p>No tienes cursos todavía. </p>
-            <p>Puedes ver nuestros cursos &nbsp;
-              <Link to='/cursos'>acá</Link>  
-            </p>
+          <h4>cursos</h4>
+          <div className='dashboard-curso'>
+
+            {
+              cursos?.length !== 0 ? 
+              usuarioAct.cursos?.map((e,i)=>{
+                  return(
+                    <div key={i}>
+                    <Curso
+                      id={e?._id}
+                      name={e?.name}
+                      description={e?.description}
+                      />
+                    </div>
+                  )
+                  })
+              : 
+              <div>
+                <p>No tienes cursos todavía. </p>
+                <p>Puedes ver nuestros cursos &nbsp;
+                  <Link to='/cursos'>acá</Link>  
+                </p>
+              </div>
+            }
           </div>
-          }
+
+
         </div>
      
       </div>

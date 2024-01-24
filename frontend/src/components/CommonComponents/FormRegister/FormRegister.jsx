@@ -16,6 +16,7 @@ export default function FromRegister() {
     email: '',
     name: '',
     password1: '',
+    password2: '',
   });
 
   const handleSubmitR = (e) => {
@@ -23,6 +24,8 @@ export default function FromRegister() {
 
     if (Object.values(errors).some((error) => error !== '')) {
       alert('Faltan campos por completar.');
+    } else if(estado.password1 !== estado.password2 ){
+      alert('Las contraseñas tienen que coincidir.')
     } else {
       swal('', 'Registrado con éxito, confirma tu email', 'success');
       dispatch(registerUser(estado));
@@ -30,6 +33,7 @@ export default function FromRegister() {
         email: '',
         name: '',
         password1: '',
+        password2: '',
       });
       navigate('/login')
     }
@@ -73,9 +77,15 @@ export default function FromRegister() {
             </div>
 
             <div className='input-group'>
-              <input className="input-register" required type="text" id='password1' name="password1" onChange={handleChange} value={estado.password1}/>
+              <input className="input-register" required type="password" id='password1' name="password1" onChange={handleChange} value={estado.password1}/>
               <label className='label-register' htmlFor="name">Password</label>
               {errors.password1 && <p className='register-form-error'>{errors.password1}</p>}
+            </div>
+
+            <div className='input-group'>
+              <input className="input-register" required type="password" id='password2' name="password2" onChange={handleChange} value={estado.password2}/>
+              <label className='label-register' htmlFor="name">Confirmar password</label>
+              {errors.password1 && <p className='register-form-error'>{errors.password2}</p>}
             </div>
 
             <button className="btn-register">Registrarse</button>
