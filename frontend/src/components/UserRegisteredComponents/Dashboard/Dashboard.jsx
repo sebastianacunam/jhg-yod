@@ -2,8 +2,8 @@ import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usuarioActual } from "../../../redux/actions/actionUser";
 import { Link, useActionData } from "react-router-dom"
-import logout from '../../../assets/images/icons/logout.png'
 import Curso from "../../CommonComponents/Curso/Curso";
+import LeftMenu from "../LeftMenu/LeftMenu";
 import '../../../assets/scss/layout/_dashboard.scss'
 
 
@@ -21,11 +21,6 @@ export default function Dashboard() {
     ? (dispatch(usuarioActual()))
     : null
   }, [])
-
-  function logOut() {
-    window.localStorage.removeItem("token")
-    window.location.reload()
-  }
   
   const cursos = usuarioAct.cursos
 
@@ -34,37 +29,7 @@ export default function Dashboard() {
     
     <div className="contenedorTotal">
       {/* Dashboard's left side  */}
-        <div className='dashboard-left'>
-          {/* //menu */}
-          <div className='inner-dashboard-left'>
-            <p className='welcome-dashboard'>Bienvenido a tu dashboard</p>
-            <p>{usuarioAct?.name}</p>
-            
-            <ul>
-              <li>
-                <Link className='font-white-left' to='/cursos'>Cursos</Link>
-              </li>              
-              <li>-Bootcamps</li>
-              <li>-Mentorías</li>
-              <li>-Comunidad "acá rrss ds y telegram" </li>
-              <li>-Bolsa de trabajo</li>
-              <li>-Beneficios</li>
-              <li>
-                <Link className='font-white-left' to='/perfil'>Perfil</Link>
-              </li>
-            </ul>
-            
-              <div className='i-d-l-btn' onClick={() => logOut()}>
-                <Link to="/login">
-                  <div className='btn-logout'>
-                    <img className='logout-icon' src={logout}  alt="img not found" />
-                    <p>Logout</p>
-                  </div>
-                </Link>
-              </div>
-          </div>
-        </div>
-
+        <LeftMenu/>
       {/* Dashboard's right side  */}
         
         <div className='dashboard-right'>  
