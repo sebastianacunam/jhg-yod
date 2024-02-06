@@ -1,4 +1,6 @@
 # jhg-yod
 #Ramas para trabajar en Github
 <!-- #sebas -->
-<!-- #diego -->
+<!-- #enzoB -->
+<!-- #enzoS -->
+<!-- #david o. -->
