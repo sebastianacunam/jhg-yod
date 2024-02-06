@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch} from "react-redux"
 import { Outlet, Navigate } from "react-router-dom"
-// import { authenticateUser } from '../../../redux/actions/actionUser.js'
+import { authenticateUser } from '../../../redux/actions/actionUser.js'
 
 export default function VerificationUser() {
   const dispatch = useDispatch()
@@ -16,9 +16,9 @@ export default function VerificationUser() {
         Authorization: `Bearer ${token}`,
       },
     }
-    // dispatch(authenticateUser(config))
+    dispatch(authenticateUser(config))
   }, [])
   if (!token) "Cargando..."
 
-  return <>{token ? <Outlet /> : <Navigate to="/" />}</>
+  return <>{token ? <Outlet /> : <Navigate to="/login" />}</>
 }

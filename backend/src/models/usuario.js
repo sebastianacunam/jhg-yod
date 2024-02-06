@@ -49,9 +49,19 @@ const usuarioSchema = mongoose.Schema({
     token: {
         type: String,
     },
-
+    cursos: [
+        {
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Cursos',
+            },
+            name: String,
+            description: String
+        }
+    ],
+    
 },
-    {
+{
         timestamps: true,
     }
 );

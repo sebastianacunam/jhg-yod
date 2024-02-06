@@ -1,4 +1,21 @@
-import { GOOGLE_LOGIN, LOGIN_USER, LOGOUT_USER, AUTH_USER, RESET_ERROR_LOGUIN_USER, VALIDATE_USER, SEND_EMAIL_TO_RESET_PASSWORD, RESET_PASSWORD, RESET_ERROR, IS_ADMIN, UPDATE_NOMBRE, BORRAR_USUARIO } from '../utils/constants'
+import { 
+  //usuarios
+  // GOOGLE_LOGIN, 
+  LOGIN_USER, 
+  LOGOUT_USER, 
+  AUTH_USER, 
+  RESET_ERROR_LOGUIN_USER, 
+  VALIDATE_USER, 
+  SEND_EMAIL_TO_RESET_PASSWORD, 
+  RESET_PASSWORD, 
+  RESET_ERROR, 
+  IS_ADMIN, 
+  UPDATE_NOMBRE, 
+  BORRAR_USUARIO, 
+  ACTUAL,
+  //cursos
+  GET_CURSOS
+} from '../utils/constants'
 
 const initialState = {
   usuario: [],
@@ -10,19 +27,21 @@ const initialState = {
   invalidToken: true,
   isAdmin: false,
   updateNombre: [],
-  borraUsuario: []
+  borraUsuario: [],
+  cursos: [],
+  allCursos: []
 }
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
 
     //---------------------USER----------------------------------------
-    case GOOGLE_LOGIN:
-      console.log(action.payload)
-      return {
-        ...state,
-        usuario: action.payload,
-      }
+    // case GOOGLE_LOGIN:
+    //   console.log(action.payload)
+    //   return {
+    //     ...state,
+    //     usuario: action.payload,
+    //   }
 
     case LOGIN_USER:
       return {
@@ -95,13 +114,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         borraUsuario: action.payload
       }
-    //---------------------BOOKS----------------------------------------
-    // case 'GET_BOOKS':
-    //   return {
-    //     ...state,
-    //     books: action.payload,
-    //     allBooks: action.payload,
-    //   }
+    case ACTUAL:
+      return {
+        ...state,
+        usuarioActual: action.payload,
+      }
+    //---------------------CURSOS----------------------------------------
+    case GET_CURSOS:
+      return {
+        ...state,
+        cursos: action.payload,
+        allCursos: action.payload,
+      }
     // case 'POST_CREATE':
     //   return {
     //     ...state,
@@ -125,11 +149,7 @@ function rootReducer(state = initialState, action) {
     //     tempState: [],
     //   }
 
-    // case 'ACTUAL':
-    //   return {
-    //     ...state,
-    //     usuarioActual: action.payload,
-    //   }
+  
 
     // case GET_CATEGORIES:
     //   return {

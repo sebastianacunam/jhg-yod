@@ -1,0 +1,48 @@
+.dashboard-left{
+    padding: 20px;
+    color: white;
+    width: 18%;
+}
+
+.inner-dashboard-left{
+    background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+    display: flex;
+    flex-direction: column;
+    height: calc(-2rem + 99vh);
+    position: fixed;
+    padding: 8.5px 12.5px;
+    top: 0px;
+    left: 0px;
+    outline: 0px;
+    margin: 1.5rem;
+    width: 13.2%;
+    border-radius: 10.8px;
+}
+
+.welcome-dashboard{
+    text-align: center;
+}
+
+.font-white-left{
+    color: white !important;
+}
+
+.i-d-l-btn{
+    margin-top: auto; 
+    display: flex;
+    flex-direction: row;
+}
+
+.logout-icon{
+    height: 24px;
+    width: 26px;
+    margin-right: 10px;
+}
+
+
+.btn-logout{
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    align-items: center;
+}

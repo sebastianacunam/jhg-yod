@@ -1,0 +1,17 @@
+.contenedorTotal{
+    position: absolute;
+    background-color: rgb(240, 242, 245);
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+}
+
+.dashboard-right{
+    width: 100%;
+    margin: 10px;
+}
+
+.dashboard-curso{
+    display: flex;
+    flex-direction: row; 
+}
