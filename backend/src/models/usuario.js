@@ -12,6 +12,7 @@ const usuarioSchema = mongoose.Schema({
         type: String,
         require: true,
         trim: true,
+        select: false,
     },
     email: {
         type: String,
@@ -23,17 +24,17 @@ const usuarioSchema = mongoose.Schema({
         public_id: String,
         url: String,
     },
-    github:{
+    github: {
         type: String,
         require: false,
         default: ""
     },
-    linkedin:{
+    linkedin: {
         type: String,
         require: false,
         default: ""
     },
-    portfolio:{
+    portfolio: {
         type: String,
         require: false,
         default: ""
@@ -42,7 +43,7 @@ const usuarioSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    confirmed:{
+    confirmed: {
         type: Boolean,
         default: false,
     },
@@ -59,9 +60,9 @@ const usuarioSchema = mongoose.Schema({
             description: String
         }
     ],
-    
+
 },
-{
+    {
         timestamps: true,
     }
 );

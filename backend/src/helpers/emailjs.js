@@ -1,15 +1,17 @@
 import nodemailer from "nodemailer";
+import { envs } from "../conf/envs.js";
+
+const { EMAIL_HOST, EMAIL_PORT, EMAIL_PASS, EMAIL_SECURE, EMAIL_USER, FRONTEND_URL } = envs;
 
 export const emailRegistro = async (datos) => {
   const { email, name, token } = datos;
-    // console.log(datos, 'a ver qué trae datos ')
   var transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    secure: process.env.EMAIL_SECURE,
+    host: EMAIL_HOST,
+    port: EMAIL_PORT,
+    secure: EMAIL_SECURE,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
     },
   });
 
@@ -20,7 +22,7 @@ export const emailRegistro = async (datos) => {
     text: "Confirma tu cuenta en Nestify",
     html: `
         <h3>Hola, ${name} por favor, sigue el link de abajo para confirmar tu cuenta</h3>
-        <a href="${process.env.FRONTEND_URL}/confirm/${token}"><h4>Confirmar Cuenta</h4></a>
+        <a href="${FRONTEND_URL}/confirm/${token}"><h4>Confirmar Cuenta</h4></a>
         <p>Si no fuiste quién creó la cuenta, entonces por favor, desestima este correo.</p>
             `,
   });
@@ -30,12 +32,12 @@ export const emailOlvidePassword = async (datos) => {
   const { email, token } = datos;
 
   var transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    secure: process.env.EMAIL_SECURE,
+    host: EMAIL_HOST,
+    port: EMAIL_PORT,
+    secure: EMAIL_SECURE,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
     },
   });
 
@@ -46,7 +48,7 @@ export const emailOlvidePassword = async (datos) => {
     text: "Resetea tu contraseña en Nestifyla",
     html: `
         <p>Hola, haz click en el link para cambiar tu contraseña</p>
-        <a href="${process.env.FRONTEND_URL}/olvide-password/${token}"> CAMBIAR CONTRASEÑA </a>
+        <a href="${FRONTEND_URL}/olvide-password/${token}"> CAMBIAR CONTRASEÑA </a>
         <p>Si no fuiste quién solicitó el cambio de contraseña, entonces por favor, desestima este correo.</p>
             `,
   });
