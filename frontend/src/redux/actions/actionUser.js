@@ -47,7 +47,7 @@ export function loginUser(payload){
     } catch (e) {
       return dispatch({
         type: LOGIN_USER,
-        payload: { error: error.response.data.msg },
+        payload: { error: e.response.data.msg },
       });
     }
   }
