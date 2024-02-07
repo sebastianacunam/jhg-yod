@@ -1,91 +1,92 @@
-@use 'variables' as v;
+@use "variables" as v;
 
 html {
-    font-size: 62.5%;
-    box-sizing: border-box;
-    scroll-padding-top: 0rem;
-    min-height: 100%;
-    position: relative;
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-padding-top: 0rem;
+  min-height: 100%;
+  position: relative;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-    font-family: v.$fuente_principal;
-    font-size: 1.6rem;
-    margin: 0;
-    margin-bottom: 40px;
-    
+  font-family: v.$fuente_principal;
+  font-size: 1.6rem;
+  margin: 0;
+  margin-bottom: 40px;
 
-    &.fijar-body {
-        overflow: hidden;
-    }
+  &.fijar-body {
+    overflow: hidden;
+  }
 
-    &.body-scroll {
-        padding-top: 8.6rem;
-    }
+  &.body-scroll {
+    padding-top: 8.6rem;
+  }
 }
 
 p {
-    font-size: 2rem;
-    line-height: 1.5;
+  font-size: 2rem;
+  line-height: 1.5;
 }
 
 .contenedor {
-    width: 95%;
-    max-width: 120rem;
-    margin: 0 auto;
+  width: 95%;
+  max-width: 120rem;
+  margin: 0 auto;
 }
 
 a {
-    text-decoration: none;
-    // color: v.$grisclaro;
+  text-decoration: none;
+  // color: v.$grisclaro;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .a {
-    text-decoration: none;
-    // color: v.$grisclaro;
+  text-decoration: none;
+  // color: v.$grisclaro;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 h1,
 h2,
 h3 {
-    margin: 0 0 5rem 0;
+  margin: 0 0 5rem 0;
 }
 
 h1 {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 
 h2 {
-    font-size: 3.6rem;
+  font-size: 3.6rem;
 }
 
 h3 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-ul li{
-    text-decoration: none;
-    list-style:none;
-    margin: 0 0 35px 0;
+ul li {
+  text-decoration: none;
+  list-style: none;
+  //   margin: 0 0 35px 0;
+  -webkit-user-select: none;
+  user-select: none;
 }

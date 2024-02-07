@@ -1,17 +1,18 @@
-.contenedorTotal{
-    position: absolute;
-    background-color: rgb(240, 242, 245);
-    width: 100%;
-    min-height: 100%;
-    display: flex;
+.contenedorTotal {
+  background-color: rgb(240, 242, 245);
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.dashboard-right{
-    width: 100%;
-    margin: 10px;
+.dashboard-right {
+  //   width: 100%;
+  margin: 10px;
+  flex-grow: 1;
 }
 
-.dashboard-curso{
-    display: flex;
-    flex-direction: row; 
+.dashboard-curso {
+  display: flex;
+  flex-direction: row;
 }
