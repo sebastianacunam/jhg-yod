@@ -39,10 +39,11 @@ export function loginUser(payload){
   return async function(dispatch){
     try {
       let json = await clienteAxios.post(`/users/login`, payload);
-      localStorage.setItem("token", json.data.token);
+      localStorage.setItem("token", json.data.data.token);
+      // console.log(prueba, 'a ver ')
       return dispatch({
         type: LOGIN_USER,
-        payload: json.data,
+        payload: json.data.data,
       });
     } catch (e) {
       return dispatch({
@@ -167,13 +168,14 @@ export function usuarioActual() {
     };
     try {
       const json = await clienteAxios('/users/actual', config);
-      console.log(json.data, "desde el actions")
+      console.log('usuario actual desde el action', json)
+      
       return dispatch({
         type: ACTUAL,
-        payload: json.data,
+        payload: json.data.data,
       });
     } catch (e) {
-      console.log(e.response.data);
+      console.log(e.response.data.data);
     }
   };
 }

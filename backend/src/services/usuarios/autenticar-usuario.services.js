@@ -23,6 +23,7 @@ export const autenticarUsuario = async ({ email, password }) => {
          name: usuario.name,
          email: usuario.email,
          image: usuario.image,
+         cursos: usuario.cursos,
          token: generateJWT(usuario._id), //mandar el id por JWT
       };
    } else {
