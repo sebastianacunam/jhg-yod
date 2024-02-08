@@ -1,8 +1,8 @@
 import { json } from 'express';
 import { envs } from '../conf/envs.js';
 import cors from 'cors';
-// import morgan from 'morgan';
-// const { NODE_ENV } = envs;
+import morgan from 'morgan';
+const { NODE_ENV } = envs;
 
 export const setMiddlewareApp = (app) => {
    app.use(json());
@@ -17,6 +17,6 @@ export const setMiddlewareApp = (app) => {
          'authorization',
       ],
    }));
-   // NODE_ENV === "development" && app.use(morgan("dev"));
-   // app.use(morgan("dev"))
+   NODE_ENV === "development" && app.use(morgan("dev"));
+
 };
