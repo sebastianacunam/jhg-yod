@@ -2,7 +2,7 @@ import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usuarioActual } from "../../../redux/actions/actionUser";
 import { Link, useActionData } from "react-router-dom"
-import Curso from "../../CommonComponents/Curso/Curso";
+import Curso from "../Curso/Curso";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import '../../../assets/scss/layout/_dashboard.scss'
 
