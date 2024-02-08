@@ -37,7 +37,9 @@ export default function LeftMenu() {
                     <Link className='font-white-left' to='/dashboard'>Dashboard</Link>
                 </li>              
                 <li>
+                    <div>
                     <Link className='font-white-left' to='/cursos'>Cursos</Link>
+                    </div>
                 </li>              
                 <li>-Bootcamps</li>
                 <li>-Mentorías</li>

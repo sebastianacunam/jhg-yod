@@ -9,12 +9,12 @@ import Register from './components/CommonComponents/Register/Register'
 import ConfirmAccount from './components/CommonComponents/ConfirmAccount/ConfirmAccount'
 import ForgotPassword from './components/CommonComponents/ForgotPassword/ForgotPassword'
 import NewPassword from './components/CommonComponents/NewPassword/NewPassword'
-import Cursos from './components/CommonComponents/Cursos/Cursos'
 
 /* ----------------------------------Registered User----------------------------------------- */
 import Dashboard from './components/UserRegisteredComponents/Dashboard/Dashboard'
 import Perfil from './components/UserRegisteredComponents/Perfil/Perfil'
 import FormAnuncio from './components/UserRegisteredComponents/FormAnuncio/FormAnuncio'
+import Cursos from './components/UserRegisteredComponents/Cursos/Cursos'
 import VerificationUser from './components/CommonComponents/VerificationUser/VerificationUser'
 
 /* ------------------------------------------------------------------------------------------ */
