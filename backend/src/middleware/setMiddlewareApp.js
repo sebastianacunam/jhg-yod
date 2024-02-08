@@ -18,5 +18,4 @@ export const setMiddlewareApp = (app) => {
       ],
    }));
    NODE_ENV === "development" && app.use(morgan("dev"));
-
 };
