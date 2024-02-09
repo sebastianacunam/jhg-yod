@@ -14,7 +14,7 @@ export const getMentorias = async (req, res) => {
 };
 
 /*************************************************************************/
-// TRAER UNA Mentoria
+// TRAER UNA Mentoria por ID
 
 export const findMentoria = async ({ params }, res) => {
     const { id } = params;
@@ -23,7 +23,7 @@ export const findMentoria = async ({ params }, res) => {
 };
 
 /*************************************************************************/
-// CREAR una Mentoria
+// CREAR UNA nueva Mentoria
 
 export const createMentoria = async ({ body }, res) => {
     const { name, description } = body;
@@ -33,7 +33,7 @@ export const createMentoria = async ({ body }, res) => {
 };
 
 /*************************************************************************/
-// TRAER UNA Mentoria
+// EDITAR UNA Mentoria
 
 export const editMentoria = async ({ body, params }, res) => {
     const data = body;
@@ -43,10 +43,10 @@ export const editMentoria = async ({ body, params }, res) => {
 };
 
 /*************************************************************************/
-// ELIMINAR una Mentoria por ID
+// ELIMINAR UNA Mentoria por ID
 
 export const deleteMentoria = async ({ params }, res) => {
     const { id } = params;
     const mentoria = await delete_mentoria(id);
-    response(res, 201, mentoria);
+    response(res, 200, mentoria);
 };
