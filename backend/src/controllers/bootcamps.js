@@ -1,86 +1,52 @@
-import Bootcamp from "../models/bootcamp.js"
+import { all_bootcamps } from "../services/bootcamps/all-bootcamps.services.js";
+import { create_bootcamp } from "../services/bootcamps/create-bootcamp.services.js";
+import { delete_bootcamp } from "../services/bootcamps/delete-bootcamp.services.js";
+import { edit_bootcamp } from "../services/bootcamps/edit-bootcamp.services.js";
+import { find_bootcamp } from "../services/bootcamps/find-bootcamp.services.js";
+import { response } from "../utils/response.js";
 
 /*************************************************************************/
+// TRAER TODOS los Bootcamps
 
-//Traer todos los bootcamps
-export const bootcamps = async (req, res) => {
-  const body = req.body;
-  try {
-    const bootcamps = await Bootcamp.find({ body });
-    res.send({ data: bootcamps });
-  } catch (error) {
-    res.status(404).json({ msg: error.message });
-  }
-}
+export const getBootcamps = async (req, res) => {
+  const bootcamps = await all_bootcamps();
+  response(res, 200, bootcamps);
+};
 
 /*************************************************************************/
+// TRAER UN Bootcamp por ID
 
-//Encontrar un bootcamp por id
-export const findBootcamp = async (req, res) => {
-  const id = req.params.id;
-  try {
-    const bootcampId = await  Bootcamp.findById(id)
-    res.send({data: bootcampId})
-  } catch (error) {
-    res.status(404).json({ msg: error.message })
-  }
-}
+export const findBootcamp = async ({ params }, res) => {
+  const { id } = params;
+  const bootcamp = await find_bootcamp(id);
+  response(res, 200, bootcamp);
+};
 
 /*************************************************************************/
+// CREAR UN nuevo Bootcamp
 
-// Crear un bootcamp nuevo
-export const createBootcamp = async (req, res) => {
-  const bootcamp = new Bootcamp(req.body)
-  try {
-    const savedBootcamp = await bootcamp.save();
-    res.status(201).json(savedBootcamp)
-  } catch (error) {
-    console.log(error)
-  }
-}
+export const createBootcamp = async ({ body }, res) => {
+  const { name, description } = body;
+  const obj = { name, description };
+  const bootcamp = await create_bootcamp(obj);
+  response(res, 201, bootcamp);
+};
 
 /*************************************************************************/
+// EDITAR UN Bootcamp
 
-//Eliminar un bootcamp
-export const deleteBootcamp = async (req, res) => {
-  try {
-    const id = req.params.id
-    const bootcampId = await Bootcamp.findOneAndDelete({ _id: id})
-    res.json({data: bootcampId}).status(201)
-  } catch (error) {
-    console.log(error)
-  }
-}
+export const editBootcamp = async ({ body, params }, res) => {
+  const data = body;  
+  const { id } = params;
+  const bootcamp = await edit_bootcamp(data, id);
+  response(res, 200, bootcamp);
+};
 
 /*************************************************************************/
+// ELIMINAR UN Bootcamp por ID
 
-//Modificar un bootcamp
-export const editBootcamp = async (req, res) => {
-  const data = req.body   
-  const id = req.params.id
-
-  try {
-    if(id.length == 24){
-      const bootcamp = await Bootcamp.findByIdAndUpdate(
-        { _id: id },
-        data,
-        { new: true }
-      )
-      if (!bootcamp) {
-        const error = new Error("No existe el bootcamp con ese id.");
-        return res.status(404).json({ msg: error.message });
-      }
-    } else {
-        return res.send('El id es incorrecto').status(500)
-    } 
-
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-/*************************************************************************/
-
-
-
-
+export const deleteBootcamp = async ({ params }, res) => {
+  const { id } = params;
+  const bootcamp = await delete_bootcamp(id);
+  response(res, 200, bootcamp);
+};

@@ -1,13 +1,14 @@
 import express from "express";
 
-import { bootcamps, findBootcamp, createBootcamp, deleteBootcamp, editBootcamp } from '../controllers/bootcamps.js';
+import { getBootcamps, findBootcamp, createBootcamp, deleteBootcamp, editBootcamp } from '../controllers/bootcamps.js';
+import { asyncCatched } from "../utils/asyncCatched.js"; 
 
 const router = express.Router();
 
-router.get('/', bootcamps);
-router.post('/create', createBootcamp);
-router.delete('/delete/:id', deleteBootcamp);
-router.get('/:id', findBootcamp);
-router.put('/edit/:id', editBootcamp);
+router.get('/', asyncCatched(getBootcamps));
+router.get('/:id', asyncCatched(findBootcamp));
+router.post('/create', asyncCatched(createBootcamp));
+router.put('/edit/:id', asyncCatched(editBootcamp));
+router.delete('/delete/:id', asyncCatched(deleteBootcamp));
 
 export default router;
