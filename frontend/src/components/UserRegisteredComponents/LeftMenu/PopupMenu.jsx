@@ -24,7 +24,7 @@ const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
       {isOpen && (
         <div className='courses-menu-content'>
           <ul onMouseLeave={handleMouseLeave}>
-            {data.map((element, index) => (
+            {data.data.map((element, index) => (
               <li key={index}>{element.name}</li>
             ))}
           </ul>
