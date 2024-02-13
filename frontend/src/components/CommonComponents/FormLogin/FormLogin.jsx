@@ -1,5 +1,5 @@
 import { useState, React } from 'react'
-import { loginUser, resetErrorLoginUser } from '../../../redux/actions/actionUser'
+import { loginUser, resetErrorLoginUser, registroGoogle } from '../../../redux/actions/actionUser'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import validateEmail from '../../../middleware/validateEmail'
@@ -8,6 +8,7 @@ import validateLogin from '../../../middleware/validateLogin'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../../../assets/scss/layout/_formLogin.scss'
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"
 
 
 export default function FormLogin() {
@@ -76,6 +77,14 @@ export default function FormLogin() {
         }
     }, [usuario]);
 
+    function responseGoogle(el) {
+      dispatch(registroGoogle(el))
+      navigate( '/dashboard')
+      console.log(el, 'a ver que pasa?')
+      // setTimeout(function () {
+      //     window.location.reload(1)
+      // }, 1500) // After 2,5 secs
+  }
 
 
   return (
@@ -122,6 +131,11 @@ export default function FormLogin() {
               </div>
             </div>
           </form>
+          <div>
+            <GoogleOAuthProvider clientId={`${import.meta.env.VITE_URL_CLIENT_ID}`} >
+                <GoogleLogin login_uri="" onSuccess={responseGoogle} />
+            </GoogleOAuthProvider>
+          </div>
         </div>
       </section>
     </div>
