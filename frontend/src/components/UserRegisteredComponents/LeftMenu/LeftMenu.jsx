@@ -16,8 +16,8 @@ export default function LeftMenu() {
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
   const courseData = useSelector((state) => state.allCursos);
-  // const mentoriasData = useSelector((state) => state.allMentorias);
-  // console.log(mentoriasData);
+  const mentoriasData = useSelector((state) => state.allMentorias);
+  console.log(mentoriasData);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -31,6 +31,11 @@ export default function LeftMenu() {
     window.localStorage.removeItem("token");
     window.location.reload();
   }
+  const handleMouseEnter = () => {
+    setTimeout(() => {
+      setIsMenuOpen(true);
+    }, 0);
+  };
   const handleMouseLeave = () => {
     setTimeout(() => {
       setIsMenuOpen(false);
@@ -52,18 +57,18 @@ export default function LeftMenu() {
           </li>
           <li>
             <div
-              onMouseEnter={() => setIsMenuOpen(true)}
+              onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}>
               <Link className='font-white-left' to='/cursos'>
                 <MdOutlineArrowForwardIos />
                 Cursos
               </Link>
-              <PopupMenu
-                isOpen={isMenuOpen}
-                data={courseData}
-                setIsMenuOpen={setIsMenuOpen}
-              />
             </div>
+            <PopupMenu
+              isOpen={isMenuOpen}
+              data={courseData}
+              setIsMenuOpen={setIsMenuOpen}
+            />
           </li>
           <li>
             <div>

@@ -10,7 +10,7 @@ import {
   nuevoPassword,
   usuario,
   perfil,
-  editarPerfil,
+  // editarPerfil,
 } from "../controllers/usuario.js";
 import { asyncCatched } from "../utils/asyncCatched.js";
 
@@ -24,7 +24,7 @@ router.patch("/olvide-password/:token", asyncCatched(nuevoPassword)); //modifica
 
 router.get("/perfil", checkAuth, asyncCatched(perfil)); //Ingresar al perfil solo si es el usuario
 router.get("/actual", checkAuth, asyncCatched(usuario));
-router.patch("/perfil/:userId", checkAuth, asyncCatched(editarPerfil));
+// router.patch("/perfil/:userId", checkAuth, asyncCatched(editarPerfil));
 
 //Admin
 router.delete("/delete/:id", asyncCatched(deleteUser));
