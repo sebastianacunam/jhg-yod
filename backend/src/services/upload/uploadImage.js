@@ -1,4 +1,4 @@
-const cloudinary = require("cloudinary").v2;
+import cloudinary from "cloudinary";
 const { CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SEC } = process.env;
 
 cloudinary.config({

@@ -1,5 +1,5 @@
-import Usuario from "../../models/usuario";
-import { uploadImage } from "../upload/uploadImage";
+import Usuario from "../../models/usuario.js";
+import { uploadImage } from "../upload/uploadImage.js";
 
 export const updateUser = async (userId, data) => {
   const imageUrl = await uploadImage(data.image.tempFilePath);
