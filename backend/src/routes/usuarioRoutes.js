@@ -1,10 +1,12 @@
 import express from 'express';
 import checkAuth from '../middleware/checkAuth.js'
-import { createUser, deleteUser, allUsers, authenticate, confirm, olvidePassword, nuevoPassword, usuario, perfil } from '../controllers/usuario.js'
+import { createUser, deleteUser, allUsers, authenticate, confirm, olvidePassword, nuevoPassword, usuario, perfil, googleLogin } from '../controllers/usuario.js'
 import { asyncCatched } from '../utils/asyncCatched.js';
 
 const router = express.Router();
 
+
+router.post('/google', asyncCatched(googleLogin));
 router.post('/create', asyncCatched(createUser));
 router.post('/login', asyncCatched(authenticate));
 router.get('/confirm/:token', asyncCatched(confirm));

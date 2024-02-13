@@ -7,7 +7,18 @@ import { olvide_password } from '../services/usuarios/olivde-password.services.j
 import { profile } from '../services/usuarios/perfil.services.js';
 import { register } from '../services/usuarios/register.services.js';
 import { usuarioActual } from '../services/usuarios/usuario.services.js';
+import { googleLoginService } from '../services/usuarios/google-login.services.js'
 import { response } from '../utils/response.js';
+
+
+/*************************************************************************/
+//Crear/registrar usuario Google.
+export const googleLogin = async ({ body }, res) =>{
+    const { idToken } = body;
+    const user = await googleLoginService(idToken)
+    // console.log(user, 'a ver qué trae user google login')
+    response(res, 201, user)
+}
 
 
 /*************************************************************************/
