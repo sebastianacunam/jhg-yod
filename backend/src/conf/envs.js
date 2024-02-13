@@ -13,4 +13,5 @@ export const envs = {
    EMAIL_HOST: process.env.EMAIL_HOST,
    EMAIL_PORT: process.env.EMAIL_PORT,
    EMAIL_SECURE: process.env.EMAIL_SECURE,
+   CLIENT_ID: process.env.CLIENT_ID
 };

@@ -1,7 +1,7 @@
 import clienteAxios from '../../config/clienteAxios'
 import { toast } from "react-toastify";
 import { 
-  // GOOGLE_LOGIN, 
+  GOOGLE_LOGIN, 
   // LOGOUT_USER, 
   // IS_ADMIN,
   // UPDATE_NOMBRE,
@@ -16,6 +16,22 @@ import {
   ACTUAL,
 } from '../utils/constants.js'
 
+export function registroGoogle(googleData) {
+  return async function (dispatch) {
+    const token = googleData.credential;
+    try {
+      const response = await clienteAxios.post(`/users/google`, { idToken: token });
+      console.log(response.data.data.token, 'pasara por acaá? ')
+      localStorage.setItem("token", response.data.data.token);
+      return dispatch({
+        type: GOOGLE_LOGIN,
+        payload: response.data.data,
+      });
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+}
 
 export function registerUser({name, email, password1}){
   return async function(dispatch){
