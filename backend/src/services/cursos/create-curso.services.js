@@ -1,15 +1,15 @@
-import Mentorias from "../../models/mentoria.js";
+import Cursos from "../../models/cursos.js";
 import { ClientError } from "../../utils/errors/index.js";
 
-export const create_mentoria = async (obj) => {
+export const create_curso = async (obj) => {
     const { name, description } = obj;
     if (!name || !description) throw new ClientError("Missing Data", 400);
 
-    const newMentoria = new Mentorias({
+    const newCurso = new Cursos({
         name,
         description
     });
-    const savedMentoria = await newMentoria.save();
+    const savedCurso = await newCurso.save();
 
-    return savedMentoria;
-}
+    return savedCurso;
+};

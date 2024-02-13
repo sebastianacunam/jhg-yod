@@ -1,13 +1,14 @@
 import express from "express";
 
-import { anuncios, createAnuncio, deleteAnuncio, findAnuncio, editAnuncio } from '../controllers/anuncio.js';
+import { getAnuncios, createAnuncio, deleteAnuncio, findAnuncio, editAnuncio } from '../controllers/anuncio.js';
+import { asyncCatched } from "../utils/asyncCatched.js";
 
 const router = express.Router();
 
-router.get('/', anuncios);
-router.post('/create', createAnuncio);
-router.delete('/delete/:id', deleteAnuncio);
-router.get('/:id', findAnuncio);
-router.put('/edit/:id', editAnuncio);
+router.get('/', asyncCatched(getAnuncios));
+router.get('/:id', asyncCatched(findAnuncio));
+router.post('/create', asyncCatched(createAnuncio));
+router.put('/edit/:id', asyncCatched(editAnuncio));
+router.delete('/delete/:id', asyncCatched(deleteAnuncio));
 
 export default router;

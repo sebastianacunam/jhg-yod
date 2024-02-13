@@ -1,15 +1,15 @@
-import Mentorias from "../../models/mentoria.js";
+import Bootcamp from "../../models/bootcamp.js";
 import { ClientError } from "../../utils/errors/index.js";
 
-export const create_mentoria = async (obj) => {
+export const create_bootcamp = async (obj) => {
     const { name, description } = obj;
     if (!name || !description) throw new ClientError("Missing Data", 400);
 
-    const newMentoria = new Mentorias({
+    const newBootcamp = new Bootcamp({
         name,
         description
     });
-    const savedMentoria = await newMentoria.save();
+    const savedBootcamp = await newBootcamp.save();
 
-    return savedMentoria;
-}
+    return savedBootcamp;
+};

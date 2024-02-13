@@ -7,15 +7,15 @@ export const edit_mentoria = async (data, id) => {
             { _id: id },
             data,
             { new: true }
-        )
+        );
 
         if (!mentoria) {
-            throw new ClientError("No existe la Mentoria con ese ID", 404)
+            throw new ClientError("No existe la Mentoria con ese ID", 404);
         } else {
             return {
                 message: "Mentoria Actualizada",
                 dataUpdated: mentoria
             };
-        }
-    }
-}
+        };
+    };
+};
