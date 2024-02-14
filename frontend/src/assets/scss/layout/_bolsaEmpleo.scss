@@ -1,0 +1,40 @@
+.conteiner-empleo {
+   display: grid;
+   grid-template-columns: 18em 3fr 1fr 1fr;
+   grid-template-rows: 150px 1fr 150px;
+   min-height: 100vh;
+   grid-template-areas: 
+      ". header header header"
+      ". content content sidebar"
+      ". footer footer footer"
+}
+
+
+.conteiner-empleo header {
+   background: rgba(5, 52, 83, 0.451);
+   grid-area: header;
+}
+
+.conteiner-empleo aside {
+   background: rgba(255, 255, 0, 0.22);
+   grid-area: sidebar;
+}
+
+.conteiner-empleo main {
+   grid-area: content;
+}
+
+.conteiner-empleo footer {
+   background: gray;
+   grid-area: footer;
+}
+.ul-container-empleo{
+   margin-left: -40px;
+}
+.card-empleo {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr ;
+   border-radius: 10px;
+   border: solid 1px;
+}
