@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 
-const PopupMenu = ({ isOpen,data, setIsMenuOpen }) => {
+const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
   const menuRef = useRef(null);
 
   const handleMouseEnter = () => {
@@ -12,13 +12,10 @@ const PopupMenu = ({ isOpen,data, setIsMenuOpen }) => {
     setIsMenuOpen(false);
   };
 
-  return (
-    <div
-      ref={menuRef}
-      className={`courses-menu ${isOpen ? "open" : ""}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
-      {isOpen && (
+  let content = null;
+  switch (data) {
+    case "Cursos":
+      content = (
         <div className='courses-menu-content'>
           <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <li>
@@ -31,7 +28,39 @@ const PopupMenu = ({ isOpen,data, setIsMenuOpen }) => {
             </li>
           </ul>
         </div>
-      )}
+      );
+      break;
+    case "Bootcamps":
+      content = (
+        <div className='courses-menu-content'>
+          <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li>Mis bootcamps</li>
+            <li>Todos los bootcamps</li>
+          </ul>
+        </div>
+      );
+      break;
+    case "Mentorias":
+      content = (
+        <div className='courses-menu-content'>
+          <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li>Mis mentorias</li>
+            <li>Todas las mentorias</li>
+          </ul>
+        </div>
+      );
+      break;
+    default:
+      content = null;
+  }
+
+  return (
+    <div
+      ref={menuRef}
+      className={`courses-menu ${isOpen ? "open" : ""}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
+      {isOpen && <div className='courses-menu-content'>{content}</div>}
     </div>
   );
 };

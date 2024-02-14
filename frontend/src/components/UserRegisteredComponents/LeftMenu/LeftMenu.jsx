@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import PopupMenu from "./PopupMenu";
 export default function LeftMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [popupText, setPopupText] = useState("");
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
   const token = localStorage.getItem("token");
@@ -23,12 +24,14 @@ export default function LeftMenu() {
     window.localStorage.removeItem("token");
     window.location.reload();
   }
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (text) => {
     setIsMenuOpen(true);
+    setPopupText(text);
   };
   const handleMouseLeave = () => {
     setTimeout(() => {
-      setIsMenuOpen(false);
+      setIsMenuOpen(true);
+      setPopupText("");
     }, 3000);
   };
   return (
@@ -47,22 +50,32 @@ export default function LeftMenu() {
           </li>
           <li>
             <div
-              onMouseEnter={handleMouseEnter}
+              onMouseEnter={() => handleMouseEnter("Cursos")}
               onMouseLeave={handleMouseLeave}>
               <MdOutlineArrowForwardIos />
               Cursos
             </div>
-            <PopupMenu isOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+            <PopupMenu
+              isOpen={isMenuOpen}
+              setIsMenuOpen={setIsMenuOpen}
+              data={popupText}
+            />
           </li>
           <li>
-            <div>
+            <div
+              onMouseEnter={() => handleMouseEnter("Bootcamps")}
+              onMouseLeave={handleMouseLeave}>
               <MdOutlineArrowForwardIos />
               Bootcamps
             </div>
           </li>
           <li>
-            <MdOutlineArrowForwardIos />
-            Mentorías
+            <div
+              onMouseEnter={() => handleMouseEnter("Mentorias")}
+              onMouseLeave={handleMouseLeave}>
+              <MdOutlineArrowForwardIos />
+              Mentorías
+            </div>
           </li>
           <li>-Anuncios</li>
           <li>-Beneficios</li>
