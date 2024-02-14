@@ -16,6 +16,7 @@ import Perfil from './components/UserRegisteredComponents/Perfil/Perfil'
 import FormAnuncio from './components/UserRegisteredComponents/FormAnuncio/FormAnuncio'
 import Cursos from './components/UserRegisteredComponents/Cursos/Cursos'
 import VerificationUser from './components/CommonComponents/VerificationUser/VerificationUser'
+import BolsaTrabajo from './components/CommonComponents/BolsaTrabajo/BolsaTrabajo'
 
 /* ------------------------------------------------------------------------------------------ */
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/olvide-password' element={<ForgotPassword />} />
           <Route path='/olvide-password/:token' element={<NewPassword />} />
           <Route path='/cursos' element={<Cursos />} />
+          <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
           
         </Route>
 

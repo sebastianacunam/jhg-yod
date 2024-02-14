@@ -1,13 +1,13 @@
 import clienteAxios from '../../config/clienteAxios'
 import { toast } from "react-toastify";
-import { 
-  GOOGLE_LOGIN, 
+import {
+  GOOGLE_LOGIN,
   // LOGOUT_USER, 
   // IS_ADMIN,
   // UPDATE_NOMBRE,
   // BORRAR_USUARIO,
-  LOGIN_USER, 
-  AUTH_USER, 
+  LOGIN_USER,
+  AUTH_USER,
   RESET_ERROR_LOGUIN_USER,
   VALIDATE_USER,
   SEND_EMAIL_TO_RESET_PASSWORD,
@@ -33,13 +33,13 @@ export function registroGoogle(googleData) {
   };
 }
 
-export function registerUser({name, email, password1}){
-  return async function(dispatch){
+export function registerUser({ name, email, password1 }) {
+  return async function (dispatch) {
     try {
       const body = {
-          name, 
-          email, 
-          password: password1,
+        name,
+        email,
+        password: password1,
       }
       const response = await clienteAxios.post(`/users/create`, body)
       toast.success(response.data)
@@ -51,12 +51,11 @@ export function registerUser({name, email, password1}){
 }
 
 
-export function loginUser(payload){
-  return async function(dispatch){
+export function loginUser(payload) {
+  return async function (dispatch) {
     try {
       let json = await clienteAxios.post(`/users/login`, payload);
       localStorage.setItem("token", json.data.data.token);
-      // console.log(prueba, 'a ver ')
       return dispatch({
         type: LOGIN_USER,
         payload: json.data.data,
@@ -85,11 +84,11 @@ export function resetErrorLoginUser() {
 export function validateUser(id) {
   return async function (dispatch) {
     try {
-      var json = await clienteAxios(`/users/confirm/${id}`);
+      var json = await clienteAxios.patch(`/users/confirm/${id}`);
       toast.success("User validated successfully");
       return dispatch({
         type: VALIDATE_USER,
-        payload: json.data,
+        payload: json.data.data,
       });
     } catch (error) {
       toast.error("There was an error validating the user");
@@ -111,7 +110,7 @@ export function authenticateUser(config) {
         payload: json.data,
       });
     } catch (error) {
-        console.log(error.response.data);
+      console.log(error.response.data);
     }
   };
 }
@@ -184,8 +183,6 @@ export function usuarioActual() {
     };
     try {
       const json = await clienteAxios('/users/actual', config);
-      console.log('usuario actual desde el action', json)
-      
       return dispatch({
         type: ACTUAL,
         payload: json.data.data,

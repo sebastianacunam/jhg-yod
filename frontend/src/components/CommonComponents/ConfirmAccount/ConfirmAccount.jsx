@@ -11,17 +11,17 @@ export default function ConfirmarCuenta() {
   
 
   useEffect(() => {
-    dispatch(validateUser(id))
-  }, [])
+     dispatch(validateUser(id))
+  }, [dispatch, id])
 
   return (
     <div className="contConfirm">
       <h2 className="titleConfirm">
         ¡Bienvenido a <span>Nestify</span>!
-        <br/>
+        <br />
       </h2>
-      <div className="response">{respuesta.msg}</div>
-      <br/>
+      <div className="response">{respuesta.message}</div>
+      <br />
       <Link to="/dashboard">
         <button className="btnConfirm">Volver a HOME</button>
       </Link>

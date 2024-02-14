@@ -1,19 +1,58 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
   const menuRef = useRef(null);
-  const [timeoutId, setTimeoutId] = useState(null);
+
   const handleMouseEnter = () => {
     setIsMenuOpen(true);
-    clearTimeout(timeoutId);
   };
 
   const handleMouseLeave = () => {
-    const id = setTimeout(() => {
-      setIsMenuOpen(false);
-    }, 0);
-    setTimeoutId(id);
+    setIsMenuOpen(false);
   };
+
+  let content = null;
+  switch (data) {
+    case "Cursos":
+      content = (
+        <div className='courses-menu-content'>
+          <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li>
+              <NavLink className='navlinkNoStyles'>Mis cursos</NavLink>
+            </li>
+            <li>
+              <NavLink className='navlinkNoStyles' to={"/cursos"}>
+                Todos los cursos
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      );
+      break;
+    case "Bootcamps":
+      content = (
+        <div className='courses-menu-content'>
+          <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li>Mis bootcamps</li>
+            <li>Todos los bootcamps</li>
+          </ul>
+        </div>
+      );
+      break;
+    case "Mentorias":
+      content = (
+        <div className='courses-menu-content'>
+          <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li>Mis mentorias</li>
+            <li>Todas las mentorias</li>
+          </ul>
+        </div>
+      );
+      break;
+    default:
+      content = null;
+  }
 
   return (
     <div
@@ -21,15 +60,7 @@ const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
       className={`courses-menu ${isOpen ? "open" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
-      {isOpen && (
-        <div className='courses-menu-content'>
-          <ul onMouseLeave={handleMouseLeave}>
-            {data.data.map((element, index) => (
-              <li key={index}>{element.name}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {isOpen && <div className='courses-menu-content'>{content}</div>}
     </div>
   );
 };

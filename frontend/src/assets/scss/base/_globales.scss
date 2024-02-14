@@ -90,3 +90,8 @@ ul li {
   -webkit-user-select: none;
   user-select: none;
 }
+.navlinkNoStyles {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}

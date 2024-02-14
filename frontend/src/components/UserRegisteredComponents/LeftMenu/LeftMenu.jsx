@@ -6,18 +6,18 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
-import { getCursos } from "../../../redux/actions/actionCurso";
 import "../../../assets/scss/layout/_leftMenu.scss";
 import { Link } from "react-router-dom";
 import PopupMenu from "./PopupMenu";
-import { getMentorias } from "../../../redux/actions/actionMentorias";
+import {getCursos} from '../../../redux/actions/actionCurso.js'
+import {getMentorias} from '../../../redux/actions/actionMentorias.js'
+
+
 export default function LeftMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [popupText, setPopupText] = useState("");
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
-  const courseData = useSelector((state) => state.allCursos);
-  const mentoriasData = useSelector((state) => state.allMentorias);
-  console.log(mentoriasData);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -25,21 +25,22 @@ export default function LeftMenu() {
 
     dispatch(getCursos());
     dispatch(getMentorias());
-  }, [token]);
+
+  }, [dispatch, token]);
 
   function logOut() {
     window.localStorage.removeItem("token");
     window.location.reload();
   }
-  const handleMouseEnter = () => {
-    setTimeout(() => {
-      setIsMenuOpen(true);
-    }, 0);
+  const handleMouseEnter = (text) => {
+    setIsMenuOpen(true);
+    setPopupText(text);
   };
   const handleMouseLeave = () => {
     setTimeout(() => {
-      setIsMenuOpen(false);
-    }, 1000);
+      setIsMenuOpen(true);
+      setPopupText("");
+    }, 3000);
   };
   return (
     <div className='dashboard-left'>
@@ -57,38 +58,46 @@ export default function LeftMenu() {
           </li>
           <li>
             <div
-              onMouseEnter={handleMouseEnter}
+              onMouseEnter={() => handleMouseEnter("Cursos")}
               onMouseLeave={handleMouseLeave}>
-              <Link className='font-white-left' to='/cursos'>
-                <MdOutlineArrowForwardIos />
-                Cursos
-              </Link>
+              <MdOutlineArrowForwardIos />
+              Cursos
             </div>
             <PopupMenu
               isOpen={isMenuOpen}
-              data={courseData}
               setIsMenuOpen={setIsMenuOpen}
+              data={popupText}
             />
           </li>
           <li>
-            <div>
+            <div
+              onMouseEnter={() => handleMouseEnter("Bootcamps")}
+              onMouseLeave={handleMouseLeave}>
               <MdOutlineArrowForwardIos />
               Bootcamps
             </div>
           </li>
           <li>
-            <MdOutlineArrowForwardIos />
-            Mentorías
+            <div
+              onMouseEnter={() => handleMouseEnter("Mentorias")}
+              onMouseLeave={handleMouseLeave}>
+              <MdOutlineArrowForwardIos />
+              Mentorías
+            </div>
           </li>
+          <li>-Anuncios</li>
+          <li>-Beneficios</li>
           <li>
             <BsPeopleFill />
-            Comunidad "acá rrss ds y telegram"
+            Comunidad acá rrss ds y telegram
           </li>
           <li>
-            <MdOutlineCases />
-            Bolsa de trabajo
+            <Link className='font-white-left' to='/bolsa-empleo'>
+              <MdOutlineCases />
+              Bolsa de trabajo
+            </Link>
           </li>
-          <li>-Beneficios</li>
+
           <li>
             <Link className='font-white-left' to='/perfil'>
               Perfil
