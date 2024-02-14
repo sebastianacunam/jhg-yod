@@ -1,21 +1,22 @@
-import { all_users } from "../services/usuarios/all-users.services.js";
-import { autenticarUsuario } from "../services/usuarios/autenticar-usuario.services.js";
-import { confirmUsuario } from "../services/usuarios/confirmar-usuario.services.js";
-import { delete_user } from "../services/usuarios/delete-user.services.js";
-import { nuevaPassword } from "../services/usuarios/nueva-password.services.js";
-import { olvide_password } from "../services/usuarios/olivde-password.services.js";
-import { profile } from "../services/usuarios/perfil.services.js";
-import { register } from "../services/usuarios/register.services.js";
-import { updateUser } from "../services/usuarios/update-user.js";
-import { usuarioActual } from "../services/usuarios/usuario.services.js";
-import { response } from "../utils/response.js";
+import { all_users } from             "../services/usuarios/all-users.services.js";
+import { autenticarUsuario } from     "../services/usuarios/autenticar-usuario.services.js";
+import { confirmUsuario } from        "../services/usuarios/confirmar-usuario.services.js";
+import { delete_user } from           "../services/usuarios/delete-user.services.js";
+import { nuevaPassword } from         "../services/usuarios/nueva-password.services.js";
+import { olvide_password } from       "../services/usuarios/olivde-password.services.js";
+import { profile } from               "../services/usuarios/perfil.services.js";
+import { register } from              "../services/usuarios/register.services.js";
+import { updateUser } from            "../services/usuarios/update-user.js";
+import { usuarioActual } from         "../services/usuarios/usuario.services.js";
+import { googleLoginService } from    "../services/usuarios/google-login.services.js"
+import { response } from              "../utils/response.js";
 
 /*************************************************************************/
 //Crear/registrar usuario Google.
 export const googleLogin = async ({ body }, res) =>{
     const { idToken } = body;
     const user = await googleLoginService(idToken)
-    // console.log(user, 'a ver qué trae user google login')
+    console.log(user, 'a ver qué trae user google login')
     response(res, 201, user)
 }
 

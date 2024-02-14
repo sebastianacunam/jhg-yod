@@ -78,10 +78,10 @@ export default function FormLogin() {
 
   function responseGoogle(el) {
     dispatch(registroGoogle(el))
-    navigate('/dashboard')
-    // setTimeout(function () {
-    //     window.location.reload(1)
-    // }, 1500) // After 2,5 secs
+    setTimeout(function () {
+      // window.location.reload(1)
+      navigate('/dashboard')
+    }, 1500) // After 2,5 secs
   }
 
 
