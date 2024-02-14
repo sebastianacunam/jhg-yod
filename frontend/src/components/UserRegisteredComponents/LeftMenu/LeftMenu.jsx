@@ -25,7 +25,7 @@ export default function LeftMenu() {
 
     dispatch(getCursos());
     dispatch(getMentorias());
-  }, [token]);
+  }, [dispatch, token]);
 
   function logOut() {
     window.localStorage.removeItem("token");
@@ -82,11 +82,13 @@ export default function LeftMenu() {
           </li>
           <li>
             <BsPeopleFill />
-            Comunidad "acá rrss ds y telegram"
+            Comunidad acá rrss ds y telegram
           </li>
           <li>
-            <MdOutlineCases />
-            Bolsa de trabajo
+            <Link className='font-white-left' to='/bolsa-empleo'>
+              <MdOutlineCases />
+              Bolsa de trabajo
+            </Link>
           </li>
           <li>-Beneficios</li>
           <li>
