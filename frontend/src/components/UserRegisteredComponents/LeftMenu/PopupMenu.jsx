@@ -1,18 +1,15 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
 
-const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
+const PopupMenu = ({ isOpen,data, setIsMenuOpen }) => {
   const menuRef = useRef(null);
-  const [timeoutId, setTimeoutId] = useState(null);
+
   const handleMouseEnter = () => {
     setIsMenuOpen(true);
-    clearTimeout(timeoutId);
   };
 
   const handleMouseLeave = () => {
-    const id = setTimeout(() => {
-      setIsMenuOpen(false);
-    }, 0);
-    setTimeoutId(id);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -23,10 +20,15 @@ const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
       onMouseLeave={handleMouseLeave}>
       {isOpen && (
         <div className='courses-menu-content'>
-          <ul onMouseLeave={handleMouseLeave}>
-            {data.data.map((element, index) => (
-              <li key={index}>{element.name}</li>
-            ))}
+          <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li>
+              <NavLink className='navlinkNoStyles'>Mis cursos</NavLink>
+            </li>
+            <li>
+              <NavLink className='navlinkNoStyles' to={"/cursos"}>
+                Todos los cursos
+              </NavLink>
+            </li>
           </ul>
         </div>
       )}

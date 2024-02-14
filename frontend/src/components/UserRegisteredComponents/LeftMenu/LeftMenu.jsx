@@ -6,25 +6,17 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
-import { getCursos } from "../../../redux/actions/actionCurso";
 import "../../../assets/scss/layout/_leftMenu.scss";
 import { Link } from "react-router-dom";
 import PopupMenu from "./PopupMenu";
-import { getMentorias } from "../../../redux/actions/actionMentorias";
 export default function LeftMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
-  const courseData = useSelector((state) => state.allCursos);
-  const mentoriasData = useSelector((state) => state.allMentorias);
-  console.log(mentoriasData);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
-
-    dispatch(getCursos());
-    dispatch(getMentorias());
   }, [token]);
 
   function logOut() {
@@ -32,14 +24,12 @@ export default function LeftMenu() {
     window.location.reload();
   }
   const handleMouseEnter = () => {
-    setTimeout(() => {
-      setIsMenuOpen(true);
-    }, 0);
+    setIsMenuOpen(true);
   };
   const handleMouseLeave = () => {
     setTimeout(() => {
       setIsMenuOpen(false);
-    }, 1000);
+    }, 3000);
   };
   return (
     <div className='dashboard-left'>
@@ -59,16 +49,10 @@ export default function LeftMenu() {
             <div
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}>
-              <Link className='font-white-left' to='/cursos'>
-                <MdOutlineArrowForwardIos />
-                Cursos
-              </Link>
+              <MdOutlineArrowForwardIos />
+              Cursos
             </div>
-            <PopupMenu
-              isOpen={isMenuOpen}
-              data={courseData}
-              setIsMenuOpen={setIsMenuOpen}
-            />
+            <PopupMenu isOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
           </li>
           <li>
             <div>
@@ -80,6 +64,8 @@ export default function LeftMenu() {
             <MdOutlineArrowForwardIos />
             Mentorías
           </li>
+          <li>-Anuncios</li>
+          <li>-Beneficios</li>
           <li>
             <BsPeopleFill />
             Comunidad "acá rrss ds y telegram"
@@ -88,7 +74,7 @@ export default function LeftMenu() {
             <MdOutlineCases />
             Bolsa de trabajo
           </li>
-          <li>-Beneficios</li>
+
           <li>
             <Link className='font-white-left' to='/perfil'>
               Perfil
