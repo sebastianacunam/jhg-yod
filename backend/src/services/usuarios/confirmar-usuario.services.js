@@ -11,5 +11,5 @@ export const confirmUsuario = async (token) => {
    usuarioConfirmar.confirmed = true;
    usuarioConfirmar.token = '';
    await usuarioConfirmar.save();
-   return '¡¡¡Usuario confirmado satisfactoriamente!!!';
+   return { message: '¡¡¡Usuario confirmado satisfactoriamente!!!' };
 };

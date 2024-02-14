@@ -18,6 +18,7 @@ import {
   //mentorias
   GET_MENTORIAS,
   POST_MENTORIAS,
+  GET_EMPLEOS,
 } from "../utils/constants";
 
 const initialState = {
@@ -34,6 +35,7 @@ const initialState = {
   cursos: [],
   allCursos: [],
   allMentorias: [],
+  allEmpleos: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -141,6 +143,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         name: !action.payload.error ? action.payload : null,
         description: action.payload.error ? action.payload.error : null,
+      };
+
+    //-----------------------EMPLEOS----------------------------------------
+    case GET_EMPLEOS:
+      return {
+        ...state,
+        allEmpleos: action.payload,
       };
 
     default:

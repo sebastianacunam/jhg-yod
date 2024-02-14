@@ -18,7 +18,7 @@ const router = express.Router();
 
 router.post("/create", asyncCatched(createUser));
 router.post("/login", asyncCatched(authenticate));
-router.get("/confirm/:token", asyncCatched(confirm));
+router.patch("/confirm/:token", asyncCatched(confirm));
 router.post("/olvide-password", asyncCatched(olvidePassword));
 router.patch("/olvide-password/:token", asyncCatched(nuevoPassword)); //modificar y guardar password
 

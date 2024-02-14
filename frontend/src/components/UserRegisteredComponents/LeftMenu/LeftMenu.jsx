@@ -9,6 +9,7 @@ import logout from "../../../assets/images/icons/logout.png";
 import "../../../assets/scss/layout/_leftMenu.scss";
 import { Link } from "react-router-dom";
 import PopupMenu from "./PopupMenu";
+import { GET_CURSOS, GET_MENTORIAS } from "../../../redux/utils/constants";
 export default function LeftMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [popupText, setPopupText] = useState("");
@@ -18,7 +19,10 @@ export default function LeftMenu() {
 
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
-  }, [token]);
+
+    dispatch(GET_CURSOS());
+    dispatch(GET_MENTORIAS());
+  }, [dispatch, token]);
 
   function logOut() {
     window.localStorage.removeItem("token");
@@ -81,11 +85,13 @@ export default function LeftMenu() {
           <li>-Beneficios</li>
           <li>
             <BsPeopleFill />
-            Comunidad "acá rrss ds y telegram"
+            Comunidad acá rrss ds y telegram
           </li>
           <li>
-            <MdOutlineCases />
-            Bolsa de trabajo
+            <Link className='font-white-left' to='/bolsa-empleo'>
+              <MdOutlineCases />
+              Bolsa de trabajo
+            </Link>
           </li>
 
           <li>
