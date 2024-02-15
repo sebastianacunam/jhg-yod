@@ -12,16 +12,15 @@ export const googleLoginService = async (idToken) => {
             idToken,
             audience: CLIENT_ID,
         });
-        console.log(response, 'que trae response')
+console.log(response, 'que trae response')
         const { email_verified, picture, given_name, email } = response.payload;
-        
+
         if (email_verified) {
             let user = await Usuario.findOne({ email }).exec();
-            
+
             if (user) {
                 const token = generateJWT(user._id);
                 const { _id, name, email } = user;
-                console.log(user, 'que trae por acaaaaaaa')
                 return { _id, name, token, email };
             } else {
                 let nuevoUsuario = new Usuario({
@@ -29,7 +28,6 @@ export const googleLoginService = async (idToken) => {
                     email,
                     image: { public_id: "", url: picture },
                 });
-                console.log(nuevoUsuario, 'que trae por acaaaaaaa??????????????????')
 
                 nuevoUsuario.confirmed = true;
                 const tokenprueba = generateJWT(nuevoUsuario._id);
