@@ -16,7 +16,6 @@ import { response } from              "../utils/response.js";
 export const googleLogin = async ({ body }, res) =>{
     const { idToken } = body;
     const user = await googleLoginService(idToken)
-    console.log(user, 'a ver qué trae user google login')
     response(res, 201, user)
 }
 
