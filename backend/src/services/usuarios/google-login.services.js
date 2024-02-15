@@ -12,7 +12,6 @@ export const googleLoginService = async (idToken) => {
             idToken,
             audience: CLIENT_ID,
         });
-console.log(response, 'que trae response')
         const { email_verified, picture, given_name, email } = response.payload;
 
         if (email_verified) {
