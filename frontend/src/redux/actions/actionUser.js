@@ -27,7 +27,6 @@ export function registroGoogle(googleData) {
         payload: response.data.data,
       });
     } catch (err) {
-      console.log(err.response.data, 'para ver el error mejoooorrr')
       toast.error(err);
     }
   };
