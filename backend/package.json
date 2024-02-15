@@ -26,6 +26,7 @@
         "mongoose": "^6.12.1",
         "morgan": "^1.10.0",
         "nodemailer": "^6.9.7",
-        "nodemon": "^2.0.22"
+        "nodemon": "^2.0.22",
+        "stripe": "^14.16.0"
     }
 }
