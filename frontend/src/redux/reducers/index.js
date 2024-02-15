@@ -19,6 +19,9 @@ import {
   GET_MENTORIAS,
   POST_MENTORIAS,
   GET_EMPLEOS,
+  //anuncios
+  GET_ANUNCIOS,
+  POST_ANUNCIOS,
 } from "../utils/constants";
 
 const initialState = {
@@ -36,6 +39,7 @@ const initialState = {
   allCursos: [],
   allMentorias: [],
   allEmpleos: [],
+  allAnuncios: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -45,7 +49,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         usuario: action.payload,
-      }
+      };
 
     case LOGIN_USER:
       return {
@@ -143,7 +147,20 @@ function rootReducer(state = initialState, action) {
         name: !action.payload.error ? action.payload : null,
         description: action.payload.error ? action.payload.error : null,
       };
+    //---------------------ANUNCIOS----------------------------------------
+    case GET_ANUNCIOS:
+      return {
+        ...state,
+        anuncios: action.payload,
+        allAnuncios: action.payload,
+      };
 
+    case POST_ANUNCIOS:
+      return {
+        ...state,
+        name: !action.payload.error ? action.payload : null,
+        description: action.payload.error ? action.payload.error : null,
+      };
     //-----------------------EMPLEOS----------------------------------------
     case GET_EMPLEOS:
       return {
