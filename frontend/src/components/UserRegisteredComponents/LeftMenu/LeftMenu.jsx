@@ -9,7 +9,8 @@ import logout from "../../../assets/images/icons/logout.png";
 import "../../../assets/scss/layout/_leftMenu.scss";
 import { Link } from "react-router-dom";
 import PopupMenu from "./PopupMenu";
-import { GET_CURSOS, GET_MENTORIAS } from "../../../redux/utils/constants";
+import { getCursos } from "../../../redux/actions/actionCurso";
+import { getMentorias } from "../../../redux/actions/actionMentorias"
 export default function LeftMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [popupText, setPopupText] = useState("");
@@ -20,8 +21,8 @@ export default function LeftMenu() {
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
 
-    dispatch(GET_CURSOS());
-    dispatch(GET_MENTORIAS());
+    dispatch(getCursos());
+    dispatch(getMentorias());
   }, [dispatch, token]);
 
   function logOut() {
