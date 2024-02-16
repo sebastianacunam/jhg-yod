@@ -11,24 +11,24 @@ function Anuncios() {
     dispatch(getAnuncios());
   }, []);
   return (
-    <div>
-      <div>
-        {" "}
-        <LeftMenu />{" "}
-      </div>
-      <div>
+    <div className="container-left-n-right">
+        <LeftMenu />
+      <div className="right-section">
         <h1>Anuncios.</h1>
-        {anuncios?.map((e, i) => {
-          return (
-            <div key={i}>
-              <Anuncio
-                id={e?._id}
-                name={e?.name}
-                description={e?.description}
-              />
-            </div>
-          );
-        })}
+        
+        <div className="cards-anuncios">
+          {anuncios?.map((e, i) => {
+            return (
+              <div key={i}>
+                <Anuncio
+                  id={e?._id}
+                  name={e?.name}
+                  description={e?.description}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

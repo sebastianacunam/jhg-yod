@@ -1,0 +1,25 @@
+.bg-anuncio{
+    display: flex;
+    padding: 15px;
+}
+
+.each-anuncio{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    height: 340px;
+    //ver si realmente es la mejor manera de mostrarlos... debe haber algo "auto" que le de el ancho que se necesita por cada pantalla...
+    // mientras lo dejo así...
+    width: 1500px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    justify-content: center; 
+    align-items: center;      
+}
+
+.cards-anuncios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
