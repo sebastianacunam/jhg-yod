@@ -60,7 +60,11 @@ export default function LeftMenu() {
             <li className='leftmenu-li-items leftmenu-li-items'>-Anuncios</li>
           </Link>
           <Link className='font-white-left' to='/dashboard'>
-            <li className='leftmenu-li-items leftmenu-li-items'>-Beneficios</li>
+            <li className='leftmenu-li-items leftmenu-li-items'>
+              <Link to='/beneficios'>
+                Beneficios
+              </Link>
+            </li>
           </Link>
           <li className='dropdown-button leftmenu-li-items'>
             <BsPeopleFill />
