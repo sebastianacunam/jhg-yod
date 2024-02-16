@@ -42,7 +42,6 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     //---------------------USER----------------------------------------
     case GOOGLE_LOGIN:
-      console.log(action.payload)
       return {
         ...state,
         usuario: action.payload,

@@ -21,7 +21,6 @@ export function registroGoogle(googleData) {
     const token = googleData.credential;
     try {
       const response = await clienteAxios.post(`/users/google`, { idToken: token });
-      console.log(response.data.data.token, 'pasara por acaá? ')
       localStorage.setItem("token", response.data.data.token);
       return dispatch({
         type: GOOGLE_LOGIN,

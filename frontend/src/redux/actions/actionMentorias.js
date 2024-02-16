@@ -10,10 +10,10 @@ import { toast } from "react-toastify";
 export function getMentorias() {
   return async function (dispatch) {
     try {
-      const response = await clienteAxios.get("/");
-      return dispatch({ type: GET_MENTORIAS, payload: response.data });
+      const response = await clienteAxios.get("/mentorias");
+      return dispatch({ type: GET_MENTORIAS, payload: response.data.data });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 }
@@ -26,7 +26,7 @@ export function postMentorias({ name, description }) {
       description,
     };
     try {
-      const response = await clienteAxios.post("/create", body);
+      const response = await clienteAxios.post("/mentorias/create", body);
       toast.success(response.data);
     } catch (error) {
       console.log(error);
