@@ -9,8 +9,9 @@ import logout from "../../../assets/images/icons/logout.png";
 import "../../../assets/scss/layout/_leftMenu.scss";
 import { Link } from "react-router-dom";
 import PopupMenu from "./PopupMenu";
-import { getCursos } from "../../../redux/actions/actionCurso";
-import { getMentorias } from "../../../redux/actions/actionMentorias"
+import { getCursos } from "../../../redux/actions/actionCurso.js";
+import { getMentorias } from "../../../redux/actions/actionMentorias.js";
+
 export default function LeftMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [popupText, setPopupText] = useState("");
@@ -47,12 +48,12 @@ export default function LeftMenu() {
         <p>{usuarioAct?.name}</p>
 
         <ul>
-          <li>
-            <MdDashboard />
-            <Link className='font-white-left' to='/dashboard'>
+          <Link className='font-white-left' to='/dashboard'>
+            <li>
+              <MdDashboard />
               Dashboard
-            </Link>
-          </li>
+            </li>
+          </Link>
           <li>
             <div
               onMouseEnter={() => handleMouseEnter("Cursos")}
@@ -82,24 +83,26 @@ export default function LeftMenu() {
               Mentorías
             </div>
           </li>
-          <li>-Anuncios</li>
-          <li>-Beneficios</li>
+          <Link className='font-white-left' to='/dashboard'>
+            <li>-Anuncios</li>
+          </Link>
+          <Link className='font-white-left' to='/dashboard'>
+            <li>-Beneficios</li>
+          </Link>
           <li>
             <BsPeopleFill />
             Comunidad acá rrss ds y telegram
           </li>
-          <li>
-            <Link className='font-white-left' to='/bolsa-empleo'>
+          <Link className='font-white-left' to='/bolsa-empleo'>
+            <li>
               <MdOutlineCases />
               Bolsa de trabajo
-            </Link>
-          </li>
+            </li>
+          </Link>
 
-          <li>
-            <Link className='font-white-left' to='/perfil'>
-              Perfil
-            </Link>
-          </li>
+          <Link className='font-white-left' to='/perfil'>
+            <li>Perfil</li>
+          </Link>
         </ul>
 
         <div className='i-d-l-btn' onClick={() => logOut()}>

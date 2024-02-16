@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 
+//eslint-disable-next-line
 const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
   const menuRef = useRef(null);
 
@@ -18,14 +19,12 @@ const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
       content = (
         <div className='courses-menu-content'>
           <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <li>
-              <NavLink className='navlinkNoStyles'>Mis cursos</NavLink>
-            </li>
-            <li>
-              <NavLink className='navlinkNoStyles' to={"/cursos"}>
-                Todos los cursos
-              </NavLink>
-            </li>
+            <NavLink className='navlinkNoStyles' to={"/cursos"}>
+              <li>Mis cursos</li>
+            </NavLink>
+            <NavLink className='navlinkNoStyles' to={"/cursos"}>
+              <li>Todos los cursos</li>
+            </NavLink>
           </ul>
         </div>
       );
@@ -34,8 +33,12 @@ const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
       content = (
         <div className='courses-menu-content'>
           <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <li>Mis bootcamps</li>
-            <li>Todos los bootcamps</li>
+            <NavLink className='navlinkNoStyles' to={"/cursos"}>
+              <li>Mis bootcamps</li>
+            </NavLink>
+            <NavLink className='navlinkNoStyles' to={"/cursos"}>
+              <li>Todos los bootcamps</li>
+            </NavLink>
           </ul>
         </div>
       );
@@ -44,8 +47,12 @@ const PopupMenu = ({ isOpen, data, setIsMenuOpen }) => {
       content = (
         <div className='courses-menu-content'>
           <ul onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <li>Mis mentorias</li>
-            <li>Todas las mentorias</li>
+            <NavLink className='navlinkNoStyles' to={"/mentorias"}>
+              <li>Mis mentorias</li>
+            </NavLink>
+            <NavLink className='navlinkNoStyles' to={"/mentorias"}>
+              <li>Todas las mentorias</li>
+            </NavLink>
           </ul>
         </div>
       );

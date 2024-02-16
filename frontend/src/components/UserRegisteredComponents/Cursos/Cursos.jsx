@@ -1,6 +1,5 @@
-import { React, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom"
 import Curso from "../Curso/Curso";
 import { getCursos } from "../../../redux/actions/actionCurso";
 import LeftMenu from "../LeftMenu/LeftMenu";
