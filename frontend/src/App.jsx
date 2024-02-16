@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../src/assets/scss/app.css";
-import { ChakraProvider } from "@chakra-ui/react";
+
 /* ----------------------------------Common User--------------------------------------------- */
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./components/CommonComponents/Login/Login";
@@ -21,10 +21,10 @@ import Anuncios from "./components/UserRegisteredComponents/Anuncios/Anuncios";
 import Beneficios from "./components/UserRegisteredComponents/Beneficios/Beneficios";
 
 /* ------------------------------------------------------------------------------------------ */
-
+import { ChakraProvider } from "@chakra-ui/react";
 function App() {
   return (
-    <ChakraProvider>
+
       <Router>
         <Routes>
           <Route path='/' element={<AuthLayout />}>
@@ -38,7 +38,7 @@ function App() {
           </Route>
 
           <Route path='/' element={<VerificationUser />}>
-            <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard' element={<ChakraProvider><Dashboard /></ChakraProvider>} />
             <Route path='/perfil' element={<Perfil />} />
             <Route path='/create' element={<FormAnuncio />} />
 
@@ -50,7 +50,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </ChakraProvider>
+
   );
 }
 
