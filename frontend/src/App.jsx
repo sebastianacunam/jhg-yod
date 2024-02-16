@@ -18,6 +18,7 @@ import VerificationUser from "./components/CommonComponents/VerificationUser/Ver
 import BolsaTrabajo from "./components/CommonComponents/BolsaTrabajo/BolsaTrabajo";
 import Mentorias from "./components/UserRegisteredComponents/Mentorias/Mentorias";
 import Anuncios from "./components/UserRegisteredComponents/Anuncios/Anuncios";
+import Beneficios from "./components/UserRegisteredComponents/Beneficios/Beneficios";
 
 /* ------------------------------------------------------------------------------------------ */
 
@@ -33,16 +34,18 @@ function App() {
           <Route path='/confirm/:id' element={<ConfirmAccount />} />
           <Route path='/olvide-password' element={<ForgotPassword />} />
           <Route path='/olvide-password/:token' element={<NewPassword />} />
-          <Route path='/cursos' element={<Cursos />} />
-          <Route path='/mentorias' element={<Mentorias />} />
-          <Route path='/anuncios' element={<Anuncios />} />
-          <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
         </Route>
 
         <Route path='/' element={<VerificationUser />}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/create' element={<FormAnuncio />} />
+
+          <Route path='/beneficios' element={<Beneficios />} />
+          <Route path='/cursos' element={<Cursos />} />
+          <Route path='/mentorias' element={<Mentorias />} />
+          <Route path='/anuncios' element={<Anuncios />} />
+          <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
         </Route>
       </Routes>
     </Router>
