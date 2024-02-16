@@ -7,7 +7,6 @@ import LeftMenu from "../LeftMenu/LeftMenu";
 function Anuncios() {
   const dispatch = useDispatch();
   const anuncios = useSelector((state) => state.allAnuncios);
-  console.log({ anuncios });
   useEffect(() => {
     dispatch(getAnuncios());
   }, []);

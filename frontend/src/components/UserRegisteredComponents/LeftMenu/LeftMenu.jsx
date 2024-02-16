@@ -8,20 +8,18 @@ import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
 import "../../../assets/scss/layout/_leftMenu.scss";
 import { Link } from "react-router-dom";
-import PopupMenu from "./PopupMenu";
 import { getCursos } from "../../../redux/actions/actionCurso.js";
 import { getMentorias } from "../../../redux/actions/actionMentorias.js";
-
+import CursosNavbar from "./CursosNavbar.jsx";
+import BootcampsNavbar from "./BootcampsNavbar.jsx";
+import MentoriasNavbar from "./MentoriasNavbar.jsx";
 export default function LeftMenu() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [popupText, setPopupText] = useState("");
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
-
     dispatch(getCursos());
     dispatch(getMentorias());
   }, [dispatch, token]);
@@ -30,16 +28,7 @@ export default function LeftMenu() {
     window.localStorage.removeItem("token");
     window.location.reload();
   }
-  const handleMouseEnter = (text) => {
-    setIsMenuOpen(true);
-    setPopupText(text);
-  };
-  const handleMouseLeave = () => {
-    setTimeout(() => {
-      setIsMenuOpen(true);
-      setPopupText("");
-    }, 3000);
-  };
+
   return (
     <div className='dashboard-left'>
       {/* //menu */}
@@ -47,43 +36,24 @@ export default function LeftMenu() {
         <p className='welcome-dashboard'>Bienvenido a tu dashboard</p>
         <p>{usuarioAct?.name}</p>
 
-        <ul>
-          <Link className='font-white-left' to='/dashboard'>
-            <li>
+        <ul className='leftmenu-items'>
+          <li>
+            <Link className='font-white-left' to='/dashboard'>
               <MdDashboard />
               Dashboard
-            </li>
-          </Link>
+            </Link>
+          </li>
+          <li className='leftmenu-li-items'>
+            <CursosNavbar />
+          </li>
+
           <li>
-            <div
-              onMouseEnter={() => handleMouseEnter("Cursos")}
-              onMouseLeave={handleMouseLeave}>
-              <MdOutlineArrowForwardIos />
-              Cursos
-            </div>
-            <PopupMenu
-              isOpen={isMenuOpen}
-              setIsMenuOpen={setIsMenuOpen}
-              data={popupText}
-            />
+            <BootcampsNavbar />
           </li>
           <li>
-            <div
-              onMouseEnter={() => handleMouseEnter("Bootcamps")}
-              onMouseLeave={handleMouseLeave}>
-              <MdOutlineArrowForwardIos />
-              Bootcamps
-            </div>
+            <MentoriasNavbar />
           </li>
-          <li>
-            <div
-              onMouseEnter={() => handleMouseEnter("Mentorias")}
-              onMouseLeave={handleMouseLeave}>
-              <MdOutlineArrowForwardIos />
-              Mentorías
-            </div>
-          </li>
-          <Link className='font-white-left' to='/dashboard'>
+          <Link className='font-white-left' to='/anuncios'>
             <li>-Anuncios</li>
           </Link>
           <Link className='font-white-left' to='/dashboard'>
