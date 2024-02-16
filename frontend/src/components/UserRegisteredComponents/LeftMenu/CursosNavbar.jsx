@@ -20,35 +20,34 @@ function CursosNavbar() {
     setIsMenuOpen(false);
   };
   return (
-    <Popover
-      isOpen={isMenuOpen}
-      onClose={() => setIsMenuOpen(false)}
-      placement='right-start'>
-      <PopoverTrigger>
-        <Link className='font-white-left'>
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className='dropdown-button'>
-            <MdOutlineArrowForwardIos />
-            Cursos
-          </div>
-        </Link>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow placement='left' />
-        <PopoverHeader>
-          <Link className='navlinkNoStyles' to={"/cursos"}>
-            <li>Mis cursos</li>
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <Popover
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        placement='right-start'>
+        <PopoverTrigger>
+          <Link className='font-white-left'>
+            <div className='dropdown-button'>
+              <MdOutlineArrowForwardIos />
+              Cursos
+            </div>
           </Link>
-        </PopoverHeader>
-        <PopoverBody>
-          <Link className='navlinkNoStyles' to={"/cursos"}>
-            <li>Todos los cursos</li>
-          </Link>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow placement='left' />
+          <PopoverHeader>
+            <Link className='navlinkNoStyles' to={"/cursos"}>
+              <li>Mis cursos</li>
+            </Link>
+          </PopoverHeader>
+          <PopoverBody>
+            <Link className='navlinkNoStyles' to={"/cursos"}>
+              <li>Todos los cursos</li>
+            </Link>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }
 
