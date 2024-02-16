@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -20,36 +20,35 @@ function CursosNavbar() {
     setIsMenuOpen(false);
   };
   return (
-    <div>
-      <Popover
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        placement='right-start'>
-        <PopoverTrigger>
-          <Link className='font-white-left'>
+    <Popover
+      isOpen={isMenuOpen}
+      onClose={() => setIsMenuOpen(false)}
+      placement='right-start'>
+      <PopoverTrigger>
+        <Link className='font-white-left'>
+          <div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className='dropdown-button'>
             <MdOutlineArrowForwardIos />
-            <div
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}>
-              Cursos
-            </div>
+            Cursos
+          </div>
+        </Link>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow placement='left' />
+        <PopoverHeader>
+          <Link className='navlinkNoStyles' to={"/cursos"}>
+            <li>Mis cursos</li>
           </Link>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverArrow placement='left' />
-          <PopoverHeader>
-            <Link className='navlinkNoStyles' to={"/cursos"}>
-              <li>Mis cursos</li>
-            </Link>
-          </PopoverHeader>
-          <PopoverBody>
-            <Link className='navlinkNoStyles' to={"/cursos"}>
-              <li>Todos los cursos</li>
-            </Link>
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </div>
+        </PopoverHeader>
+        <PopoverBody>
+          <Link className='navlinkNoStyles' to={"/cursos"}>
+            <li>Todos los cursos</li>
+          </Link>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   );
 }
 

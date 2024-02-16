@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { MdOutlineCases } from "react-icons/md";
 import { BsPeopleFill } from "react-icons/bs";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
@@ -33,45 +32,49 @@ export default function LeftMenu() {
     <div className='dashboard-left'>
       {/* //menu */}
       <div className='inner-dashboard-left'>
-        <p className='welcome-dashboard'>Bienvenido a tu dashboard</p>
-        <p>{usuarioAct?.name}</p>
-
-        <ul className='leftmenu-items'>
+        <div className='welcome-dashboard-wrapper'>
+          <p>Bienvenido a tu dashboard</p>
+          <p>{usuarioAct?.name}</p>
+        </div>
+        <ul className='leftmenu-items '>
           <li>
-            <Link className='font-white-left' to='/dashboard'>
+            <Link
+              to='/dashboard'
+              className='dropdown-button font-white-left leftmenu-li-items'>
               <MdDashboard />
               Dashboard
             </Link>
           </li>
+
           <li className='leftmenu-li-items'>
             <CursosNavbar />
           </li>
 
-          <li>
+          <li className='leftmenu-li-items'>
             <BootcampsNavbar />
           </li>
-          <li>
+          <li className='leftmenu-li-items'>
             <MentoriasNavbar />
           </li>
           <Link className='font-white-left' to='/anuncios'>
-            <li>-Anuncios</li>
+            <li className='leftmenu-li-items leftmenu-li-items'>-Anuncios</li>
           </Link>
           <Link className='font-white-left' to='/dashboard'>
-            <li>-Beneficios</li>
+            <li className='leftmenu-li-items leftmenu-li-items'>-Beneficios</li>
           </Link>
-          <li>
+          <li className='dropdown-button leftmenu-li-items'>
             <BsPeopleFill />
-            Comunidad acá rrss ds y telegram
+            Comunidades
           </li>
-          <Link className='font-white-left' to='/bolsa-empleo'>
-            <li>
+          <Link className='font-white-left dropdown-button' to='/bolsa-empleo'>
+            <li className='dropdown-button leftmenu-li-items'>
               <MdOutlineCases />
               Bolsa de trabajo
             </li>
           </Link>
 
-          <Link className='font-white-left' to='/perfil'>
-            <li>Perfil</li>
+          <Link className='font-white-left dropdown-button' to='/perfil'>
+            <li className='dropdown-button leftmenu-li-items'>Perfil</li>
           </Link>
         </ul>
 

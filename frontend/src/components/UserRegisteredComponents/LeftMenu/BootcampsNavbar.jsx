@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -27,10 +27,11 @@ function BootcampsNavbar() {
         placement='right-start'>
         <PopoverTrigger>
           <Link className='font-white-left'>
-            <MdOutlineArrowForwardIos />
             <div
               onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}>
+              onMouseLeave={handleMouseLeave}
+              className='dropdown-button'>
+              <MdOutlineArrowForwardIos />
               Bootcamps
             </div>
           </Link>
