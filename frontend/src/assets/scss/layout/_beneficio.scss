@@ -1,0 +1,51 @@
+.container-left-n-right{
+    display: flex;
+    flex-direction: row;
+}
+
+.right-section{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.bg-beneficio{
+    display: flex;
+    padding: 15px;
+}
+
+.each-beneficio{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    height: 340px;
+    width: 450px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    justify-content: center; 
+    align-items: center;       
+}
+
+.cards-benefits{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // padding: 20px;
+    margin: 0 40px;
+    justify-content: center;
+}
+
+.img-beneficio{
+    height: 160px;
+    width: 160px;
+    margin-top: 25px;
+}
+
+.p-beneficio{
+    margin-top: -25px;
+}
+
+.titulo-beneficio{
+    text-transform:uppercase;
+}
