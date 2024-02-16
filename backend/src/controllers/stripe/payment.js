@@ -4,9 +4,10 @@ import { checkout_stripe } from "../../services/stripe/checkout-stripe.services.
 /*************************************************************************/
 // CHECKOUT SESSION Controller
 
-export const createSession = async (req, res) => {
-    // const obj = req.body;
-    const session = await checkout_stripe();
+export const createSession = async ({ params, body }, res) => {
+    const { id } = params
+    const { type } = body;
+    const session = await checkout_stripe(id, type);
     response(res, 200, session);
 };
 

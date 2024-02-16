@@ -11,6 +11,11 @@ const anuncioSchema = mongoose.Schema({
         type: String,
         required:true,
     },
+    type: {
+        type: String,
+        require: false,
+        default: "ANUNCIO"
+    }
     // country:{
     //     type: String,
     //     required: true,
