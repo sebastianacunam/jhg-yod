@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import '../../../assets/scss/layout/_pagination.scss'
 
 
 export const Pagination = ({ items, itemsPerPage, setCurrentPage, currentPage }) => {
@@ -12,10 +13,10 @@ export const Pagination = ({ items, itemsPerPage, setCurrentPage, currentPage })
    };
 
    return (
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-         <h3 onClick={prev}>Prev</h3>
+      <div className='conteinerPagination'>
+         <button onClick={prev}>Atrás</button>
          <h3>{currentPage} / {totalPages}</h3>
-         <h3 onClick={next}>Next</h3>
+         <button onClick={next}>Sigueinte</button>
       </div>
 
    );

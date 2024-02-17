@@ -8,7 +8,7 @@ import { Pagination } from "../Pagination/Pagintation";
 export default function BolsaTrabajo() {
    const empleos = useSelector((state) => state.allEmpleos)
    const dispatch = useDispatch();
-   const itemsPerPage = 20;
+   const itemsPerPage = 10;
    const [currentPage, setCurrentPage] = useState(1);
 
    useEffect(() => {
