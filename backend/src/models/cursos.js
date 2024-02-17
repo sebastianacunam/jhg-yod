@@ -13,7 +13,7 @@ const cursosSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        require: false,
+        required: false,
         default: "CURSO"
     }
 },
