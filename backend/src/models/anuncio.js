@@ -7,27 +7,36 @@ const anuncioSchema = mongoose.Schema({
         required: true,
         trim: true,
     },
+    price:{
+        type: Number, 
+        required: true,
+    },
     description:{
         type: String,
         required:true,
     },
+    category:{
+        type: String,
+        required: true,
+    },
+    deliver_time:{
+        type: String,
+        required: false,
+    },
+    location:{
+        type: String,
+        required: false,
+    },
     type: {
         type: String,
-        require: false,
+        required: false,
         default: "ANUNCIO"
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: true
     }
-    // country:{
-    //     type: String,
-    //     required: true,
-    // },
-    // city:{
-    //     type: String,
-    //     required: true,
-    // },
-    // picture:{
-    //     type:String,
-    //     required:true,
-    // },
 },
     {
         timestamps: true,

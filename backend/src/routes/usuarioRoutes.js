@@ -11,6 +11,7 @@ import {
   usuario,
   perfil,
   googleLogin,
+  userById,
   // editarPerfil,
 } from "../controllers/usuario.js";
 import { asyncCatched } from "../utils/asyncCatched.js";
@@ -34,5 +35,6 @@ router.delete("/delete/:id", asyncCatched(deleteUser));
 
 //SuperADMIN
 router.get("/allusers/", asyncCatched(allUsers));
+router.get("/:id", asyncCatched(userById));
 
 export default router;
