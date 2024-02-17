@@ -8,6 +8,7 @@ import { profile } from               "../services/usuarios/perfil.services.js";
 import { register } from              "../services/usuarios/register.services.js";
 import { updateUser } from            "../services/usuarios/update-user.js";
 import { usuarioActual } from         "../services/usuarios/usuario.services.js";
+import { getUserById } from         "../services/usuarios/getUserById.js";
 import { googleLoginService } from    "../services/usuarios/google-login.services.js"
 import { response } from              "../utils/response.js";
 
@@ -60,6 +61,13 @@ export const authenticate = async ({ body }, res) => {
 export const allUsers = async (req, res) => {
   const users = await all_users();
   response(res, 201, users);
+};
+/*************************************************************************/
+//Traer Usuarios Registrados por ID 
+export const userById = async (req, res) => {
+  const { id } = req.params
+  const user = await getUserById(id);
+  response(res, 201, user);
 };
 
 /*************************************************************************/

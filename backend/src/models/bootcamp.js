@@ -13,7 +13,7 @@ const bootcampSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        require: false,
+        required: false,
         default: "BOOTCAMP"
     }
 },

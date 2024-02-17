@@ -10,13 +10,13 @@ const usuarioSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         trim: true,
         select: false,
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         trim: true,
         unique: true,
     },
@@ -26,17 +26,17 @@ const usuarioSchema = mongoose.Schema({
     },
     github: {
         type: String,
-        require: false,
+        required: false,
         default: ""
     },
     linkedin: {
         type: String,
-        require: false,
+        required: false,
         default: ""
     },
     portfolio: {
         type: String,
-        require: false,
+        required: false,
         default: ""
     },
     admin: {
@@ -60,6 +60,18 @@ const usuarioSchema = mongoose.Schema({
             description: String
         }
     ],
+    anuncios: [
+        {
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Anuncio',
+            },
+            name: String, 
+            description: String,
+            price: Number
+            },
+    ]
+
 
 },
     {

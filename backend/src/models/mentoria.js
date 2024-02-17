@@ -12,7 +12,7 @@ const mentoriasSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        require: false,
+        required: false,
         default: "MENTORIA"
     }
 },
