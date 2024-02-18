@@ -18,6 +18,14 @@ import {
   //mentorias
   GET_MENTORIAS,
   POST_MENTORIAS,
+  DELETE_MENTORIAS,
+  PUT_MENTORIAS,
+  //bootcamps
+  GET_BOOTCAMPS,
+  POST_BOOTCAMPS,
+  DELETE_BOOTCAMPS,
+  PUT_BOOTCAMPS,
+  //empleos
   GET_EMPLEOS,
   //anuncios
   GET_ANUNCIOS,
@@ -38,6 +46,7 @@ const initialState = {
   cursos: [],
   allCursos: [],
   allMentorias: [],
+  allBootcamps: [],
   allEmpleos: [],
   allAnuncios: [],
 };
@@ -147,6 +156,57 @@ function rootReducer(state = initialState, action) {
         name: !action.payload.error ? action.payload : null,
         description: action.payload.error ? action.payload.error : null,
       };
+    case DELETE_MENTORIAS: {
+      const updatedMentorias = state.allMentorias.filter(
+        (mentoria) => mentoria.id !== action.payload.id
+      );
+      return {
+        ...state,
+        allMentorias: updatedMentorias,
+      };
+    }
+    case PUT_MENTORIAS: {
+      const updatedMentoria = action.payload;
+      const updatedMentorias = state.allMentorias.map((mentoria) =>
+        mentoria.id === updatedMentoria.id ? updatedMentoria : mentoria
+      );
+      return {
+        ...state,
+        allMentorias: updatedMentorias,
+      };
+    }
+    //---------------------BOOTCAMPS----------------------------------------
+    case GET_BOOTCAMPS:
+      return {
+        ...state,
+        bootcamps: action.payload,
+        allBootcamps: action.payload,
+      };
+    case POST_BOOTCAMPS:
+      return {
+        ...state,
+        name: !action.payload.error ? action.payload : null,
+        description: action.payload.error ? action.payload.error : null,
+      };
+    case DELETE_BOOTCAMPS: {
+      const updatedBootcamps = state.allBootcamps.filter(
+        (bootcamp) => bootcamp.id !== action.payload.id
+      );
+      return {
+        ...state,
+        allMentorias: updatedBootcamps,
+      };
+    }
+    case PUT_BOOTCAMPS: {
+      const updatedBootcamp = action.payload;
+      const updatedBootcamps = state.allBootcamps.map((bootcamp) =>
+        bootcamp.id === updatedBootcamp.id ? updatedBootcamp : bootcamp
+      );
+      return {
+        ...state,
+        allMentorias: updatedBootcamps,
+      };
+    }
     //---------------------ANUNCIOS----------------------------------------
     case GET_ANUNCIOS:
       return {

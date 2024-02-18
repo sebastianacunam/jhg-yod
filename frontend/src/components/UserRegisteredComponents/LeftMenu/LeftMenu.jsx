@@ -56,30 +56,35 @@ export default function LeftMenu() {
           <li className='leftmenu-li-items'>
             <MentoriasNavbar />
           </li>
-          <Link className='font-white-left' to='/anuncios'>
-            <li className='leftmenu-li-items leftmenu-li-items'>-Anuncios</li>
-          </Link>
-          <Link className='font-white-left' to='/dashboard'>
-            <li className='leftmenu-li-items leftmenu-li-items'>
-              <Link to='/beneficios'>
-                Beneficios
-              </Link>
-            </li>
-          </Link>
+          <li className='font-white-left leftmenu-li-items'>
+            {" "}
+            <Link to='/anuncios' className='font-white-left'>
+              Anuncios
+            </Link>
+          </li>
+          <li className='font-white-left leftmenu-li-items'>
+            <Link to='/beneficios' className='font-white-left'>
+              Beneficios
+            </Link>
+          </li>
           <li className='dropdown-button leftmenu-li-items'>
             <BsPeopleFill />
             Comunidades
           </li>
-          <Link className='font-white-left dropdown-button' to='/bolsa-empleo'>
-            <li className='dropdown-button leftmenu-li-items'>
+          <li className='font-white-left dropdown-button'>
+            {" "}
+            <Link to='/bolsa-empleo' className='font-white-left'>
               <MdOutlineCases />
               Bolsa de trabajo
-            </li>
-          </Link>
+            </Link>
+          </li>
 
-          <Link className='font-white-left dropdown-button' to='/perfil'>
-            <li className='dropdown-button leftmenu-li-items'>Perfil</li>
-          </Link>
+          <li className='font-white-left dropdown-button'>
+            {" "}
+            <Link to='/perfil' className='font-white-left'>
+              Perfil
+            </Link>
+          </li>
         </ul>
 
         <div className='i-d-l-btn' onClick={() => logOut()}>
