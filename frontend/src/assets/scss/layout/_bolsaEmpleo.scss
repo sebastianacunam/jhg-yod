@@ -6,27 +6,34 @@
    grid-template-areas: 
       ". header header header"
       ". content content sidebar"
-      ". footer footer footer"
+      ". footer footer footer";
+      
 }
 
 
 .conteiner-empleo header {
    background: rgba(5, 52, 83, 0.451);
    grid-area: header;
+   width: 160rem;
 }
 
 .conteiner-empleo aside {
    background: rgba(255, 255, 0, 0.22);
    grid-area: sidebar;
+   width: 95%;
 }
 
 .conteiner-empleo main {
    grid-area: content;
+   width: 90%;
+   margin-left: 5rem;
 }
 
 .conteiner-empleo footer {
    background: gray;
    grid-area: footer;
+   height: 17rem;
+   width: 99%;
 }
 .ul-container-empleo{
    margin-left: -40px;
@@ -37,4 +44,5 @@
    grid-template-rows: 1fr ;
    border-radius: 10px;
    border: solid 1px;
+   height: 17rem;
 }
