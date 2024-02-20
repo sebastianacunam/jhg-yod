@@ -26,11 +26,9 @@ function CursosNavbar() {
         onClose={() => setIsMenuOpen(false)}
         placement='right-start'>
         <PopoverTrigger>
-          <Link className='font-white-left'>
-            <div className='dropdown-button'>
-              <MdOutlineArrowForwardIos />
-              Cursos
-            </div>
+          <Link className='nav-link'>
+            <MdOutlineArrowForwardIos />
+            Cursos
           </Link>
         </PopoverTrigger>
         <PopoverContent>

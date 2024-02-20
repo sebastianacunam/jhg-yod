@@ -26,11 +26,9 @@ function BootcampsNavbar() {
         onClose={() => setIsMenuOpen(false)}
         placement='right-start'>
         <PopoverTrigger>
-          <Link className='font-white-left'>
-            <div className='dropdown-button'>
-              <MdOutlineArrowForwardIos />
-              Bootcamps
-            </div>
+          <Link className='nav-link'>
+            <MdOutlineArrowForwardIos />
+            Bootcamps
           </Link>
         </PopoverTrigger>
         <PopoverContent>

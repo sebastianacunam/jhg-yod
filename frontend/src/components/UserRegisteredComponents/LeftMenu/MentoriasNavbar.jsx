@@ -26,11 +26,9 @@ function MentoriasNavbar() {
         onClose={() => setIsMenuOpen(false)}
         placement='right-start'>
         <PopoverTrigger>
-          <Link className='font-white-left'>
-            <div className='dropdown-button'>
-              <MdOutlineArrowForwardIos />
-              Mentorias
-            </div>
+          <Link className='nav-link'>
+            <MdOutlineArrowForwardIos />
+            Mentorias
           </Link>
         </PopoverTrigger>
         <PopoverContent>
