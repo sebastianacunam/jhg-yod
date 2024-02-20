@@ -70,7 +70,27 @@ const usuarioSchema = mongoose.Schema({
             description: String,
             price: Number
             },
-    ]
+    ],
+    bootcamps: [
+        {
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Bootcamp',
+            },
+            name: String,
+            description: String
+        }
+    ],
+    mentorias: [
+        {
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Mentorias',
+            },
+            name: String,
+            description: String
+        }
+    ],
 
 
 },

@@ -22,26 +22,26 @@ function BootcampsNavbar() {
   return (
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Popover
+        isLazy
+        returnFocusOnClose={false}
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         placement='right-start'>
         <PopoverTrigger>
-          <Link className='font-white-left'>
-            <div className='dropdown-button'>
-              <MdOutlineArrowForwardIos />
-              Bootcamps
-            </div>
+          <Link className='nav-link'>
+            <MdOutlineArrowForwardIos />
+            Bootcamps
           </Link>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow placement='left' />
           <PopoverHeader>
-            <Link className='navlinkNoStyles' to={"/bootcamps"}>
+            <Link to={"/bootcamps"}>
               <li>Mis bootcamps</li>
             </Link>
           </PopoverHeader>
           <PopoverBody>
-            <Link className='navlinkNoStyles' to={"/bootcamps"}>
+            <Link to={"/bootcamps"}>
               <li>Todos los bootcamps</li>
             </Link>
           </PopoverBody>

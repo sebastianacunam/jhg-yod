@@ -1,17 +1,16 @@
 import clienteAxios from "../../config/clienteAxios";
 import {
-  GET_MENTORIAS,
-  DELETE_MENTORIAS,
-  POST_MENTORIAS,
-  PUT_MENTORIAS,
+  GET_BOOTCAMPS,
+  DELETE_BOOTCAMPS,
+  PUT_BOOTCAMPS,
 } from "../utils/constants";
 import { toast } from "react-toastify";
 
-export function getMentorias() {
+export function getBootcamps() {
   return async function (dispatch) {
     try {
-      const response = await clienteAxios.get("/mentorias");
-      return dispatch({ type: GET_MENTORIAS, payload: response.data.data });
+      const response = await clienteAxios.get("/bootcamps");
+      return dispatch({ type: GET_BOOTCAMPS, payload: response.data.data });
     } catch (error) {
       console.log(error.message);
     }
@@ -19,14 +18,14 @@ export function getMentorias() {
 }
 
 //!
-export function postMentorias({ name, description }) {
+export function postBootcamps({ name, description }) {
   return async function () {
     const body = {
       name,
       description,
     };
     try {
-      const response = await clienteAxios.post("/mentorias/create", body);
+      const response = await clienteAxios.post("/bootcamps/create", body);
       toast.success(response.data);
     } catch (error) {
       console.log(error);
@@ -34,25 +33,25 @@ export function postMentorias({ name, description }) {
   };
 }
 //!
-export function deleteMentorias(id) {
+export function deleteBootcamps(id) {
   return async function (dispatch) {
     try {
-      const response = await clienteAxios.delete(`/mentorias/delete/${id}`);
-      return dispatch({ type: DELETE_MENTORIAS, payload: response.data });
+      const response = await clienteAxios.delete(`/bootcamps/delete/${id}`);
+      return dispatch({ type: DELETE_BOOTCAMPS, payload: response.data });
     } catch (error) {
       console.log(error.message);
     }
   };
 }
 
-export function updateMentorias(id, updatedData) {
+export function updateBootcamps(id, updatedData) {
   return async function (dispatch) {
     try {
       const response = await clienteAxios.put(
-        `/mentorias/edit/${id}`,
+        `/bootcamps/edit/${id}`,
         updatedData
       );
-      return dispatch({ type: PUT_MENTORIAS, payload: response.data });
+      return dispatch({ type: PUT_BOOTCAMPS, payload: response.data });
     } catch (error) {
       console.log(error.message);
     }
