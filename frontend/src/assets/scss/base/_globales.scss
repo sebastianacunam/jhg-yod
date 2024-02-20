@@ -90,20 +90,21 @@ ul li {
   -webkit-user-select: none;
   user-select: none;
 }
-.navlinkNoStyles {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
 
-.container-left-n-right{
+.container-left-n-right {
   display: flex;
   flex-direction: row;
 }
 
-.right-section{
+.right-section {
   width: 100%;
   justify-content: center;
   text-align: center;
   margin-top: 20px;
+}
+//? Media queries...
+@media screen and (min-width: $desktopxl) {
+  .inner-dashboard-left {
+    border: 1px solid red;
+  }
 }
