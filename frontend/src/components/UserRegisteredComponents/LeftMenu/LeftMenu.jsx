@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { MdOutlineCases } from "react-icons/md";
+import { AiFillNotification } from "react-icons/ai";
+import { AiFillRocket } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
 import { usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
@@ -54,11 +57,13 @@ export default function LeftMenu() {
           </li>
           <li className='li-items'>
             <Link to='/anuncios' className='nav-link'>
+              <AiFillNotification />
               Anuncios
             </Link>
           </li>
           <li className='li-items'>
             <Link to='/beneficios' className='nav-link'>
+              <AiFillRocket />
               Beneficios
             </Link>
           </li>
@@ -76,18 +81,20 @@ export default function LeftMenu() {
           </li>
 
           <li className='li-items'>
-            <Link to='/perfil'>Perfil</Link>
+            <Link to='/perfil' className='nav-link'>
+              <FaUser />
+              Perfil
+            </Link>
           </li>
+          <div className='i-d-l-btn' onClick={() => logOut()}>
+            <Link to='/login'>
+              <div className='btn-logout'>
+                <img className='logout-icon' src={logout} alt='img not found' />
+                <p>Logout</p>
+              </div>
+            </Link>
+          </div>
         </ul>
-
-        <div className='i-d-l-btn' onClick={() => logOut()}>
-          <Link to='/login'>
-            <div className='btn-logout'>
-              <img className='logout-icon' src={logout} alt='img not found' />
-              <p>Logout</p>
-            </div>
-          </Link>
-        </div>
       </div>
     </div>
   );

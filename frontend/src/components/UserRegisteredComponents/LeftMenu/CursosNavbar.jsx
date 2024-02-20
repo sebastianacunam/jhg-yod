@@ -22,6 +22,8 @@ function CursosNavbar() {
   return (
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Popover
+        isLazy
+        returnFocusOnClose={false}
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         placement='right-start'>
@@ -34,12 +36,12 @@ function CursosNavbar() {
         <PopoverContent>
           <PopoverArrow placement='left' />
           <PopoverHeader>
-            <Link className='navlinkNoStyles' to={"/cursos"}>
+            <Link to={"/cursos"}>
               <li>Mis cursos</li>
             </Link>
           </PopoverHeader>
           <PopoverBody>
-            <Link className='navlinkNoStyles' to={"/cursos"}>
+            <Link to={"/cursos"}>
               <li>Todos los cursos</li>
             </Link>
           </PopoverBody>
