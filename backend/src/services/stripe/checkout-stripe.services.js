@@ -51,8 +51,8 @@ export const checkout_stripe = async (id, type) => {
             }
         ],
         mode: 'payment',
-        success_url: 'http://localhost:3001/payment/success',
-        cancel_url: 'http://localhost:3001/payment/cancel'
+        success_url: 'http://localhost:5173/compra-exitosa',
+        cancel_url: 'http://localhost:5173/cursos'
     });
 
     if (!sessionStripe) throw new ClientError("Error Stripe Payment", 400);

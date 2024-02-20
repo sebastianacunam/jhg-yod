@@ -22,6 +22,9 @@ import Beneficios from "./components/UserRegisteredComponents/Beneficios/Benefic
 
 /* ------------------------------------------------------------------------------------------ */
 import { ChakraProvider } from "@chakra-ui/react";
+import CursoDetail from "./components/UserRegisteredComponents/CursoDetail/CursoDetail";
+import CompraExitosa from "./components/UserRegisteredComponents/CompraExitosa/CompraExitosa";
+
 function App() {
   return (
 
@@ -44,9 +47,11 @@ function App() {
 
             <Route path='/beneficios' element={<Beneficios />} />
             <Route path='/cursos' element={<Cursos />} />
+            <Route path='/detalles/:id' element={<CursoDetail />} />
             <Route path='/mentorias' element={<Mentorias />} />
             <Route path='/anuncios' element={<Anuncios />} />
             <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
+            <Route path='/compra-exitosa' element={<CompraExitosa />} />
           </Route>
         </Routes>
       </Router>

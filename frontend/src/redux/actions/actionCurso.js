@@ -21,6 +21,15 @@ export function getCursos(){
     }
 }
 
+export async function getCursoById(id) {
+    try {
+        const json = await clienteAxios.get(`/cursos/${id}`);
+        return json.data.data;
+    } catch(error) {
+        console.log(error)
+    }
+};
+
 export function updateCurso(payload){
     return async function(dispatch){
         try {
