@@ -146,8 +146,9 @@ export default function BolsaTrabajo() {
                      onChange={(selectedOptions) => { setSelectedCategory(selectedOptions) }}
                      value={selectedCategory}
                   />
-                  <button onClick={limpiarFiltros}>Limpiar filtros</button>
                </div>
+               <Flex justifyContent="center"> <Button borderRadius='2rem' variant='solid' colorScheme='green' w="11rem" h='4rem' fontSize='1.4rem' onClick={limpiarFiltros}>Limpiar filtros </Button>
+               </Flex>
             </aside>
             <main className="main-empleo">
                {setEmpleos.length ? setEmpleos : <div style={{ textAlign: "center" }}><p>Cargando....</p></div>}

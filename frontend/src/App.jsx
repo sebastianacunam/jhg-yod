@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../src/assets/scss/app.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import WithChakra from "./utils/WithChakra";
+// import WithChakra from "./utils/WithChakra";
 /* ----------------------------------Common User--------------------------------------------- */
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./components/CommonComponents/Login/Login";

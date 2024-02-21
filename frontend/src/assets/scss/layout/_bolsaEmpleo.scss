@@ -36,12 +36,8 @@
    width: 99%;
 }
 
-
-// .card-empleo {
-//    display: grid;
-//    grid-template-columns: 1fr 1fr 1fr;
-//    grid-template-rows: 1fr;
-//    border-radius: 10px;
-//    border: solid 1px;
-//    height: 17rem;
-// }
+.aside-empleo{
+   display: flex;
+   flex-direction: column;
+   gap: 10rem;
+}
