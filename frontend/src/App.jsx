@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../src/assets/scss/app.css";
-
+import { ChakraProvider } from "@chakra-ui/react";
+import WithChakra from "./utils/WithChakra";
 /* ----------------------------------Common User--------------------------------------------- */
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./components/CommonComponents/Login/Login";
@@ -17,11 +18,15 @@ import Cursos from "./components/UserRegisteredComponents/Cursos/Cursos";
 import VerificationUser from "./components/CommonComponents/VerificationUser/VerificationUser";
 import BolsaTrabajo from "./components/CommonComponents/BolsaTrabajo/BolsaTrabajo";
 import Mentorias from "./components/UserRegisteredComponents/Mentorias/Mentorias";
+import Bootcamps from "./components/UserRegisteredComponents/Bootcamps/Bootcamps";
 import Anuncios from "./components/UserRegisteredComponents/Anuncios/Anuncios";
 import Beneficios from "./components/UserRegisteredComponents/Beneficios/Beneficios";
 
 /* ------------------------------------------------------------------------------------------ */
-import { ChakraProvider } from "@chakra-ui/react";
+
+import CursoDetail from "./components/UserRegisteredComponents/CursoDetail/CursoDetail";
+import CompraExitosa from "./components/UserRegisteredComponents/CompraExitosa/CompraExitosa";
+
 function App() {
   return (
 
@@ -30,7 +35,6 @@ function App() {
         <Route path='/' element={<AuthLayout />}>
           <Route index path='/login' element={<Login />} />
           <Route index path='/' element={<Login />} />
-          {/* <Route index path='/login' element={<Login />} /> */}
           <Route path='/register' element={<Register />} />
           <Route path='/confirm/:id' element={<ConfirmAccount />} />
           <Route path='/olvide-password' element={<ForgotPassword />} />
@@ -44,9 +48,12 @@ function App() {
 
           <Route path='/beneficios' element={<Beneficios />} />
           <Route path='/cursos' element={<Cursos />} />
+          <Route path='/detalles/:id' element={<CursoDetail />} />
+          <Route path='/bootcamps' element={<Bootcamps />} />
           <Route path='/mentorias' element={<Mentorias />} />
           <Route path='/anuncios' element={<Anuncios />} />
           <Route path='/bolsa-empleo' element={<ChakraProvider><BolsaTrabajo /></ChakraProvider>} />
+          <Route path='/compra-exitosa' element={<CompraExitosa />} />
         </Route>
       </Routes>
     </Router>

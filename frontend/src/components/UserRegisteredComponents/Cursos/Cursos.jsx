@@ -17,16 +17,22 @@ export default function Cursos() {
       <div>
         <LeftMenu />
       </div>
-      <div>
-        <h1>Da tus primeros pasos.</h1>
-        <h3>Estos son nuestros cursos.</h3>
-        {cursos?.data?.map((e, i) => {
-          return (
-            <div key={i}>
-              <Curso id={e?._id} name={e?.name} description={e?.description} />
-            </div>
-          );
-        })}
+      <div className='container-left-n-right'>
+        <div className='right-section'>
+          <h1>Da tus primeros pasos.</h1>
+          <h3>Estos son nuestros cursos.</h3>
+          {cursos?.data?.map((e, i) => {
+            return (
+              <div key={i}>
+                <Curso
+                  id={e?._id}
+                  name={e?.name}
+                  description={e?.description}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
