@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@formkit/tempo": "^0.0.9",
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.5",

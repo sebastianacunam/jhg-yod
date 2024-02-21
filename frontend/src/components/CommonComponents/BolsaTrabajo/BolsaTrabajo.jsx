@@ -6,6 +6,9 @@ import { getEmpleos } from "../../../redux/actions/actionEmpleos";
 import { Pagination } from "../Pagination/Pagintation";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Button, Box, Flex, Badge, Icon } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { format } from "@formkit/tempo"
 
 
 const animatedComponent = makeAnimated();
@@ -30,27 +33,105 @@ export default function BolsaTrabajo() {
    const currentJobs = empleos.slice(startIndex, endIndex)
 
 
-   const setEmpleos = currentJobs && currentJobs.map(e => (
-      <ul className="ul-container-empleo" key={e.id}>
-         <li className="card-empleo">
-            <img src={e.company_logo} alt="Logo de la compañía" style={{ maxWidth: '70px', maxHeight: '100px' }} />
-            <h4>Titulo: {e.title}</h4>
-            <h4>Categoría: {e.category}</h4>
-            <h4>Nombre de la compañía: {e.company_name}</h4>
-            <h4>Tipo de empleo: {e.job_type}</h4>
-            <h4>Link del empleo:  <a href={e.url} target="_blank" rel="noopener noreferrer">{e.url}</a></h4>
-         </li>
-      </ul>
+   const [expandedCards, setExpandedCards] = useState({});
+
+   const handleToggleExpand = (id) => {
+      setExpandedCards((prevExpandedCards) => ({
+         ...prevExpandedCards,
+         [id]: !prevExpandedCards[id],
+      }));
+   };
+   const setEmpleos = currentJobs && currentJobs.map((e) => (
+      <Box key={e.id} mb={8} mt={18}>
+         <Card
+            key={e.id}
+            direction={{ base: 'column', sm: 'row' }}
+            overflow='hidden'
+            variant='outline'
+            backgroundColor='blue.100'
+            borderRadius='2rem'
+            onClick={() => handleToggleExpand(e.id)}
+            cursor="pointer"
+            w={1250}
+         >
+            <Icon
+               as={ChevronDownIcon}
+               w={12}
+               h={12}
+               ml={2}
+               mt={1}
+               position="absolute"
+               transform={expandedCards[e.id] ? 'rotate(180deg)' : 'none'}
+            />
+            <Image
+               objectFit='cover'
+               maxW={{ base: '50%', sm: '80px' }}
+               maxH={{ base: '50%', sm: '80px' }}
+               src={e.company_logo}
+               alt='Logo de la compañía'
+               borderRadius='50%'
+               mt={20}
+               ml={10}
+            />
+            <Stack
+               w="100%"
+               direction={{ base: 'column', sm: 'row' }}
+               marginLeft='8rem'
+            >
+               <CardBody>
+                  <Flex>
+                     <Heading mt={10} ml={-24} size='md' fontSize='1.8rem' height='5rem'>{e.title}</Heading>
+                  </Flex>
+                  <Text mt={-25} ml={-24}>
+                     <Badge borderRadius='1rem' variant="subtle" backgroundColor="white" mr={4} fontSize='1.3rem' color="grey.300" marginBottom='2rem'>
+                        {e.job_type}
+                     </Badge>
+                     <Badge borderRadius='1rem' variant="subtle" backgroundColor="white" mr={4} fontSize='1.3rem' color="grey.300" marginBottom='2rem'>
+                        {e.category}
+                     </Badge>
+                  </Text>
+                  {expandedCards[e.id] && (
+                     <Text py='5' ml={-24}>
+                        <Badge borderRadius='1rem' variant="subtle" backgroundColor="white" mr={4} fontSize='1.3rem' color="grey.300" marginBottom='3rem'>
+                           {e.company_name}
+                        </Badge>
+                        <Badge
+                           borderRadius='1rem'
+                           variant="subtle"
+                           backgroundColor="white"
+                           mr={4}
+                           fontSize='1.3rem'
+                           color="grey.300"
+                           marginBottom='3rem' >
+                           {typeof e.tags === Array ? e.tags.length <= 9 ? e.tags.join(', ') : e?.tags.join(', ').slice(50, 100) : e.tags.length >= 9 ? e.tags.slice(0, 11) : e.tags}
+                        </Badge>
+                     </Text>
+                  )}
+               </CardBody>
+               <CardFooter>
+                  <Text marginRight='-8rem' marginTop='1'><p>Remoto 🌍</p></Text>
+                  <Flex justifyContent="flex-end" alignItems="center">
+                     <Text marginRight='-24rem' marginTop='8'><p>{format(e.publication_date, "short")}</p></Text>
+                     <Button borderRadius='2rem' variant='solid' colorScheme='green' marginRight='13rem' marginTop='-8rem' w="13rem" h='4rem' fontSize='1.5rem'  >
+                        <a href={e.url} target="_blank" rel="noopener noreferrer">
+                           Ver Trabajo
+                        </a>
+                     </Button>
+                  </Flex>
+
+               </CardFooter>
+            </Stack>
+         </Card>
+      </Box>
    ));
 
 
    const options = empleos.map(e => e.category).filter((valor, indice, self) => self.indexOf(valor) === indice).map(e => ({ value: e, label: e, }));
-   const handleFilterChange = (selectedOption) => {
-      setSelectedCategory(selectedOption);
-   };
+
    const limpiarFiltros = () => {
       setSelectedCategory(null);
-   }
+   };
+
    return (
       <div>
          <LeftMenu />
@@ -62,7 +143,7 @@ export default function BolsaTrabajo() {
                      options={options}
                      placeholder="Categorías..."
                      components={animatedComponent}
-                     onChange={(selectedOptions) => { handleFilterChange(selectedOptions) }}
+                     onChange={(selectedOptions) => { setSelectedCategory(selectedOptions) }}
                      value={selectedCategory}
                   />
                   <button onClick={limpiarFiltros}>Limpiar filtros</button>

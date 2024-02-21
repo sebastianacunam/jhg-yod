@@ -3,11 +3,11 @@
    grid-template-columns: 18em 3fr 1fr 1fr;
    grid-template-rows: 150px 1fr 150px;
    min-height: 100vh;
-   grid-template-areas: 
+   grid-template-areas:
       ". header header header"
       ". content content sidebar"
       ". footer footer footer";
-      
+
 }
 
 
@@ -26,7 +26,7 @@
 .conteiner-empleo main {
    grid-area: content;
    width: 90%;
-   margin-left: 5rem;
+   margin-left: 2rem;
 }
 
 .conteiner-empleo footer {
@@ -35,14 +35,13 @@
    height: 17rem;
    width: 99%;
 }
-.ul-container-empleo{
-   margin-left: -40px;
-}
-.card-empleo {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr ;
-   border-radius: 10px;
-   border: solid 1px;
-   height: 17rem;
-}
+
+
+// .card-empleo {
+//    display: grid;
+//    grid-template-columns: 1fr 1fr 1fr;
+//    grid-template-rows: 1fr;
+//    border-radius: 10px;
+//    border: solid 1px;
+//    height: 17rem;
+// }

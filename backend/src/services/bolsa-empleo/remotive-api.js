@@ -22,7 +22,8 @@ export async function remotiveApi(query) {
       company_logo: e.company_logo,
       category: e.category,
       job_type: e.job_type,
-      candidate_required_location: e.candidate_required_location
+      publication_date: e.publication_date,
+      tags: e.tags,
    }));
    if (!result.length) {
       throw new ClientError('Error al consumir la api', 500);

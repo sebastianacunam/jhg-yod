@@ -18,9 +18,11 @@ export async function jobicyApi(query) {
       title: e.jobTitle,
       company_name: e.companyName,
       company_logo: e.companyLogo,
-      jobIndustry: e.jobIndustry,
+      category: e.jobIndustry,
       job_type: e.job_type,
       jobGeo: e.jobGeo,
+      publication_date: e.pubDate,
+      tags: e.jobSlug,
    }));
    if (!result.length) {
       throw new ClientError('Error al consumir la api', 500);

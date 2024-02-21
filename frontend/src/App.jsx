@@ -25,31 +25,31 @@ import { ChakraProvider } from "@chakra-ui/react";
 function App() {
   return (
 
-      <Router>
-        <Routes>
-          <Route path='/' element={<AuthLayout />}>
-            <Route index path='/login' element={<Login />} />
-            <Route index path='/' element={<Login />} />
-            {/* <Route index path='/login' element={<Login />} /> */}
-            <Route path='/register' element={<Register />} />
-            <Route path='/confirm/:id' element={<ConfirmAccount />} />
-            <Route path='/olvide-password' element={<ForgotPassword />} />
-            <Route path='/olvide-password/:token' element={<NewPassword />} />
-          </Route>
+    <Router>
+      <Routes>
+        <Route path='/' element={<AuthLayout />}>
+          <Route index path='/login' element={<Login />} />
+          <Route index path='/' element={<Login />} />
+          {/* <Route index path='/login' element={<Login />} /> */}
+          <Route path='/register' element={<Register />} />
+          <Route path='/confirm/:id' element={<ConfirmAccount />} />
+          <Route path='/olvide-password' element={<ForgotPassword />} />
+          <Route path='/olvide-password/:token' element={<NewPassword />} />
+        </Route>
 
-          <Route path='/' element={<VerificationUser />}>
+        <Route path='/' element={<VerificationUser />}>
           <Route path='/dashboard' element={<ChakraProvider><Dashboard /></ChakraProvider>} />
-            <Route path='/perfil' element={<Perfil />} />
-            <Route path='/create' element={<FormAnuncio />} />
+          <Route path='/perfil' element={<Perfil />} />
+          <Route path='/create' element={<FormAnuncio />} />
 
-            <Route path='/beneficios' element={<Beneficios />} />
-            <Route path='/cursos' element={<Cursos />} />
-            <Route path='/mentorias' element={<Mentorias />} />
-            <Route path='/anuncios' element={<Anuncios />} />
-            <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
-          </Route>
-        </Routes>
-      </Router>
+          <Route path='/beneficios' element={<Beneficios />} />
+          <Route path='/cursos' element={<Cursos />} />
+          <Route path='/mentorias' element={<Mentorias />} />
+          <Route path='/anuncios' element={<Anuncios />} />
+          <Route path='/bolsa-empleo' element={<ChakraProvider><BolsaTrabajo /></ChakraProvider>} />
+        </Route>
+      </Routes>
+    </Router>
 
   );
 }
