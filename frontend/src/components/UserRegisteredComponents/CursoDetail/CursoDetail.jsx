@@ -10,6 +10,7 @@ const CursoDetail = () => {
   const [curso, setCurso] = useState({});
   let cursoId = useParams();
 
+
   useEffect(() => {
     const fetchData = async () => {
       let data = await getCursoById(cursoId.id);
