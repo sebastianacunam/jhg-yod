@@ -18,22 +18,38 @@ export default function BolsaTrabajo() {
    const itemsPerPage = 10;
    const [currentPage, setCurrentPage] = useState(1);
    const [selectedCategory, setSelectedCategory] = useState(null);
+   const [expandedCards, setExpandedCards] = useState({});
+   const [selectedJobType, setSelectedJobType] = useState(null);
+   const [selectedJobType2, setSelectedJobType2] = useState(null);
+   const [asideVisible, setAsideVisible] = useState(false);
+
+
+   const jobTypeOptions = [...new Set(empleos.map(empleo => empleo.job_type))]
+      .map(jobType => ({ value: jobType, label: jobType }));
+   const empleosFiltradosPorJobType = empleos.filter(
+      empleo => !selectedJobType || empleo.job_type === selectedJobType.value
+   );
+   const startIndex = (currentPage - 1) * itemsPerPage;
+   const endIndex = startIndex + itemsPerPage;
+   const currentJobs = empleosFiltradosPorJobType.slice(startIndex, endIndex)
+   const isNextDisabled = endIndex >= empleosFiltradosPorJobType.length;
 
    useEffect(() => {
+      dispatch(getEmpleos());
+   }, [dispatch]);
+
+   const aplicarFiltros = () => {
       if (selectedCategory) {
          const query = `?category=${selectedCategory.value}`;
          dispatch(getEmpleos(query));
+         setSelectedJobType(selectedJobType2)
+         setCurrentPage(1);
       } else {
          dispatch(getEmpleos());
+         setSelectedJobType(selectedJobType2)
+         setCurrentPage(1);
       }
-   }, [dispatch, selectedCategory]);
-
-   const startIndex = (currentPage - 1) * itemsPerPage;
-   const endIndex = startIndex + itemsPerPage;
-   const currentJobs = empleos.slice(startIndex, endIndex)
-
-
-   const [expandedCards, setExpandedCards] = useState({});
+   };
 
    const handleToggleExpand = (id) => {
       setExpandedCards((prevExpandedCards) => ({
@@ -48,11 +64,13 @@ export default function BolsaTrabajo() {
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
-            backgroundColor='blue.100'
+            style={{
+               backgroundImage: `linear-gradient(to left, #0083a3, #00adbf)`,
+            }}
             borderRadius='2rem'
             onClick={() => handleToggleExpand(e.id)}
             cursor="pointer"
-            w={1250}
+            w={asideVisible ? 1250 : 1400}
          >
             <Icon
                as={ChevronDownIcon}
@@ -112,7 +130,7 @@ export default function BolsaTrabajo() {
                   <Text marginRight='-8rem' marginTop='1'><p>Remoto 🌍</p></Text>
                   <Flex justifyContent="flex-end" alignItems="center">
                      <Text marginRight='-24rem' marginTop='8'><p>{format(e.publication_date, "short")}</p></Text>
-                     <Button borderRadius='2rem' variant='solid' colorScheme='green' marginRight='13rem' marginTop='-8rem' w="13rem" h='4rem' fontSize='1.5rem'  >
+                     <Button borderRadius='2rem' variant='solid' backgroundColor='#1c9ebc' textColor='black' marginRight='13rem' marginTop='-8rem' w="13rem" h='4rem' fontSize='1.5rem'  >
                         <a href={e.url} target="_blank" rel="noopener noreferrer">
                            Ver Trabajo
                         </a>
@@ -122,44 +140,123 @@ export default function BolsaTrabajo() {
                </CardFooter>
             </Stack>
          </Card>
-      </Box>
+      </Box >
    ));
 
+   const seenCategories = {};
+   const options = empleos
+      .filter(e => {
+         if (!seenCategories[e.category]) {
+            seenCategories[e.category] = true;
+            return true;
+         }
+         return false;
+      })
+      .map(e => ({ value: e.category, label: e.category }));
 
-   const options = empleos.map(e => e.category).filter((valor, indice, self) => self.indexOf(valor) === indice).map(e => ({ value: e, label: e, }));
 
    const limpiarFiltros = () => {
       setSelectedCategory(null);
+      setSelectedJobType2(null);
+      setSelectedJobType(null);
+      setCurrentPage(1);
    };
 
    return (
       <div>
          <LeftMenu />
          <section className="conteiner-empleo">
-            <header className="header-empleo">Header</header>
-            <aside className="aside-empleo">
-               <div>
-                  <Select
-                     options={options}
-                     placeholder="Categorías..."
-                     components={animatedComponent}
-                     onChange={(selectedOptions) => { setSelectedCategory(selectedOptions) }}
-                     value={selectedCategory}
-                  />
-               </div>
-               <Flex justifyContent="center"> <Button borderRadius='2rem' variant='solid' colorScheme='green' w="11rem" h='4rem' fontSize='1.4rem' onClick={limpiarFiltros}>Limpiar filtros </Button>
-               </Flex>
-            </aside>
+            <header className="header-empleo">
+               {setEmpleos.length ? <h1>Bolsa de empleos</h1> : ""}
+            </header>
+            <div className="ocultar-aside" onClick={() => setAsideVisible(!asideVisible)}>
+               {!asideVisible ? <Icon
+                  as={ChevronDownIcon}
+                  w={20}
+                  h={20}
+                  ml={150}
+                  mt={1}
+                  position="absolute"
+                  transform={'rotate(90deg)'}
+               /> : <Icon
+                  as={ChevronDownIcon}
+                  w={20}
+                  h={20}
+                  ml={2}
+                  mt={1}
+                  transform={'rotate(-90deg)'}
+               />}
+            </div>
+            {asideVisible && (
+               <aside className="aside-empleo">
+
+                  <div className="div-select">
+                     <Select
+                        options={options}
+                        placeholder="Categorías"
+                        components={animatedComponent}
+                        onChange={(selectedOptions) => {
+                           setSelectedCategory(selectedOptions);
+                        }}
+                        value={selectedCategory}
+                     />
+                  </div>
+                  <div>
+                     <Select
+                        options={jobTypeOptions}
+                        placeholder="Tipo de empleo"
+                        components={animatedComponent}
+                        onChange={(selectedOptions) => {
+                           setSelectedJobType2(selectedOptions);
+                        }}
+                        value={selectedJobType2}
+                     />
+                  </div>
+                  <div>
+                     <Flex justifyContent="center" gap="6rem">
+                        <Button
+                           borderRadius="2rem"
+                           variant="solid"
+                           style={{
+                              backgroundColor: `#0083a3`,
+                           }}
+                           w="11rem"
+                           h="4rem"
+                           fontSize="1.4rem"
+                           onClick={aplicarFiltros}
+                           color='white'
+                        >
+                           Aplicar Filtros
+                        </Button>
+                        <Button
+                           borderRadius="2rem"
+                           variant="black"
+                           colorScheme="red"
+                           w="11rem"
+                           h="4rem"
+                           fontSize="1.4rem"
+                           onClick={limpiarFiltros}
+                           style={{
+                              backgroundColor: `#0083a3`,
+                           }}
+                           color='white'
+                        >
+                           Limpiar filtros
+                        </Button>
+                     </Flex>
+                  </div>
+               </aside>
+            )}
             <main className="main-empleo">
-               {setEmpleos.length ? setEmpleos : <div style={{ textAlign: "center" }}><p>Cargando....</p></div>}
-               <Pagination
+               {setEmpleos.length ? setEmpleos : <div style={{ textAlign: "center" }}><h1>Cargando empleos</h1></div>}
+               {setEmpleos.length ? <Pagination
                   items={empleos}
                   itemsPerPage={itemsPerPage}
                   setCurrentPage={setCurrentPage}
                   currentPage={currentPage}
-               />
+                  isNextDisabled={isNextDisabled}
+               /> : ""}
             </main>
-            <footer className="footer-empleo">Footer</footer>
          </section>
       </div >
    );

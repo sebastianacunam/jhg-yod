@@ -8,25 +8,38 @@
       ". content content sidebar"
       ". footer footer footer";
 
+
 }
 
 
 .conteiner-empleo header {
-   background: rgba(5, 52, 83, 0.451);
    grid-area: header;
    width: 160rem;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
 }
 
 .conteiner-empleo aside {
-   background: rgba(255, 255, 0, 0.22);
+   background: rgba(128, 128, 128, 0.034);
    grid-area: sidebar;
    width: 95%;
+}
+
+.ocultar-aside {
+   grid-area: sidebar;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   margin-top: 45rem;
+   cursor: pointer;
 }
 
 .conteiner-empleo main {
    grid-area: content;
    width: 90%;
    margin-left: 2rem;
+
 }
 
 .conteiner-empleo footer {
@@ -36,8 +49,12 @@
    width: 99%;
 }
 
-.aside-empleo{
+.aside-empleo {
    display: flex;
    flex-direction: column;
    gap: 10rem;
+}
+
+.div-select {
+   margin-top: 7rem;
 }
