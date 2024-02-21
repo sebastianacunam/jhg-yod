@@ -19,7 +19,7 @@ export default function Dashboard() {
   }, []);
 
   const cursos = usuarioAct.cursos;
-
+  console.log('a ver qué trae',cursos)
   return (
     <div>
       <div>
@@ -36,7 +36,7 @@ export default function Dashboard() {
               return (
                 <div key={i}>
                   <Curso
-                    id={e?._id}
+                    id={e?.id}
                     name={e?.name}
                     description={e?.description}
                   />
