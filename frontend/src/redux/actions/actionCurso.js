@@ -49,17 +49,26 @@ export function updateCurso(payload){
     }
 }
 
-export function buyCurso(payment, id){
-    return async function(dispatch){
-        try {
-            const json = await  clienteAxios.post(`/create-checkout-session/${id}`, payment)
-            console.log("qué trae buyCurso desde las actions: ",json)
-            return dispatch({
-                type: BUY_CURSO,
-                payload: json.data
-            })
-        } catch (error) {
-            console.log(error.message)
-        }
+export const buyProducto = async (id, payment) => {
+    try {
+        const json = await clienteAxios.post(`/payment/create-checkout-session/${id}`, payment);
+        return json.data.data;
+    } catch(error) {
+        console.log(error);
     }
 }
+
+// export function buyCurso(payment, id){
+//     return async function(dispatch){
+//         try {
+//             const json = await clienteAxios.post(`/create-checkout-session/${id}`, payment)
+//             console.log("qué trae buyCurso desde las actions: ",json)
+//             return dispatch({
+//                 type: BUY_CURSO,
+//                 payload: json.data
+//             })
+//         } catch (error) {
+//             console.log(error.message)
+//         }
+//     }
+// }

@@ -2,7 +2,6 @@ import { NavLink, useParams } from "react-router-dom";
 import "../../../assets/scss/layout/_detalles.scss";
 import { useEffect, useState } from "react";
 import { getCursoById } from "../../../redux/actions/actionCurso";
-import { getSessionStripe } from "../../../redux/actions/actionStripe";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import img from "../../../assets/images/bg-sign-up-cover.jpeg";
 
@@ -18,11 +17,6 @@ const CursoDetail = () => {
     };
     fetchData();
   }, [cursoId]);
-
-  // const goSessionStripe = async () => {
-  //   const url = await getSessionStripe(cursoId.id, curso);
-  //   window.location.href = url;
-  // };
 
   return (
     <div>
