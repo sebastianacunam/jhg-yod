@@ -3,7 +3,8 @@ import { toast } from "react-toastify";
 import { 
     DELETE_CURSO, 
     UPDATE_CURSO,
-    GET_CURSOS
+    GET_CURSOS,
+    BUY_CURSO
 } from '../utils/constants.js'
 
 
@@ -44,6 +45,21 @@ export function updateCurso(payload){
             console.log(waving)
         } catch (error) {
             console.log(error)
+        }
+    }
+}
+
+export function buyCurso(payment, id){
+    return async function(dispatch){
+        try {
+            const payload = await  clienteAxios.post(`/create-checkout-session/${id}`, payment)
+            console.log("qué trae buyCurso desde las actions: ",payload)
+            return dispatch({
+                type: BUY_CURSO,
+                payload
+            })
+        } catch (error) {
+            console.log(error.message)
         }
     }
 }

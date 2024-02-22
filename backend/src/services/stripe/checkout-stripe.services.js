@@ -36,31 +36,13 @@ export const checkout_stripe = async (id, type) => {
 
     const { name, description } = product;
 
-    const sessionStripe = await stripe.checkout.sessions.create({
-        line_items: [
-            {
-                price_data: {
-                    product_data: {
-                        name: name,
-                        description: description,
-                    },
-                    currency: 'ars',
-                    unit_amount: 100000,
-                },
-                quantity: 1
-            }
-        ],
-        mode: 'payment',
-        success_url: 'http://localhost:5173/compra-exitosa',
-        cancel_url: 'http://localhost:5173/cursos'
+    const sessionStripe = await stripe.paymentIntents.create({
+        amount: 100000,
+        currency: "ars",
+        
     });
-
-    // const sessionStripe = await stripe.paymentIntents.create({
-    //     amount: 100000,
-    //     currency: "ars"
-    // });
-
+    console.log('Session Stripe: ',sessionStripe)
     if (!sessionStripe) throw new ClientError("Error Stripe Payment", 400);
 
-    return sessionStripe.url;
+    return sessionStripe;
 }
