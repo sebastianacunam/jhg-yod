@@ -6,7 +6,7 @@ import { getEmpleos } from "../../../redux/actions/actionEmpleos";
 import { Pagination } from "../Pagination/Pagintation";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Button, Box, Flex, Badge, Icon } from '@chakra-ui/react';
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Button, Box, Flex, Badge, Icon, Spinner, CircularProgress } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { format } from "@formkit/tempo"
 
@@ -36,7 +36,7 @@ export default function BolsaTrabajo() {
 
    useEffect(() => {
       dispatch(getEmpleos());
-   }, [dispatch]);
+   }, [dispatch, selectedCategory]);
 
    const aplicarFiltros = () => {
       if (selectedCategory) {
@@ -167,10 +167,12 @@ export default function BolsaTrabajo() {
          <LeftMenu />
          <section className="conteiner-empleo">
             <header className="header-empleo">
-               {setEmpleos.length ? <h1>Bolsa de empleos</h1> : ""}
+               {setEmpleos.length ? <Heading size='lg' fontSize='50px' ml={-250}>
+                  Bolsa de empleos
+               </Heading> : ""}
             </header>
             <div className="ocultar-aside" onClick={() => setAsideVisible(!asideVisible)}>
-               {!asideVisible ? <Icon
+               {setEmpleos.length ? !asideVisible ? <Icon
                   as={ChevronDownIcon}
                   w={20}
                   h={20}
@@ -185,7 +187,7 @@ export default function BolsaTrabajo() {
                   ml={2}
                   mt={1}
                   transform={'rotate(-90deg)'}
-               />}
+               /> : ""}
             </div>
             {asideVisible && (
                <aside className="aside-empleo">
@@ -248,7 +250,15 @@ export default function BolsaTrabajo() {
                </aside>
             )}
             <main className="main-empleo">
-               {setEmpleos.length ? setEmpleos : <div style={{ textAlign: "center" }}><h1>Cargando empleos</h1></div>}
+               {setEmpleos.length ?
+                  setEmpleos :
+                  <CircularProgress
+                     isIndeterminate color='blue.200'
+                     ml={700}
+                     mt={200}
+                     size='100px'
+                  />
+               }
                {setEmpleos.length ? <Pagination
                   items={empleos}
                   itemsPerPage={itemsPerPage}
