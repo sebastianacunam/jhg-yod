@@ -1,9 +1,9 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import { useParams } from 'react-router'
 import { buyCurso } from '../../../redux/actions/actionCurso'
-
+import { getCursoById } from '../../../redux/actions/actionCurso'
 
 export default function CheckoutForm() {
 
@@ -12,9 +12,17 @@ export default function CheckoutForm() {
   const dispatch = useDispatch()
   const idProducto = useParams()
 
+  const [producto, setProducto] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  console.log('id del producto a comprar: ',idProducto.id)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let data = await getCursoById(idProducto.id);
+      setProducto(data);
+    };
+    fetchData();
+  }, [idProducto]);
 
   async function handleSubmit (){
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -27,14 +35,26 @@ export default function CheckoutForm() {
       const pm = paymentMethod.id
       try {
         const buy = await dispatch(buyCurso(
-          [{
+          {
+            type: producto.type,
             pm,
-            qty: 1,
-            id: idProducto.id
-          }]
+            qty: 1
+          }, 
+          producto._id
         ))
-        console.log('a veeeerrr',buy)
+        console.log('😒 dispatch buycurso', buy)
+        
+        if (buy.payload.data.client_secret) {
+          alert("Pago recibido!")
+          // setTimeout(() => {
+          //   navigate("/confirmation")
+          // }, 1000)
 
+        } else {
+          alert("Pago rechazado!")
+
+        }
+        elements.getElement(CardElement).clear()
       } catch (error) {
         console.log(error)
       }
@@ -46,7 +66,7 @@ export default function CheckoutForm() {
          <div className="payment-info">
         <h3 className="payment-heading">Informacion de Pago</h3>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={(e)=>handleSubmit(e)}
           className="form-box"
           // encType="text/plain"
           // method="get"
