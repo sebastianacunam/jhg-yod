@@ -55,6 +55,11 @@ export const checkout_stripe = async (id, type) => {
         cancel_url: 'http://localhost:5173/cursos'
     });
 
+    // const sessionStripe = await stripe.paymentIntents.create({
+    //     amount: 100000,
+    //     currency: "ars"
+    // });
+
     if (!sessionStripe) throw new ClientError("Error Stripe Payment", 400);
 
     return sessionStripe.url;

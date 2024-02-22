@@ -23,7 +23,14 @@ export function getCursos(){
 
 export async function getCursoById(id) {
     try {
-        const json = await clienteAxios.get(`/cursos/${id}`);
+        let json;
+        json = await clienteAxios.get(`/cursos/${id}`);
+        if (json.data.error === true) {
+            json = await clienteAxios.get(`/mentorias/${id}`);
+            if (json.data.error === true) {
+                json = await clienteAxios.get(`/bootcamps/${id}`);
+            };
+        };
         return json.data.data;
     } catch(error) {
         console.log(error)
