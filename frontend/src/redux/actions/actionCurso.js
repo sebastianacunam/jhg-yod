@@ -52,11 +52,11 @@ export function updateCurso(payload){
 export function buyCurso(payment, id){
     return async function(dispatch){
         try {
-            const payload = await  clienteAxios.post(`/create-checkout-session/${id}`, payment)
-            console.log("qué trae buyCurso desde las actions: ",payload)
+            const json = await  clienteAxios.post(`/create-checkout-session/${id}`, payment)
+            console.log("qué trae buyCurso desde las actions: ",json)
             return dispatch({
                 type: BUY_CURSO,
-                payload
+                payload: json.data
             })
         } catch (error) {
             console.log(error.message)
