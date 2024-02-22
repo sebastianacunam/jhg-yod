@@ -15,6 +15,7 @@ import {
   ACTUAL,
   //cursos
   GET_CURSOS,
+  BUY_CURSO,
   //mentorias
   GET_MENTORIAS,
   POST_MENTORIAS,
@@ -49,6 +50,7 @@ const initialState = {
   allBootcamps: [],
   allEmpleos: [],
   allAnuncios: [],
+  buy: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -143,6 +145,11 @@ function rootReducer(state = initialState, action) {
         cursos: action.payload,
         allCursos: action.payload,
       };
+    case BUY_CURSO:
+      return {
+        ...state,
+        buy: action.payload
+      }
     //---------------------MENTORIAS----------------------------------------
     case GET_MENTORIAS:
       return {

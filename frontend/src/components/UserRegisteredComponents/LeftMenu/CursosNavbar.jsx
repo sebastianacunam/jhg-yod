@@ -36,7 +36,7 @@ function CursosNavbar() {
         <PopoverContent>
           <PopoverArrow placement='left' />
           <PopoverHeader>
-            <Link to={"/cursos"}>
+            <Link to={"/mis-cursos"}>
               <li>Mis cursos</li>
             </Link>
           </PopoverHeader>
