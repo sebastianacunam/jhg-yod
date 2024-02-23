@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import {
   //usuarios
   GOOGLE_LOGIN,
@@ -233,6 +234,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allEmpleos: action.payload,
+        empleosFiltrados: action.payload,
       };
 
     default:

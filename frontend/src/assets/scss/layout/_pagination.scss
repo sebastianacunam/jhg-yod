@@ -1,0 +1,31 @@
+.conteinerPagination {
+   display: grid;
+   grid-template-columns: 15rem 15rem 15rem ;
+   text-align: center;
+   justify-content: center;
+   gap: 8rem;
+   margin-top: 7rem;
+   
+}
+.conteinerPagination button{
+   box-sizing: border-box;
+   outline: 0;
+   border: 0;
+   margin: 0;
+   cursor: pointer;
+   text-decoration: none;
+   font-family: "Roboto","Helvetica","Arial",sans-serif;
+   font-size: 1.1rem;
+   font-weight: 700;
+   border-radius: 0.5rem;
+   line-height: 1.4;
+   text-transform: uppercase;
+   transition: all 150ms ease-in;
+   min-height: 2.5rem;
+   padding: 0.625rem 1.5rem;
+   background: linear-gradient(195deg, #49a3f1, #1A73E8);
+   color: #ffffff;
+   box-shadow: 0rem 0.1875rem 0.1875rem 0rem rgba(26, 115, 232, 0.15),0rem 0.1875rem 0.0625rem -0.125rem rgba(26, 115, 232, 0.2),0rem 0.0625rem 0.3125rem 0rem rgba(26, 115, 232, 0.15);
+   height: 10px;
+
+}

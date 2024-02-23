@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../src/assets/scss/app.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import WithChakra from "./utils/WithChakra";
+// import WithChakra from "./utils/WithChakra";
 /* ----------------------------------Common User--------------------------------------------- */
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./components/CommonComponents/Login/Login";
@@ -32,36 +32,36 @@ import Checkout from "./components/UserRegisteredComponents/Checkout/Checkout";
 function App() {
   return (
 
-      <Router>
-        <Routes>
-          <Route path='/' element={<AuthLayout />}>
-            <Route index path='/login' element={<Login />} />
-            <Route index path='/' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/confirm/:id' element={<ConfirmAccount />} />
-            <Route path='/olvide-password' element={<ForgotPassword />} />
-            <Route path='/olvide-password/:token' element={<NewPassword />} />
-          </Route>
+    <Router>
+      <Routes>
+        <Route path='/' element={<AuthLayout />}>
+          <Route index path='/login' element={<Login />} />
+          <Route index path='/' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/confirm/:id' element={<ConfirmAccount />} />
+          <Route path='/olvide-password' element={<ForgotPassword />} />
+          <Route path='/olvide-password/:token' element={<NewPassword />} />
+        </Route>
 
-          <Route path='/' element={<VerificationUser />}>
+        <Route path='/' element={<VerificationUser />}>
           <Route path='/dashboard' element={<ChakraProvider><Dashboard /></ChakraProvider>} />
-            <Route path='/perfil' element={<Perfil />} />
-            <Route path='/create' element={<FormAnuncio />} />
+          <Route path='/perfil' element={<Perfil />} />
+          <Route path='/create' element={<FormAnuncio />} />
 
-            <Route path='/beneficios' element={<Beneficios />} />
-            <Route path='/cursos' element={<Cursos />} />
-            <Route path='/mis-cursos' element={<MisCursos />} />
-            <Route path='/detalles/:id' element={<CursoDetail />} />
-            <Route path='/bootcamps' element={<Bootcamps />} />
-            <Route path='/mentorias' element={<Mentorias />} />
-            <Route path='/anuncios' element={<Anuncios />} />
-            <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
-            <Route path='/compra-exitosa' element={<CompraExitosa />} />
-            <Route path='/checkout/:id' element={<Checkout />} />
+          <Route path='/beneficios' element={<Beneficios />} />
+          <Route path='/cursos' element={<Cursos />} />
+          <Route path='/mis-cursos' element={<MisCursos />} />
+          <Route path='/detalles/:id' element={<CursoDetail />} />
+          <Route path='/bootcamps' element={<Bootcamps />} />
+          <Route path='/mentorias' element={<Mentorias />} />
+          <Route path='/anuncios' element={<Anuncios />} />
+          <Route path='/bolsa-empleo' element={<ChakraProvider><BolsaTrabajo /></ChakraProvider>} />
+          <Route path='/compra-exitosa' element={<CompraExitosa />} />
+          <Route path='/checkout/:id' element={<Checkout />} />
 
-          </Route>
-        </Routes>
-      </Router>
+        </Route>
+      </Routes>
+    </Router>
 
   );
 }

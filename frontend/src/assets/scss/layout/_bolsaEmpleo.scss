@@ -3,38 +3,58 @@
    grid-template-columns: 18em 3fr 1fr 1fr;
    grid-template-rows: 150px 1fr 150px;
    min-height: 100vh;
-   grid-template-areas: 
+   grid-template-areas:
       ". header header header"
       ". content content sidebar"
-      ". footer footer footer"
+      ". footer footer footer";
+
+
 }
 
 
 .conteiner-empleo header {
-   background: rgba(5, 52, 83, 0.451);
    grid-area: header;
+   width: 160rem;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
 }
 
 .conteiner-empleo aside {
-   background: rgba(255, 255, 0, 0.22);
+   background: rgba(128, 128, 128, 0.034);
    grid-area: sidebar;
+   width: 95%;
+}
+
+.ocultar-aside {
+   grid-area: sidebar;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   margin-top: 40rem;
+   cursor: pointer;
 }
 
 .conteiner-empleo main {
    grid-area: content;
+   width: 90%;
+   margin-left: 2rem;
+
 }
 
 .conteiner-empleo footer {
    background: gray;
    grid-area: footer;
+   height: 17rem;
+   width: 99%;
 }
-.ul-container-empleo{
-   margin-left: -40px;
+
+.aside-empleo {
+   display: flex;
+   flex-direction: column;
+   gap: 10rem;
 }
-.card-empleo {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr ;
-   border-radius: 10px;
-   border: solid 1px;
+
+.div-select {
+   margin-top: 3rem;
 }
