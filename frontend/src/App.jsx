@@ -13,19 +13,19 @@ import NewPassword from "./components/CommonComponents/NewPassword/NewPassword";
 /* ----------------------------------Registered User----------------------------------------- */
 import Dashboard from "./components/UserRegisteredComponents/Dashboard/Dashboard";
 import Perfil from "./components/UserRegisteredComponents/Perfil/Perfil";
-import FormAnuncio from "./components/UserRegisteredComponents/FormAnuncio/FormAnuncio";
-import Cursos from "./components/UserRegisteredComponents/Cursos/Cursos";
-import MisCursos from "./components/UserRegisteredComponents/MisCursos/MisCursos";
+import FormAnuncio from "./components/UserRegisteredComponents/Anuncios/FormAnuncio/FormAnuncio";
+import Cursos from "./components/UserRegisteredComponents/Cursos/Cursos/Cursos";
+import MisCursos from "./components/UserRegisteredComponents/Cursos/MisCursos/MisCursos";
 import VerificationUser from "./components/CommonComponents/VerificationUser/VerificationUser";
 import BolsaTrabajo from "./components/CommonComponents/BolsaTrabajo/BolsaTrabajo";
-import Mentorias from "./components/UserRegisteredComponents/Mentorias/Mentorias";
-import Bootcamps from "./components/UserRegisteredComponents/Bootcamps/Bootcamps";
-import Anuncios from "./components/UserRegisteredComponents/Anuncios/Anuncios";
-import Beneficios from "./components/UserRegisteredComponents/Beneficios/Beneficios";
+import Mentorias from "./components/UserRegisteredComponents/Mentorias/Mentorias/Mentorias";
+import Bootcamps from "./components/UserRegisteredComponents/Bootcamps/Bootcamps/Bootcamps";
+import Anuncios from "./components/UserRegisteredComponents/Anuncios/Anuncios/Anuncios";
+import Beneficios from "./components/UserRegisteredComponents/Beneficio/Beneficios/Beneficios";
 
 /* ------------------------------------------------------------------------------------------ */
 
-import CursoDetail from "./components/UserRegisteredComponents/CursoDetail/CursoDetail";
+import CursoDetail from "./components/UserRegisteredComponents/Cursos/CursoDetail/CursoDetail";
 import CompraExitosa from "./components/UserRegisteredComponents/CompraExitosa/CompraExitosa";
 import Checkout from "./components/UserRegisteredComponents/Checkout/Checkout";
 

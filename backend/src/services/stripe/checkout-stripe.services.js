@@ -10,10 +10,11 @@ const stripe = new Stripe(envs.STRIPE_SECRET_KEY);
 
 export const checkout_stripe = async (id, body) => {
 
-    const { type, pm } = body
-    let product;
+    const { type, pm } = body;
 
-    console.log('body desde  el servicio', body)
+    if (!type) throw new ClientError("Missing Data", 400);
+
+    let product;
 
     switch (type) {
         case "CURSO":
@@ -41,7 +42,6 @@ export const checkout_stripe = async (id, body) => {
         amount: 100000,
         currency: "ars",
         payment_method: pm
-
     });
     if (!sessionStripe) throw new ClientError("Error Stripe Payment", 400);
 

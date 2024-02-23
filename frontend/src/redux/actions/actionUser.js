@@ -191,3 +191,19 @@ export function usuarioActual() {
     }
   };
 }
+
+export const comprarCurso = async (cursoId) => {
+  const usuarioId = localStorage.getItem("token");
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${usuarioId}`,
+    },
+  };
+  try {
+    const data = await clienteAxios.post(`/cursos/comprar/${cursoId}`, null, config);
+    return data.data.error;
+  } catch(error) {
+    console.log(error)
+  }
+};

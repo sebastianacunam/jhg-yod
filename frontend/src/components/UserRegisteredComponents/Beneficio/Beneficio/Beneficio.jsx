@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../assets/scss/layout/_beneficio.scss'
+import '../../../../assets/scss/layout/_beneficio.scss'
 
 
 export default function Beneficio({name, description, img}) {
