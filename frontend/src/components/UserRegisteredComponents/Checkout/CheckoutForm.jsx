@@ -4,6 +4,9 @@ import { useParams } from 'react-router'
 import { buyProducto } from '../../../redux/actions/actionCurso'
 import { getCursoById } from '../../../redux/actions/actionCurso'
 import { comprarCurso } from '../../../redux/actions/actionUser'
+import '../../../assets/scss/layout/_checkoutForm.scss'
+import '../../../assets/scss/base/_globales.scss'
+
 
 export default function CheckoutForm() {
 
@@ -58,39 +61,47 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div>
-         <div className="payment-info">
-        <h3 className="payment-heading">Informacion de Pago</h3>
-        <form
-          onSubmit={handleSubmit}
-          className="form-box"
-          // encType="text/plain"
-          // method="get"
-          // target="_blank"
-        >
-         <div >
-           <div >
-             <CardElement />
-           </div>
-         </div>  
+    <div className='checkout-container'>
+        <div className='container-top'>
+          <h5 className='product-type'>El {producto.type} ya es casi tuyo</h5>
+        </div>
 
-          <button disabled={!stripe} type='submit' className="btn">
-           {loading ? (
-             <div className="spinner-border text-light" role="status">
-               <span className="sr-only">Cargando...</span>
-             </div>
-           ) : (
-             "Comprar"
-           )}
-         </button>
-        
+        <div className='container-bot'>
+          <div className='left-side'>
+            <h3>{producto.name}</h3>
+            <h3>Precio: 50 USD</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo similique quidem fugit adipisci nobis maxime architecto consectetur earum autem culpa. Quis iure explicabo similique minus, eveniet ullam voluptates debitis tempora!
+            </p>
+          </div>
          
-        </form>
-        <p className="footer-text">
-          <i className="fa-solid fa-lock"></i>
-         la información de tu tarjeta de crédito esta encriptada
-        </p>
-      </div>
+          <div className='right-side'>
+
+            <h3 className="payment-heading">Informacion de Pago</h3>
+            <form onSubmit={handleSubmit} className="form-box">
+            <div className='checkout-form-container'>
+              <div className='inner-checkout-form'>
+                <CardElement />
+              </div>
+            </div>  
+            <div className='btn-cont'>
+              <button disabled={!stripe} type='submit' className="checkout-btn">
+              {loading ? (
+                <div className="spinner-border text-light" role="status">
+                  <span className="sr-only">Cargando...</span>
+                </div>
+              ) : (
+                "Comprar"
+              )}
+              </button>
+            </div>
+            
+            
+            </form>
+            <p className="footer-text">la información de tu tarjeta de crédito esta encriptada</p>
+
+          </div>
+        </div>         
     </div>
   )
 }
