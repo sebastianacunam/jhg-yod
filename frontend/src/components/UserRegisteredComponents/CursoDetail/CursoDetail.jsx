@@ -19,10 +19,10 @@ const CursoDetail = () => {
     fetchData();
   }, [cursoId]);
 
-  const goSessionStripe = async () => {
-    const url = await getSessionStripe(cursoId.id, curso);
-    window.location.href = url;
-  };
+  // const goSessionStripe = async () => {
+  //   const url = await getSessionStripe(cursoId.id, curso);
+  //   window.location.href = url;
+  // };
 
   return (
     <div>
@@ -47,9 +47,11 @@ const CursoDetail = () => {
             <img src={img} alt="example" />
           </div>
           <div>
-            <button className="details-btns" onClick={goSessionStripe}>
-              Comprar Curso
-            </button>
+              <button className="details-btns" >
+            <NavLink to={`/checkout/${cursoId.id}`}>
+                Comprar Curso
+            </NavLink>
+              </button>
           </div>
         </div>
       </div>

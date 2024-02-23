@@ -29,29 +29,7 @@ export default function Dashboard() {
       </div>
       <div className='container-left-n-right'>
         <div className='right-section'>
-          <h4>cursos</h4>
-
-          {cursos?.length !== 0 ? (
-            usuarioAct.cursos?.map((e, i) => {
-              return (
-                <div key={i}>
-                  <Curso
-                    id={e?.id}
-                    name={e?.name}
-                    description={e?.description}
-                  />
-                </div>
-              );
-            })
-          ) : (
-            <div>
-              <p>No tienes cursos todavía. </p>
-              <p>
-                Puedes ver nuestros cursos &nbsp;
-                <Link to='/cursos'>acá</Link>
-              </p>
-            </div>
-          )}
+          <h1>Bienvenido a Nestify</h1>
         </div>
       </div>
     </div>

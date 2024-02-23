@@ -8,9 +8,12 @@ import { find_anuncio } from "../anuncios/find-anuncio.services.js"
 
 const stripe = new Stripe(envs.STRIPE_SECRET_KEY);
 
-export const checkout_stripe = async (id, type) => {
+export const checkout_stripe = async (id, body) => {
 
+    const { type, pm } = body
     let product;
+
+    console.log('body desde  el servicio', body)
 
     switch (type) {
         case "CURSO":
@@ -34,28 +37,13 @@ export const checkout_stripe = async (id, type) => {
     };
     if (!product) throw new ClientError("This Product wasn't Found", 404);
 
-    const { name, description } = product;
+    const sessionStripe = await stripe.paymentIntents.create({
+        amount: 100000,
+        currency: "ars",
+        payment_method: pm
 
-    const sessionStripe = await stripe.checkout.sessions.create({
-        line_items: [
-            {
-                price_data: {
-                    product_data: {
-                        name: name,
-                        description: description,
-                    },
-                    currency: 'ars',
-                    unit_amount: 100000,
-                },
-                quantity: 1
-            }
-        ],
-        mode: 'payment',
-        success_url: 'http://localhost:5173/compra-exitosa',
-        cancel_url: 'http://localhost:5173/cursos'
     });
-
     if (!sessionStripe) throw new ClientError("Error Stripe Payment", 400);
 
-    return sessionStripe.url;
+    return sessionStripe;
 }

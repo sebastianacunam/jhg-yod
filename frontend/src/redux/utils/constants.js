@@ -17,6 +17,7 @@ export const ACTUAL = "ACTUAL";
 export const UPDATE_CURSO = "UPDATE_CURSO";
 export const DELETE_CURSO = "DELETE_CURSO";
 export const GET_CURSOS = "GET_CURSOS";
+export const BUY_CURSO = "BUY_CURSO";
 
 /* MENTORIAS... */
 export const GET_MENTORIAS = "GET_MENTORIAS";

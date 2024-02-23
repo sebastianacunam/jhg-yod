@@ -6,7 +6,7 @@ import { getEmpleos } from "../../../redux/actions/actionEmpleos";
 import { Pagination } from "../Pagination/Pagintation";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Button, Box, Flex, Badge, Icon, Spinner, CircularProgress } from '@chakra-ui/react';
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Button, Box, Flex, Badge, Icon, CircularProgress } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { format } from "@formkit/tempo"
 

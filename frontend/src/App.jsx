@@ -15,6 +15,7 @@ import Dashboard from "./components/UserRegisteredComponents/Dashboard/Dashboard
 import Perfil from "./components/UserRegisteredComponents/Perfil/Perfil";
 import FormAnuncio from "./components/UserRegisteredComponents/FormAnuncio/FormAnuncio";
 import Cursos from "./components/UserRegisteredComponents/Cursos/Cursos";
+import MisCursos from "./components/UserRegisteredComponents/MisCursos/MisCursos";
 import VerificationUser from "./components/CommonComponents/VerificationUser/VerificationUser";
 import BolsaTrabajo from "./components/CommonComponents/BolsaTrabajo/BolsaTrabajo";
 import Mentorias from "./components/UserRegisteredComponents/Mentorias/Mentorias";
@@ -26,6 +27,7 @@ import Beneficios from "./components/UserRegisteredComponents/Beneficios/Benefic
 
 import CursoDetail from "./components/UserRegisteredComponents/CursoDetail/CursoDetail";
 import CompraExitosa from "./components/UserRegisteredComponents/CompraExitosa/CompraExitosa";
+import Checkout from "./components/UserRegisteredComponents/Checkout/Checkout";
 
 function App() {
   return (
@@ -48,12 +50,15 @@ function App() {
 
           <Route path='/beneficios' element={<Beneficios />} />
           <Route path='/cursos' element={<Cursos />} />
+          <Route path='/mis-cursos' element={<MisCursos />} />
           <Route path='/detalles/:id' element={<CursoDetail />} />
           <Route path='/bootcamps' element={<Bootcamps />} />
           <Route path='/mentorias' element={<Mentorias />} />
           <Route path='/anuncios' element={<Anuncios />} />
           <Route path='/bolsa-empleo' element={<ChakraProvider><BolsaTrabajo /></ChakraProvider>} />
           <Route path='/compra-exitosa' element={<CompraExitosa />} />
+          <Route path='/checkout/:id' element={<Checkout />} />
+
         </Route>
       </Routes>
     </Router>
