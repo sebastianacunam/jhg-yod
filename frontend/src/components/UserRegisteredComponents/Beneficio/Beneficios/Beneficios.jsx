@@ -1,8 +1,8 @@
 import React from 'react'
-import benefits from '../../../utils/helperFunction.js'
-import Beneficio from '../Beneficio/Beneficio';
-import LeftMenu from '../LeftMenu/LeftMenu.jsx';
-import '../../../assets/scss/layout/_beneficio.scss'
+import benefits from '../../../../utils/helperFunction.js'
+import Beneficio from '../Beneficio/Beneficio.jsx';
+import LeftMenu from '../../LeftMenu/LeftMenu.jsx';
+import '../../../../assets/scss/layout/_beneficio.scss'
 
 
 export default function Beneficios() {

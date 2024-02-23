@@ -1,4 +1,4 @@
-import '../../../assets/scss/layout/_anuncio.scss'
+import '../../../../assets/scss/layout/_anuncio.scss'
 
 export default function Anuncio({ name, description }) {
   return (

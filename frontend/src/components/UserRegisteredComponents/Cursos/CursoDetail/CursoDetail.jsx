@@ -1,9 +1,9 @@
 import { NavLink, useParams } from "react-router-dom";
-import "../../../assets/scss/layout/_detalles.scss";
 import { useEffect, useState } from "react";
-import { getCursoById } from "../../../redux/actions/actionCurso";
-import LeftMenu from "../LeftMenu/LeftMenu";
-import img from "../../../assets/images/bg-sign-up-cover.jpeg";
+import { getCursoById } from "../../../../redux/actions/actionCurso";
+import LeftMenu from "../../LeftMenu/LeftMenu";
+import img from "../../../../assets/images/bg-sign-up-cover.jpeg";
+import "../../../../assets/scss/layout/_detalles.scss";
 
 const CursoDetail = () => {
   const [curso, setCurso] = useState({});

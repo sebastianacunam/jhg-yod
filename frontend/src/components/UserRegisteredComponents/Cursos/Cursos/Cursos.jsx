@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Curso from "../Curso/Curso";
-import { getCursos } from "../../../redux/actions/actionCurso";
-import LeftMenu from "../LeftMenu/LeftMenu";
+import { getCursos } from "../../../../redux/actions/actionCurso";
+import LeftMenu from "../../LeftMenu/LeftMenu";
 
 export default function Cursos() {
   const dispatch = useDispatch();

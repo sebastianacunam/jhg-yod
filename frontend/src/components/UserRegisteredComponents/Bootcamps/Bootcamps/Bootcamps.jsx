@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Bootcamps() {
   return (
-    <div>Bootcamps</div>
+    <div>Acá van todos las cards bootcamps</div>
   )
 }

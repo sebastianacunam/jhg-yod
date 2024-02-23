@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Curso from '../Curso/Curso.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { usuarioActual } from "../../../redux/actions/actionUser";
+import { usuarioActual } from "../../../../redux/actions/actionUser";
 
 export default function MisCursos() {
 

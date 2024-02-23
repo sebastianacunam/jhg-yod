@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Anuncio from "../Anuncio/Anuncio";
-import { getAnuncios } from "../../../redux/actions/actionAnuncios";
-import LeftMenu from "../LeftMenu/LeftMenu";
+import { getAnuncios } from "../../../../redux/actions/actionAnuncios.js";
+import LeftMenu from "../../LeftMenu/LeftMenu.jsx";
 
 function Anuncios() {
   const dispatch = useDispatch();
