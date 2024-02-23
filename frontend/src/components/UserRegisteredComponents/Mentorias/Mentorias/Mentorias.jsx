@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LeftMenu from "../LeftMenu/LeftMenu";
-import { getMentorias } from "../../../redux/actions/actionMentorias";
+import LeftMenu from "../../LeftMenu/LeftMenu";
+import { getMentorias } from "../../../../redux/actions/actionMentorias";
 import Mentoria from "../Mentoria/Mentoria";
 
 function Mentorias() {

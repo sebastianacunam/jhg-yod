@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../../../assets/scss/layout/_curso.scss";
+import "../../../../assets/scss/layout/_curso.scss";
 export default function Curso({ id, name, description }) {
   return (
     // <div className='bg-curso'>
