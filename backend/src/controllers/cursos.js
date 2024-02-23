@@ -1,7 +1,5 @@
-import Curso from "../models/cursos.js"
-import Usuario from "../models/usuario.js";
 import { all_cursos } from "../services/cursos/all-cursos.services.js";
-import { comprar_curso } from "../services/cursos/comprar-curso.services.js";
+import { comprar_producto } from "../services/compra-productos/comprar-producto.services.js";
 import { create_curso } from "../services/cursos/create-curso.services.js";
 import { delete_curso } from "../services/cursos/delete-curso.services.js";
 import { edit_curso } from "../services/cursos/edit-curso.services.js";
@@ -53,37 +51,3 @@ export const deleteCurso = async ({ params }, res) => {
   const curso = await delete_curso(id);
   response(res, 200, curso);
 }
-
-/*************************************************************************/
-// Relación entre el Curso y el Usuario que lo Solicita/Compra. 
-
-export const comprarCurso = async (req, res) => {
-  const cursoId = req.params.id;
-  const usuarioId = req.usuario._id
-  const usuario = await comprar_curso(cursoId, usuarioId);
-  response(res, 201, usuario);
-  /*try {
-      const usuario = await Usuario.findById(usuarioId)
-      const curso = await Curso.findById(cursoId).populate("_id")
-      
-      const cursoExistente = usuario.cursos.find(c => c.id.toString() === cursoId);
-
-      if (!usuario || !curso) return res.status(404).json({ msg: 'Usuario o curso no encontrado' });
-
-      if (!cursoExistente) {
-        usuario.cursos.push({
-            id: cursoId,
-            name: curso.name,
-            description: curso.description
-        });
-        await usuario.save();
-      }else{
-        return res.status(409).json({msg:"Ya posees este curso"})
-      }
-
-      res.json({ msg: 'Curso comprado exitosamente', usuario: usuario });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ msg: 'Error al comprar el curso' });
-  }*/
-};

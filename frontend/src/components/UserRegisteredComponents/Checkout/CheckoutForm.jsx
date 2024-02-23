@@ -2,8 +2,8 @@ import { React, useEffect, useState } from 'react'
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import { useParams } from 'react-router'
 import { buyProducto } from '../../../redux/actions/actionCurso'
-import { getCursoById } from '../../../redux/actions/actionCurso'
-import { comprarCurso } from '../../../redux/actions/actionUser'
+import { getProductoById } from '../../../redux/actions/actionCurso'
+import { comprarProducto } from '../../../redux/actions/actionUser'
 
 export default function CheckoutForm() {
 
@@ -17,7 +17,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let data = await getCursoById(idProducto.id);
+      let data = await getProductoById(idProducto.id);
       setProducto(data);
     };
     fetchData();
@@ -36,7 +36,7 @@ export default function CheckoutForm() {
       try {
         const buy = await buyProducto(producto._id, { type: producto.type, pm, qty: 1 }); // dispatch(buyCurso({ type: producto.type, pm, qty: 1 }, producto._id))
         if (buy.client_secret) {
-          const response = await comprarCurso(producto._id);
+          const response = await comprarProducto(producto._id, producto.type);
           if (response === false) {
             alert("Pago recibido!")
             window.location.href = "http://localhost:5173/compra-exitosa"
