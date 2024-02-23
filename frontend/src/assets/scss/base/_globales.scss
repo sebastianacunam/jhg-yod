@@ -103,8 +103,8 @@ ul li {
   margin-top: 20px;
 }
 //? Media queries...
-@media screen and (min-width: $desktopxl) {
-  .inner-dashboard-left {
-    border: 1px solid red;
-  }
+@media screen and (min-width: v.$desktopxl) {
+  // .inner-dashboard-left {
+  //   border: 1px solid red;
+  // }
 }
