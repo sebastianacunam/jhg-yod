@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import { useParams } from 'react-router'
 import { buyProducto } from '../../../redux/actions/actionCurso'
 import { getCursoById } from '../../../redux/actions/actionCurso'
+import { comprarCurso } from '../../../redux/actions/actionUser'
 
 export default function CheckoutForm() {
 
@@ -35,11 +36,13 @@ export default function CheckoutForm() {
       try {
         const buy = await buyProducto(producto._id, { type: producto.type, pm, qty: 1 }); // dispatch(buyCurso({ type: producto.type, pm, qty: 1 }, producto._id))
         if (buy.client_secret) {
-          alert("Pago recibido!")
-          // setTimeout(() => {
-          //   navigate("/confirmation")
-          // }, 1000)
-
+          const response = await comprarCurso(producto._id);
+          if (response === false) {
+            alert("Pago recibido!")
+            window.location.href = "http://localhost:5173/compra-exitosa"
+          } else {
+            alert("Pago rechazado!")
+          }
         } else {
           alert("Pago rechazado!")
         }
@@ -53,44 +56,6 @@ export default function CheckoutForm() {
       setLoading(false);
     }
   };
-
-  // async function handleSubmit (){
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement)
-  //   })
-  //   setLoading(true)
-
-  //   if(!error){
-  //     const pm = paymentMethod.id
-  //     try {
-  //       const buy = await dispatch(buyCurso(
-  //         {
-  //           type: producto.type,
-  //           pm,
-  //           qty: 1
-  //         }, 
-  //         producto._id
-  //       ))
-  //       console.log(pm);
-  //       console.log('😒 dispatch buycurso', buy)
-        
-      //   if (buy.payload.data.client_secret) {
-      //     alert("Pago recibido!")
-      //     // setTimeout(() => {
-      //     //   navigate("/confirmation")
-      //     // }, 1000)
-
-      //   } else {
-      //     alert("Pago rechazado!")
-
-      //   }
-      //   elements.getElement(CardElement).clear()
-      // } catch (error) {
-      //   console.log(error)
-      // }
-  //   }
-  // }
 
   return (
     <div>
