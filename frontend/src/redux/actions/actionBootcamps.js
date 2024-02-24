@@ -10,7 +10,10 @@ export function getBootcamps() {
   return async function (dispatch) {
     try {
       const response = await clienteAxios.get("/bootcamps");
-      return dispatch({ type: GET_BOOTCAMPS, payload: response.data.data });
+      return dispatch({ 
+        type: GET_BOOTCAMPS, 
+        payload: response.data
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -57,3 +60,13 @@ export function updateBootcamps(id, updatedData) {
     }
   };
 }
+
+export async function getBootcampById(id) {
+  try {
+      const json = await clienteAxios.get(`/bootcamps/${id}`);
+      return json.data;
+
+  } catch(error) {
+    return error.response.data
+  }
+};

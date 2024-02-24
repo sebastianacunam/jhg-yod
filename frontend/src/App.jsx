@@ -19,13 +19,15 @@ import MisCursos from "./components/UserRegisteredComponents/Cursos/MisCursos/Mi
 import VerificationUser from "./components/CommonComponents/VerificationUser/VerificationUser";
 import BolsaTrabajo from "./components/CommonComponents/BolsaTrabajo/BolsaTrabajo";
 import Mentorias from "./components/UserRegisteredComponents/Mentorias/Mentorias/Mentorias";
+import MisMentorias from "./components/UserRegisteredComponents/Mentorias/MisMentorias/MisMentorias";
 import Bootcamps from "./components/UserRegisteredComponents/Bootcamps/Bootcamps/Bootcamps";
+import MisBootcamps from "./components/UserRegisteredComponents/Bootcamps/MisBootcamps/MisBootcamps";
 import Anuncios from "./components/UserRegisteredComponents/Anuncios/Anuncios/Anuncios";
 import Beneficios from "./components/UserRegisteredComponents/Beneficio/Beneficios/Beneficios";
 
 /* ------------------------------------------------------------------------------------------ */
 
-import CursoDetail from "./components/UserRegisteredComponents/Cursos/CursoDetail/CursoDetail";
+import ProductDetail from "./components/UserRegisteredComponents/ProductDetail/ProductDetail";
 import CompraExitosa from "./components/UserRegisteredComponents/CompraExitosa/CompraExitosa";
 import Checkout from "./components/UserRegisteredComponents/Checkout/Checkout";
 
@@ -43,19 +45,20 @@ function App() {
           <Route path='/olvide-password/:token' element={<NewPassword />} />
         </Route>
 
-        <Route path='/' element={<VerificationUser />}>
-          <Route path='/dashboard' element={<ChakraProvider><Dashboard /></ChakraProvider>} />
+        <Route path='/' element={<ChakraProvider><VerificationUser /></ChakraProvider>}>
+          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/create' element={<FormAnuncio />} />
-
           <Route path='/beneficios' element={<Beneficios />} />
           <Route path='/cursos' element={<Cursos />} />
           <Route path='/mis-cursos' element={<MisCursos />} />
-          <Route path='/detalles/:id' element={<CursoDetail />} />
+          <Route path='/detalles/:id' element={<ProductDetail />} />
           <Route path='/bootcamps' element={<Bootcamps />} />
+          <Route path='/mis-bootcamps' element={<MisBootcamps />} />
           <Route path='/mentorias' element={<Mentorias />} />
+          <Route path='/mis-mentorias' element={<MisMentorias />} />
           <Route path='/anuncios' element={<Anuncios />} />
-          <Route path='/bolsa-empleo' element={<ChakraProvider><BolsaTrabajo /></ChakraProvider>} />
+          <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
           <Route path='/compra-exitosa' element={<CompraExitosa />} />
           <Route path='/checkout/:id' element={<Checkout />} />
 

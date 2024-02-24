@@ -36,7 +36,7 @@ function MentoriasNavbar() {
         <PopoverContent>
           <PopoverArrow placement='left' />
           <PopoverHeader>
-            <Link to={"/mentorias"}>
+            <Link to={"/mis-mentorias"}>
               <li>Mis mentorias</li>
             </Link>
           </PopoverHeader>

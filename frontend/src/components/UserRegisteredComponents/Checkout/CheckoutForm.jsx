@@ -3,8 +3,12 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import { useParams } from 'react-router'
 import { buyProducto } from '../../../redux/actions/actionCurso'
 
-import { getProductoById } from '../../../redux/actions/actionCurso'
 import { comprarProducto } from '../../../redux/actions/actionUser'
+
+import { getCursoById } from '../../../redux/actions/actionCurso'
+import { getBootcampById } from '../../../redux/actions/actionBootcamps'
+import { getMentoriaById } from '../../../redux/actions/actionMentorias'
+import { getAnuncioById } from '../../../redux/actions/actionAnuncios'
 
 
 import '../../../assets/scss/layout/_checkoutForm.scss'
@@ -23,11 +27,23 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let data = await getProductoById(idProducto.id);
-      setProducto(data);
+      let data = await getCursoById(idProducto.id)
+      
+      if (data.error === true) {
+        data = await getBootcampById(idProducto.id)
+        if (data.error === true) {
+            data = await getMentoriaById(idProducto.id);
+            if (data.error === true) {
+                data = await getAnuncioById(idProducto.id);
+            }
+        };
+      };
+      
+      setProducto(data.data);
     };
     fetchData();
   }, [idProducto]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +81,7 @@ export default function CheckoutForm() {
 
   return (
     <div className='checkout-container'>
+      <div className='asdasdasdasd'>
         <div className='container-top'>
           <h5 className='product-type'>El {producto.type} ya es casi tuyo</h5>
         </div>
@@ -76,11 +93,12 @@ export default function CheckoutForm() {
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo similique quidem fugit adipisci nobis maxime architecto consectetur earum autem culpa. Quis iure explicabo similique minus, eveniet ullam voluptates debitis tempora!
             </p>
+            
           </div>
          
           <div className='right-side'>
 
-            <h3 className="payment-heading">Informacion de Pago</h3>
+            <h3 className="payment-heading">Información de Pago</h3>
             <form onSubmit={handleSubmit} className="form-box">
             <div className='checkout-form-container'>
               <div className='inner-checkout-form'>
@@ -105,6 +123,8 @@ export default function CheckoutForm() {
 
           </div>
         </div>         
+      </div>
+        
     </div>
   )
 }

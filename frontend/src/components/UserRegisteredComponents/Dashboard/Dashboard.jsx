@@ -7,7 +7,7 @@ import "../../../assets/scss/layout/_dashboard.scss";
 export default function Dashboard() {
   const dispatch = useDispatch();
   // const params = window.location.href
-  const usuarioAct = useSelector((state) => state.usuarioActual);
+  // const usuarioAct = useSelector((state) => state.usuarioActual);
   // const [showModal, setShowModal] = useState(false)
   // const [showModalNotification, setShowModalNotification] = useState(false)
   const token = localStorage.getItem("token");
@@ -16,8 +16,6 @@ export default function Dashboard() {
     token ? dispatch(usuarioActual()) : null;
   }, []);
 
-  const cursos = usuarioAct.cursos;
-  console.log('a ver qué trae',cursos)
   return (
     <div>
       <div>
