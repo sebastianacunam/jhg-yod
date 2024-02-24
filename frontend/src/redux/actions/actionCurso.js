@@ -17,7 +17,7 @@ export function getCursos(){
                 payload: json.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error.response.data)
         }
     }
 }

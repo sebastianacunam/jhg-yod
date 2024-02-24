@@ -7,7 +7,7 @@ import LeftMenu from "../../LeftMenu/LeftMenu";
 export default function Bootcamps() {
   const dispatch = useDispatch();
   const bootcamps = useSelector((state) => state.allBootcamps);
-  console.log('desde el componente',bootcamps)
+
   useEffect(() => {
     dispatch(getBootcamps());
   }, []);
