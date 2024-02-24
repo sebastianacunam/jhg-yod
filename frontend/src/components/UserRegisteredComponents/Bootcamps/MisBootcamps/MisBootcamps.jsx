@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
-import Curso from '../Curso/Curso.jsx';
+import Bootcamp from '../Bootcamp/Bootcamp.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { usuarioActual } from "../../../../redux/actions/actionUser";
 import { Link } from 'react-router-dom';
 import LeftMenu from '../../LeftMenu/LeftMenu.jsx';
 import '../../../../assets/scss/layout/_misCursos.scss'
 
-export default function MisCursos() {
+export default function MisBootcamps() {
 
     const dispatch = useDispatch();
     const usuarioAct = useSelector((state) => state.usuarioActual);
-    const cursos = usuarioAct.cursos;
+    const bootcamps = usuarioAct.bootcamps;
     const token = localStorage.getItem("token");
 
     useEffect(() => {
@@ -20,14 +20,14 @@ export default function MisCursos() {
         <div className='container-left-n-right'>
             <LeftMenu />
             <div className='right-section'>
-                <h2>Mis cursos</h2>
+                <h2>Mis bootcamps</h2>
                 <div className='mc-container'>
 
-                    {cursos?.length !== 0 ? (
-                    usuarioAct.cursos?.map((e, i) => {
+                    {bootcamps?.length !== 0 ? (
+                    usuarioAct.bootcamps?.map((e, i) => {
                         return (
                         <div key={i}>
-                            <Curso
+                            <Bootcamp
                             id={e?.id}
                             name={e?.name}
                             description={e?.description}
@@ -37,10 +37,10 @@ export default function MisCursos() {
                     })
                     ) : (
                     <div>
-                        <p>No tienes cursos todavía. </p>
+                        <p>No tienes bootcamps todavía. </p>
                         <p>
-                        Puedes ver nuestros cursos &nbsp;
-                        <Link to='/cursos'>acá</Link>
+                        Puedes ver nuestros bootcamps &nbsp;
+                        <Link to='/bootcamps'>acá</Link>
                         </p>
                     </div>
                     )}

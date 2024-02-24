@@ -33,3 +33,12 @@ export function postAnuncios({ name, description }) {
     }
   };
 }
+
+export async function getAnuncioById(id) {
+  try {
+      const json = await clienteAxios.get(`/anuncios/${id}`);
+      return json.data;
+  } catch(error) {
+    return error.response.data
+  }
+};

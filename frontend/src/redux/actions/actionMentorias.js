@@ -11,7 +11,7 @@ export function getMentorias() {
   return async function (dispatch) {
     try {
       const response = await clienteAxios.get("/mentorias");
-      return dispatch({ type: GET_MENTORIAS, payload: response.data.data });
+      return dispatch({ type: GET_MENTORIAS, payload: response.data });
     } catch (error) {
       console.log(error.message);
     }
@@ -58,3 +58,12 @@ export function updateMentorias(id, updatedData) {
     }
   };
 }
+
+export async function getMentoriaById(id) {
+  try {
+      const json = await clienteAxios.get(`/mentorias/${id}`);
+      return json.data;
+  } catch(error) {
+    return error.response.data
+  }
+};

@@ -8,7 +8,7 @@ export const comprar_anuncio = async (productId, usuario) => {
     if (!usuario || !anuncio) throw new ClientError("Usuario o Anuncio no encontrado", 404);
 
     if (!anuncioExistente) {
-        usuario.cursos.push({
+        usuario.anuncios.push({
             id: productId,
             name: anuncio.name,
             description: anuncio.description

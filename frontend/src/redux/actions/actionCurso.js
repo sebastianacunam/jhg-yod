@@ -22,22 +22,13 @@ export function getCursos(){
     }
 }
 
-export async function getProductoById(id) {
+export async function getCursoById(id) {
     try {
-        let json;
-        json = await clienteAxios.get(`/cursos/${id}`);
-        if (json.data.error === true) {
-            json = await clienteAxios.get(`/bootcamps/${id}`)
-            if (json.data.error === true) {
-                json = await clienteAxios.get(`/mentorias/${id}`);
-                if (json.data.error === true) {
-                    json = await clienteAxios.get(`anuncios/${id}`);
-                }
-            };
-        };
-        return json.data.data;
+        const json = await clienteAxios.get(`/cursos/${id}`);
+        return json.data;
+
     } catch(error) {
-        console.log(error)
+        return error.response.data
     }
 };
 

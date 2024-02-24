@@ -8,7 +8,7 @@ export const comprar_bootcamp = async (productId, usuario) => {
     if (!usuario || !bootcamp) throw new ClientError("Usuario o Bootcamp no encontrado", 404);
 
     if (!bootcampExistente) {
-        usuario.cursos.push({
+        usuario.bootcamps.push({
             id: productId,
             name: bootcamp.name,
             description: bootcamp.description

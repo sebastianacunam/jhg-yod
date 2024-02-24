@@ -36,7 +36,7 @@ function BootcampsNavbar() {
         <PopoverContent>
           <PopoverArrow placement='left' />
           <PopoverHeader>
-            <Link to={"/bootcamps"}>
+            <Link to={"/mis-bootcamps"}>
               <li>Mis bootcamps</li>
             </Link>
           </PopoverHeader>

@@ -8,7 +8,7 @@ export const comprar_mentoria = async (productId, usuario) => {
     if (!usuario || !mentoria) throw new ClientError("Usuario o Mentoria no encontrado", 404);
 
     if (!mentoriaExistente) {
-        usuario.cursos.push({
+        usuario.mentorias.push({
             id: productId,
             name: mentoria.name,
             description: mentoria.description
