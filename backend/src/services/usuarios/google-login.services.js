@@ -30,7 +30,6 @@ export const googleLoginService = async (idToken) => {
 
                 nuevoUsuario.confirmed = true;
                 const tokenprueba = generateJWT(nuevoUsuario._id);
-                console.log(tokenprueba, 'pasas por acam bro?¡ xd')
                 nuevoUsuario.token = tokenprueba;
 
                 const respuesta = await nuevoUsuario.save();

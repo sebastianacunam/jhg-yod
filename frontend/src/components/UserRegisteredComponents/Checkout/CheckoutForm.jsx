@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { buyProducto } from '../../../redux/actions/actionCurso'
 
 import { comprarProducto } from '../../../redux/actions/actionUser'
@@ -19,6 +19,7 @@ export default function CheckoutForm() {
 
   const stripe = useStripe()
   const elements = useElements()
+  const navigate = useNavigate()
   const idProducto = useParams()
 
   const [producto, setProducto] = useState({});
@@ -61,7 +62,7 @@ export default function CheckoutForm() {
           const response = await comprarProducto(producto._id, producto.type);
           if (response === false) {
             alert("Pago recibido!")
-            window.location.href = "http://localhost:5173/compra-exitosa"
+            navigate("/compra-exitosa")
           } else {
             alert("Pago rechazado!")
           }
