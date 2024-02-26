@@ -1,9 +1,9 @@
-import generateJWT from "../../helpers/generateJWT.js";
+import generateJWT, { generateRefreshToken } from "../../helpers/generateJWT.js";
 import Usuario from "../../models/usuario.js";
 import { ClientError } from "../../utils/errors/index.js";
 
 
-export const autenticarUsuario = async ({ email, password }) => {
+export const autenticarUsuario = async ({ email, password }, res) => {
 
    //Comprobar si existe el usuario
    const usuario = await Usuario.findOne({ email }).select('+password')
@@ -17,16 +17,11 @@ export const autenticarUsuario = async ({ email, password }) => {
    }
 
    //Comprobar su password, previamente hasheada en el modelo Usuario.js
-   if (await usuario.comprobarPassword(password)) {
-      return {
-         _id: usuario._id,
-         name: usuario.name,
-         email: usuario.email,
-         image: usuario.image,
-         cursos: usuario.cursos,
-         token: generateJWT(usuario._id), //mandar el id por JWT
-      };
-   } else {
+   const validatePassword = await usuario.comprobarPassword(password);
+   if (!validatePassword) {
       throw new ClientError('La contraseña es incorrecta', 401);
    }
+   const { token, expiresIn } = generateJWT(usuario._id);
+   generateRefreshToken(usuario._id, res);
+   return { token, expiresIn };
 };

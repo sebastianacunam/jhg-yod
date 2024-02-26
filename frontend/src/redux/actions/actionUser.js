@@ -33,7 +33,7 @@ export function registroGoogle(googleData) {
 }
 
 export function registerUser({ name, email, password1 }) {
-  return async function (dispatch) {
+  return async function () {
     try {
       const body = {
         name,
@@ -63,6 +63,20 @@ export function loginUser(payload) {
       return dispatch({
         type: LOGIN_USER,
         payload: { error: e.response.data.msg },
+      });
+    }
+  }
+}
+
+export function refreshToken() {
+  return async function (dispatch) {
+    try {
+      let json = await clienteAxios.get(`/users/refresh`);
+      return json.data.data.token
+    } catch (error) {
+      return dispatch({
+        type: LOGIN_USER,
+        payload: { error: error.response.data.msg },
       });
     }
   }
@@ -203,7 +217,7 @@ export const comprarProducto = async (cursoId, type) => {
   try {
     const data = await clienteAxios.post(`/productos/comprar/${type}/${cursoId}`, null, config);
     return data.data.error;
-  } catch(error) {
+  } catch (error) {
     console.log(error)
   }
 };

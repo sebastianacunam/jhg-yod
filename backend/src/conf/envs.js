@@ -14,5 +14,6 @@ export const envs = {
    EMAIL_PORT: process.env.EMAIL_PORT,
    EMAIL_SECURE: process.env.EMAIL_SECURE,
    CLIENT_ID: process.env.CLIENT_ID,
-   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY
+   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+   JWT_REFRESH: process.env.JWT_REFRESH,
 };
