@@ -39,6 +39,6 @@ export const googleLoginService = async (idToken) => {
 
         const usuario = new Usuario({});
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     }
 };

@@ -68,19 +68,19 @@ export function loginUser(payload) {
   }
 }
 
-export function refreshToken() {
-  return async function (dispatch) {
-    try {
-      let json = await clienteAxios.get(`/users/refresh`);
-      return json.data.data.token
-    } catch (error) {
-      return dispatch({
-        type: LOGIN_USER,
-        payload: { error: error.response.data.msg },
-      });
-    }
-  }
-}
+// export function refreshToken() {
+//   return async function (dispatch) {
+//     try {
+//       let json = await clienteAxios.get(`/users/refresh`);
+//       return json.data.data.token
+//     } catch (error) {
+//       return dispatch({
+//         type: LOGIN_USER,
+//         payload: { error: error.response.data.msg },
+//       });
+//     }
+//   }
+// }
 
 
 export function resetErrorLoginUser() {

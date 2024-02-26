@@ -5,7 +5,7 @@ import { Icon } from "@chakra-ui/react";
 export const OcultarAside = ({ currentJobs, setAsideVisible, asideVisible }) => {
    return (
       <div className="ocultar-aside" onClick={() => setAsideVisible(!asideVisible)}>
-         {currentJobs ? !asideVisible ? <Icon
+         {currentJobs.length ? !asideVisible ? <Icon
             as={ChevronDownIcon}
             w={20}
             h={20}
