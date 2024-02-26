@@ -2,6 +2,7 @@ import Usuario from "../../models/usuario.js";
 import generateJWT from "../../helpers/generateJWT.js";
 import { OAuth2Client } from "google-auth-library";
 import { envs } from "../../conf/envs.js";
+import bcrypt from 'bcrypt'
 
 const { CLIENT_ID } = envs
 const client = new OAuth2Client(CLIENT_ID);
@@ -16,16 +17,16 @@ export const googleLoginService = async (idToken) => {
 
         if (email_verified) {
             let user = await Usuario.findOne({ email }).exec();
+            console.log(user)
+            if (!user) {
+                const salt = await bcrypt.genSalt(10);
+                const pass = await bcrypt.hash(idToken, salt);
 
-            if (user) {
-                const token = generateJWT(user._id);
-                const { _id, name, email } = user;
-                return { _id, name, token, email };
-            } else {
                 let nuevoUsuario = new Usuario({
                     name: given_name,
                     email,
                     image: { public_id: "", url: picture },
+                    password: pass
                 });
 
                 nuevoUsuario.confirmed = true;
@@ -34,6 +35,12 @@ export const googleLoginService = async (idToken) => {
 
                 const respuesta = await nuevoUsuario.save();
                 return respuesta;
+
+            } else {
+                const token = generateJWT(user._id);
+                const { _id, name, email } = user;
+                return { _id, name, token, email };
+     
             }
         }
 
