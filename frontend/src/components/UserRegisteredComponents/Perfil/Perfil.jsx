@@ -1,19 +1,26 @@
 import "./profile.css";
 import LeftMenu from "../LeftMenu/LeftMenu";
+import { BsEnvelopeFill } from "react-icons/bs";
 export default function Perfil() {
   return (
     <>
       <div>
         <LeftMenu />
       </div>
-      <div className='container-left-n-right'>
-        <div className='right-section' style={{ marginLeft: "500px" }}>
-          <figure className='snip1336'>
-            <img
-              src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg'
-              alt='sample87'
-            />
-            <figcaption>
+      <div className='' style={{ marginLeft: "400px" }}>
+        <figure className='snip1336'>
+          <img
+            src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg'
+            alt='sample87'
+          />
+          <figcaption>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "20px",
+              }}>
               <img
                 src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample4.jpg'
                 alt='profile-sample4'
@@ -22,20 +29,35 @@ export default function Perfil() {
               <h2>
                 Hans Down<span>Engineer</span>
               </h2>
-              <p>
-                Im looking for something that can deliver a 50-pound payload of
-                snow on a small feminine target. Can you suggest something?
-                Hello...?{" "}
-              </p>
-              <a href='#' className='follow'>
-                Follow
-              </a>
               <a href='#' className='info'>
-                More Info
+                <BsEnvelopeFill />
+                Messages
               </a>
-            </figcaption>
-          </figure>
-        </div>
+            </div>
+            <div className='profile-body-data'>
+              <section className='profile-p-wrapper'>
+                <h6>Settings</h6>
+                <p>
+                  Im looking for something that can deliver a 50-pound payload
+                  of snow on a small feminine target. Can you suggest something?
+                  Hello...?
+                </p>
+                <input type='checkbox' id='switch' />
+                Recibir notificaciones por email
+                <label htmlFor='switch'>Toggle</label>
+              </section>
+              <div className='vertical-line'></div>
+              <section className='profile-p-second-wrapper'>
+                <h6>Mi perfil</h6>
+                <p>Nombre completo:</p>
+                <p>Celular:</p>
+                <p>Email:</p>
+                <p>Ubicacion:</p>
+                <p>Redes sociales:</p>
+              </section>
+            </div>
+          </figcaption>
+        </figure>
       </div>
     </>
   );
