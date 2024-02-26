@@ -27,8 +27,8 @@ export const findCurso = async ({ params }, res) => {
 // CREAR UN nuevo Curso
 
 export const createCurso = async ({ body }, res) => {
-  const { name, description } = body;
-  const obj = { name, description };
+  const { name, description, price } = body;
+  const obj = { name, description, price };
   const curso = await create_curso(obj);
   response(res, 201, curso);
 };

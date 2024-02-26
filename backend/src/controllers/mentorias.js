@@ -26,8 +26,8 @@ export const findMentoria = async ({ params }, res) => {
 // CREAR UNA nueva Mentoria
 
 export const createMentoria = async ({ body }, res) => {
-    const { name, description } = body;
-    const obj = { name, description };
+    const { name, description, price } = body;
+    const obj = { name, description, price };
     const mentoria = await create_mentoria(obj);
     response(res, 201, mentoria);
 };

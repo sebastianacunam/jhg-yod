@@ -26,8 +26,8 @@ export const findBootcamp = async ({ params }, res) => {
 // CREAR UN nuevo Bootcamp
 
 export const createBootcamp = async ({ body }, res) => {
-  const { name, description } = body;
-  const obj = { name, description };
+  const { name, description, price } = body;
+  const obj = { name, description, price };
   const bootcamp = await create_bootcamp(obj);
   response(res, 201, bootcamp);
 };
