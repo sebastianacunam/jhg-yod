@@ -1,7 +1,18 @@
 import "./profile.css";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import { BsEnvelopeFill } from "react-icons/bs";
+import { BiSolidPencil } from "react-icons/bi";
+import { useState } from "react";
 export default function Perfil() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   return (
     <>
       <div>
@@ -48,7 +59,19 @@ export default function Perfil() {
               </section>
               <div className='vertical-line'></div>
               <section className='profile-p-second-wrapper'>
-                <h6>Mi perfil</h6>
+                <div className='perfil-edit'>
+                  <h6>Mi perfil</h6>
+                  <div
+                    className='pencil-container'
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}>
+                    <BiSolidPencil className='pencil-icon' />
+                    {isHovered && (
+                      <span className='tooltip'>Editar Perfil</span>
+                    )}
+                  </div>
+                </div>
+
                 <p>Nombre completo:</p>
                 <p>Celular:</p>
                 <p>Email:</p>
