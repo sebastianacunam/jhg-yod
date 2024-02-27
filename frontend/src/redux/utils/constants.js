@@ -2,6 +2,7 @@
 export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const REFRESH_TOKEN = "REFRESH_TOKEN";
 export const AUTH_USER = "AUTH_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const RESET_ERROR_LOGUIN_USER = "RESET_ERROR_LOGUIN_USER";
@@ -13,6 +14,7 @@ export const IS_ADMIN = "IS_ADMIN";
 export const UPDATE_NOMBRE = "UPDATE_NOMBRE";
 export const BORRAR_USUARIO = "BORRAR_USUARIO";
 export const ACTUAL = "ACTUAL";
+
 
 /* CURSOS... */
 export const UPDATE_CURSO = "UPDATE_CURSO";

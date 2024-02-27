@@ -2,7 +2,6 @@ import clienteAxios from "../../config/clienteAxios";
 import { toast } from "react-toastify";
 import {
   GOOGLE_LOGIN,
-  // LOGOUT_USER,
   // IS_ADMIN,
   // UPDATE_NOMBRE,
   UPDATE_USER,
@@ -15,6 +14,7 @@ import {
   RESET_PASSWORD,
   RESET_ERROR,
   ACTUAL,
+  REFRESH_TOKEN
 } from "../utils/constants.js";
 
 export function registroGoogle(googleData) {
@@ -62,11 +62,10 @@ export function loginUser(payload) {
         payload: json.data.data,
       });
       return dispatch({
-        type: 'REFRESH_TOKEN',
+        type: REFRESH_TOKEN,
         payload: json2.data.data
       });
     } catch (e) {
-      console.log(e.message);
       return dispatch({
         type: LOGIN_USER,
         payload: { error: e.response.data.msg },
@@ -79,7 +78,7 @@ export function refreshToken() {
   return async function (dispatch) {
     const json = await clienteAxios(`/users/refresh`)
     return dispatch({
-      type: 'REFRESH_TOKEN',
+      type: REFRESH_TOKEN,
       payload: json.data.data
     });
   };
@@ -183,7 +182,6 @@ export function setStateEmail() {
 
 export function usuarioActual() {
   return async function (dispatch) {
-    // const usuarioId = Cookies.get('token');
     const { token } = (await clienteAxios(`/users/refresh`)).data.data
     const config = {
       headers: {
