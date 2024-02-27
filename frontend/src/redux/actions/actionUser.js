@@ -55,8 +55,8 @@ export function loginUser(payload) {
   return async function (dispatch) {
 
     try {
-      const json2 = await clienteAxios(`/users/refresh`);
       const json = await clienteAxios.post(`/users/login`, payload);
+      const json2 = await clienteAxios(`/users/refresh`);
       dispatch({
         type: LOGIN_USER,
         payload: json.data.data,

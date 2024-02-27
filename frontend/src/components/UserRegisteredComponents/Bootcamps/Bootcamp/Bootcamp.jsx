@@ -22,7 +22,6 @@ export default function Bootcamp({ id, name, description, price }) {
           </div>
           </NavLink>
         </div>
-
     </div>
     
 
