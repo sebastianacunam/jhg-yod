@@ -58,6 +58,11 @@ export const authenticate = async ({ body }, res) => {
   response(res, 201, user);
 };
 
+export const logoutUser = async (req, res) => {
+  const data = await logout(res);
+  response(res, 201, data);
+};
+
 /*************************************************************************/
 //Funcion para refrescar el token del usuario.
 
@@ -106,7 +111,7 @@ export const nuevoPassword = async (req, res) => {
 
 /*************************************************************************/
 //Mostrar información del perfil que está logueado.
-export const perfil = async (req , res) => {
+export const perfil = async (req, res) => {
   const { id } = req;
   const user = await profile(id);
   response(res, 201, user);
