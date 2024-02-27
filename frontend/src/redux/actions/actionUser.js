@@ -192,7 +192,7 @@ export function usuarioActual() {
   };
 }
 
-export const comprarProducto = async (cursoId, type) => {
+export const comprarProducto = async (productId, type) => {
   const usuarioId = localStorage.getItem("token");
   const config = {
     headers: {
@@ -201,7 +201,7 @@ export const comprarProducto = async (cursoId, type) => {
     }
   };
   try {
-    const data = await clienteAxios.post(`/productos/comprar/${type}/${cursoId}`, null, config);
+    const data = await clienteAxios.post(`/productos/comprar/${type}/${productId}`, null, config);
     return data.data.error;
   } catch(error) {
     console.log(error)

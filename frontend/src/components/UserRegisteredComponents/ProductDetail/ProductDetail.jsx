@@ -39,7 +39,8 @@ const CursoDetail = () => {
       <div className="detail-container">
         <div className="column-container">
           <div className="detail-info-container">
-            <h3>{producto?.name}</h3>
+            <h3><strong>{producto?.name}</strong></h3>
+            <h3>$ {producto?.price} USD</h3>
             <h4>{producto?.description}</h4>
           </div>
           <div>
