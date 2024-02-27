@@ -32,7 +32,7 @@ export default function Perfil() {
   };
   const handleSubmit = () => {
     setIsEditing(false);
-    dispatch()
+    dispatch();
   };
   return (
     <>
