@@ -14,6 +14,7 @@ import {
   userById,
   refreshToken,
   // editarPerfil,
+  editUser,
 } from "../controllers/usuario.js";
 import { asyncCatched } from "../utils/asyncCatched.js";
 import { checkAuthRefreshToken } from "../middleware/checkAuthRefreshToken.js";
@@ -31,7 +32,8 @@ router.patch("/olvide-password/:token", asyncCatched(nuevoPassword)); //modifica
 
 router.get("/perfil", checkAuthRefreshToken, asyncCatched(perfil)); //Ingresar al perfil solo si es el usuario
 router.get("/actual", checkAuthRefreshToken, asyncCatched(usuario));
-// router.patch("/perfil/:userId", checkAuth, asyncCatched(editarPerfil));
+
+router.patch("/perfil/:userId", checkAuth, asyncCatched(editUser));
 
 //Admin
 router.delete("/delete/:id", asyncCatched(deleteUser));
