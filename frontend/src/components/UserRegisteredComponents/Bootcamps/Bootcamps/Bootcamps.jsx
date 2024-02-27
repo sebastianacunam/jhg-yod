@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Bootcamp from "../Bootcamp/Bootcamp.jsx";
 import { getBootcamps } from "../../../../redux/actions/actionBootcamps";
+import Bootcamp from "../Bootcamp/Bootcamp.jsx";
 import LeftMenu from "../../LeftMenu/LeftMenu";
 
 export default function Bootcamps() {
@@ -28,6 +28,7 @@ export default function Bootcamps() {
                   id={e?._id}
                   name={e?.name}
                   description={e?.description}
+                  price={e?.price}
                 />
               </div>
             );

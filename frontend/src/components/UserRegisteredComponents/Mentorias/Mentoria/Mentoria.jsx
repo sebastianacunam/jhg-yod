@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "../../../../assets/scss/layout/_curso.scss";
-export default function Mentoria({ id, name, description }) {
+export default function Mentoria({ id, name, description, price }) {
   return (
 
       <div className="card-body">
@@ -17,6 +17,9 @@ export default function Mentoria({ id, name, description }) {
                     (flex-shrink and flex-basis) are optional. Default is 0 1
                     auto.
                   </p>
+                  <div>
+                   usd: ${price}
+                  </div>
                   <button className="btn btn--block card__btn">Button</button>
                 </div>
               </div>
