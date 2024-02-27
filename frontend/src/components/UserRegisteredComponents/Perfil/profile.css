@@ -106,8 +106,8 @@
   margin-top: 20px;
 }
 .vertical-line {
-  border-left: 1px solid rgb(159, 157, 157); /* Adjust thickness and color as needed */
-  height: 100px; /* Adjust height as needed */
+  border-left: 1px solid rgb(159, 157, 157);
+  height: 100px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -117,7 +117,7 @@ input[type="checkbox"] {
   visibility: hidden;
 }
 
-label {
+.input-toggle-label {
   cursor: pointer;
   text-indent: -9999px;
   width: 50px;
@@ -128,7 +128,7 @@ label {
   position: relative;
 }
 
-label:after {
+.input-toggle-label:after {
   content: "";
   position: absolute;
   top: 5px;
@@ -140,16 +140,16 @@ label:after {
   transition: 0.3s;
 }
 
-input:checked + label {
+.input-toggle:checked + label {
   background: #728535;
 }
 
-input:checked + label:after {
+.input-toggle:checked + label:after {
   left: calc(100% - 5px);
   transform: translateX(-100%);
 }
 
-label:active:after {
+.input-toggle-label:active:after {
   width: 30px;
 }
 .perfil-edit {
