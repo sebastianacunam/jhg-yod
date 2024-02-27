@@ -12,7 +12,7 @@ export default function Perfil() {
   const [editedEmail, setEditedEmail] = useState("");
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.refreshToken);
 
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);

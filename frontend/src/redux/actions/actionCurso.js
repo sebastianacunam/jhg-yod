@@ -51,18 +51,3 @@ export const buyProducto = async (id, payment) => {
         console.log(error);
     }
 }
-
-// export function buyCurso(payment, id){
-//     return async function(dispatch){
-//         try {
-//             const json = await clienteAxios.post(`/create-checkout-session/${id}`, payment)
-//             console.log("qué trae buyCurso desde las actions: ",json)
-//             return dispatch({
-//                 type: BUY_CURSO,
-//                 payload: json.data
-//             })
-//         } catch (error) {
-//             console.log(error.message)
-//         }
-//     }
-// }
