@@ -1,23 +1,25 @@
-import { all_users } from             "../services/usuarios/all-users.services.js";
-import { autenticarUsuario } from     "../services/usuarios/autenticar-usuario.services.js";
-import { confirmUsuario } from        "../services/usuarios/confirmar-usuario.services.js";
-import { delete_user } from           "../services/usuarios/delete-user.services.js";
-import { nuevaPassword } from         "../services/usuarios/nueva-password.services.js";
-import { olvide_password } from       "../services/usuarios/olivde-password.services.js";
-import { profile } from               "../services/usuarios/perfil.services.js";
-import { register } from              "../services/usuarios/register.services.js";
-import { updateUser } from            "../services/usuarios/update-user.js";
-import { usuarioActual } from         "../services/usuarios/usuario.services.js";
-import { getUserById } from         "../services/usuarios/getUserById.js";
-import { googleLoginService } from    "../services/usuarios/google-login.services.js"
-import { response } from              "../utils/response.js";
+import { all_users } from "../services/usuarios/all-users.services.js";
+import { autenticarUsuario } from "../services/usuarios/autenticar-usuario.services.js";
+import { confirmUsuario } from "../services/usuarios/confirmar-usuario.services.js";
+import { delete_user } from "../services/usuarios/delete-user.services.js";
+import { nuevaPassword } from "../services/usuarios/nueva-password.services.js";
+import { olvide_password } from "../services/usuarios/olivde-password.services.js";
+import { profile } from "../services/usuarios/perfil.services.js";
+import { register } from "../services/usuarios/register.services.js";
+import { updateUser } from "../services/usuarios/update-user.js";
+import { usuarioActual } from "../services/usuarios/usuario.services.js";
+import { getUserById } from "../services/usuarios/getUserById.js";
+import { googleLoginService } from "../services/usuarios/google-login.services.js"
+import { response } from "../utils/response.js";
+import generateJWT from "../helpers/generateJWT.js";
+
 
 /*************************************************************************/
 //Crear/registrar usuario Google.
-export const googleLogin = async ({ body }, res) =>{
-    const { idToken } = body;
-    const user = await googleLoginService(idToken)
-    response(res, 201, user)
+export const googleLogin = async ({ body }, res) => {
+  const { idToken } = body;
+  const user = await googleLoginService(idToken)
+  response(res, 201, user)
 }
 
 
@@ -52,8 +54,17 @@ export const confirm = async ({ params }, res) => {
 //Para autenticar primero debemos confirmar al usuario
 export const authenticate = async ({ body }, res) => {
   const { email, password } = body;
-  const user = await autenticarUsuario({ email, password });
+  const user = await autenticarUsuario({ email, password }, res);
   response(res, 201, user);
+};
+
+/*************************************************************************/
+//Funcion para refrescar el token del usuario.
+
+export const refreshToken = (req, res) => {
+  const { id } = req.id;
+  const token = generateJWT(id);
+  response(res, 201, token);
 };
 
 /*************************************************************************/
@@ -86,19 +97,6 @@ export const olvidePassword = async ({ body }, res) => {
   response(res, 201, emailUser);
 };
 
-// export const comprobarToken = async (req, res) => {
-//     const { token } = req.params;
-
-//     const tokenValido = await Usuario.findOne({ token });
-
-//     if (tokenValido) {
-//         res.json({ msg: 'Token valido y el usuario existe!' })
-//     } else {
-//         const error = new Error('Invalid token');
-//         return res.status(404).json({ msg: error.message });
-//     }
-// };
-
 export const nuevoPassword = async (req, res) => {
   const { token } = req.params;
   const { password } = req.body;
@@ -108,15 +106,15 @@ export const nuevoPassword = async (req, res) => {
 
 /*************************************************************************/
 //Mostrar información del perfil que está logueado.
-export const perfil = async ({ usuario }, res) => {
-  const { name } = usuario;
-  const user = await profile(name);
+export const perfil = async (req , res) => {
+  const { id } = req;
+  const user = await profile(id);
   response(res, 201, user);
 };
 
-export const usuario = async ({ usuario }, res) => {
-  const { name } = usuario;
-  const user = await usuarioActual({ name });
+export const usuario = async (req, res) => {
+  const { id } = req;
+  const user = await usuarioActual(id);
   response(res, 201, user);
 };
 

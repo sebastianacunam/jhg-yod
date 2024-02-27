@@ -44,22 +44,22 @@ export default function FormLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     let val = validate(usuario.email, usuario.password)
-        if (Object.keys(val).length === 0) {
-            const loginData = await dispatch(loginUser(usuario))
-            setUsuario({
-                email: '',
-                password: '',
-            })
-            // loginData.payload.token ? navigate("/") : null
-            if (errorEmail) {
-                e.preventDefault()
-
-            } else {
-                dispatch(resetErrorLoginUser())
-                loginData.payload.token ? navigate('/dashboard') : null
-            }
-        } else setErrors(val)
-    }
+    if (Object.keys(val).length === 0) {
+      const loginData = await dispatch(loginUser(usuario))
+      setUsuario({
+        email: '',
+        password: '',
+      })
+      // loginData.payload.token ? navigate("/") : null
+      if (errorEmail) {
+        e.preventDefault()
+        
+      } else {
+        dispatch(resetErrorLoginUser())      
+        loginData.payload.token ? navigate('/dashboard') : null
+      }
+    } else setErrors(val)
+  }
 
 
   const handleChange = (e) => {

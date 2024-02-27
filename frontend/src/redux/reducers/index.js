@@ -38,6 +38,7 @@ const initialState = {
   usuario: [],
   email: [],
   loginUser: false,
+  refreshToken: [],
   usuarioActual: [],
   allUsuarios: [],
   confirmacion: {},
@@ -68,8 +69,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         usuario: !action.payload.error ? action.payload : null,
         email: action.payload.error ? action.payload.error : null,
-        loginUser: action.payload._id && true,
+        loginUser: action.payload && true,
       };
+    case "REFRESH_TOKEN":
+      return {
+        ...state,
+        refreshToken: action.payload.token
+      }
 
     case LOGOUT_USER:
       return {

@@ -1,12 +1,14 @@
 import { useEffect } from "react"
-import { useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Outlet, Navigate } from "react-router-dom"
-import { authenticateUser } from '../../../redux/actions/actionUser.js'
+import { authenticateUser, refreshToken } from '../../../redux/actions/actionUser.js'
 
 export default function VerificationUser() {
   const dispatch = useDispatch()
-  const token = localStorage.getItem("token")
+
+  const token = useSelector((state) => state.refreshToken)
   useEffect(() => {
+    dispatch(refreshToken())
     if (!token) {
       return
     }
@@ -17,7 +19,7 @@ export default function VerificationUser() {
       },
     }
     dispatch(authenticateUser(config))
-  }, [])
+  }, [dispatch, token])
   if (!token) "Cargando..."
 
   return <>{token ? <Outlet /> : <Navigate to="/login" />}</>

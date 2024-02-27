@@ -1,5 +1,6 @@
 import Usuario from "../../models/usuario.js";
 import { uploadImage } from "../upload/uploadImage.js";
+import { ClientError } from "../../utils/errors/index.js";
 
 export const updateUser = async (userId, data) => {
   const imageUrl = await uploadImage(data.image.tempFilePath);

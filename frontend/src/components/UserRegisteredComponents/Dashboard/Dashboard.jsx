@@ -1,20 +1,20 @@
-import { React, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { usuarioActual } from "../../../redux/actions/actionUser";
+import { useEffect } from "react";
+import { useDispatch, useSelector, } from "react-redux";
+import { refreshToken, usuarioActual } from "../../../redux/actions/actionUser";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import "../../../assets/scss/layout/_dashboard.scss";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   // const params = window.location.href
-  // const usuarioAct = useSelector((state) => state.usuarioActual);
+  const usuarioAct = useSelector((state) => state.refreshToken);
   // const [showModal, setShowModal] = useState(false)
-  // const [showModalNotification, setShowModalNotification] = useState(false)
-  const token = localStorage.getItem("token");
+  // const [refreshToken, setRefreshToken] = useState('');
 
   useEffect(() => {
-    token ? dispatch(usuarioActual()) : null;
-  }, []);
+    dispatch(refreshToken())
+    usuarioAct ? dispatch(usuarioActual()) : null;
+  }, [dispatch, usuarioAct]);
 
   return (
     <div>

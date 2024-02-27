@@ -20,7 +20,7 @@ export const getAnuncios = async (req, res) => {
 
 export const getAnunciosByUser = async (req, res) => {
   const idOwner = req.usuario._id
-  const anunciosByUser = await all_anuncios_by_user(idOwner);
+  const anunciosByUser = await all_anuncios_by_user(idOwner)
   response(res, 200, anunciosByUser);
 };
 
