@@ -28,6 +28,7 @@ export default function Cursos() {
                   id={e?._id}
                   name={e?.name}
                   description={e?.description}
+                  price={e?.price}
                 />
               </div>
             );

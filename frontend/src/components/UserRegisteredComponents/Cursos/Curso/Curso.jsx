@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "../../../../assets/scss/layout/_curso.scss";
-export default function Curso({ id, name, description }) {
+export default function Curso({ id, name, description, price }) {
   return (
     // <div className='bg-curso'>
     // <NavLink to={`/detalles/${id}`}>
@@ -23,6 +23,9 @@ export default function Curso({ id, name, description }) {
                     (flex-shrink and flex-basis) are optional. Default is 0 1
                     auto.
                   </p>
+                  <div>
+                   usd: ${price}
+                  </div>
                   <button className="btn btn--block card__btn">Button</button>
                 </div>
               </div>
