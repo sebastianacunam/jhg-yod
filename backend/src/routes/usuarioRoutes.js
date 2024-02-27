@@ -12,7 +12,7 @@ import {
   perfil,
   googleLogin,
   userById,
-  // editarPerfil,
+  editUser,
 } from "../controllers/usuario.js";
 import { asyncCatched } from "../utils/asyncCatched.js";
 
@@ -25,10 +25,9 @@ router.post("/olvide-password", asyncCatched(olvidePassword));
 router.post("/google", asyncCatched(googleLogin));
 router.patch("/olvide-password/:token", asyncCatched(nuevoPassword)); //modificar y guardar password
 
-
 router.get("/perfil", checkAuth, asyncCatched(perfil)); //Ingresar al perfil solo si es el usuario
 router.get("/actual", checkAuth, asyncCatched(usuario));
-// router.patch("/perfil/:userId", checkAuth, asyncCatched(editarPerfil));
+router.patch("/perfil/:userId", checkAuth, asyncCatched(editUser));
 
 //Admin
 router.delete("/delete/:id", asyncCatched(deleteUser));

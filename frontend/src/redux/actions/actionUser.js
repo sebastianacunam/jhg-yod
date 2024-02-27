@@ -1,10 +1,11 @@
-import clienteAxios from '../../config/clienteAxios'
+import clienteAxios from "../../config/clienteAxios";
 import { toast } from "react-toastify";
 import {
   GOOGLE_LOGIN,
-  // LOGOUT_USER, 
+  // LOGOUT_USER,
   // IS_ADMIN,
-   UPDATE_NOMBRE,
+  // UPDATE_NOMBRE,
+  UPDATE_USER,
   // BORRAR_USUARIO,
   LOGIN_USER,
   AUTH_USER,
@@ -14,13 +15,15 @@ import {
   RESET_PASSWORD,
   RESET_ERROR,
   ACTUAL,
-} from '../utils/constants.js'
+} from "../utils/constants.js";
 
 export function registroGoogle(googleData) {
   return async function (dispatch) {
     const token = googleData.credential;
     try {
-      const response = await clienteAxios.post(`/users/google`, { idToken: token });
+      const response = await clienteAxios.post(`/users/google`, {
+        idToken: token,
+      });
       localStorage.setItem("token", response.data.data.token);
       return dispatch({
         type: GOOGLE_LOGIN,
@@ -39,16 +42,14 @@ export function registerUser({ name, email, password1 }) {
         name,
         email,
         password: password1,
-      }
-      const response = await clienteAxios.post(`/users/create`, body)
-      toast.success(response.data)
-
+      };
+      const response = await clienteAxios.post(`/users/create`, body);
+      toast.success(response.data);
     } catch (e) {
-      console.log(e.response.data.msg)
+      console.log(e.response.data.msg);
     }
-  }
+  };
 }
-
 
 export function loginUser(payload) {
   return async function (dispatch) {
@@ -65,9 +66,8 @@ export function loginUser(payload) {
         payload: { error: e.response.data.msg },
       });
     }
-  }
+  };
 }
-
 
 export function resetErrorLoginUser() {
   return function (dispatch) {
@@ -78,7 +78,6 @@ export function resetErrorLoginUser() {
     });
   };
 }
-
 
 export function validateUser(id) {
   return async function (dispatch) {
@@ -99,7 +98,6 @@ export function validateUser(id) {
   };
 }
 
-
 export function authenticateUser(config) {
   return async function (dispatch) {
     try {
@@ -113,7 +111,6 @@ export function authenticateUser(config) {
     }
   };
 }
-
 
 export function setToResetPassword(data) {
   return async function (dispatch) {
@@ -138,7 +135,6 @@ export function setToResetPassword(data) {
   };
 }
 
-
 export function resetPassword(data) {
   const { token, password } = data;
   return async function (dispatch) {
@@ -159,7 +155,6 @@ export function resetPassword(data) {
   };
 }
 
-
 export function setStateEmail() {
   return async function (dispatch) {
     let reset = [];
@@ -169,7 +164,6 @@ export function setStateEmail() {
     });
   };
 }
-
 
 export function usuarioActual() {
   return async function (dispatch) {
@@ -181,7 +175,7 @@ export function usuarioActual() {
       },
     };
     try {
-      const json = await clienteAxios('/users/actual', config);
+      const json = await clienteAxios("/users/actual", config);
       return dispatch({
         type: ACTUAL,
         payload: json.data.data,
@@ -198,12 +192,35 @@ export const comprarProducto = async (cursoId, type) => {
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${usuarioId}`,
-    }
+    },
   };
   try {
-    const data = await clienteAxios.post(`/productos/comprar/${type}/${cursoId}`, null, config);
+    const data = await clienteAxios.post(
+      `/productos/comprar/${type}/${cursoId}`,
+      null,
+      config
+    );
     return data.data.error;
-  } catch(error) {
-    console.log(error)
+  } catch (error) {
+    console.log(error);
   }
 };
+
+export function updateUser(id) {
+  return async function (dispatch) {
+    try {
+      var json = await clienteAxios.patch(`/perfil/${id}`);
+      toast.success("User updated successfully");
+      return dispatch({
+        type: UPDATE_USER,
+        payload: json.data.data,
+      });
+    } catch (error) {
+      toast.error("There was an error validating the user");
+      return dispatch({
+        type: UPDATE_USER,
+        payload: error.response.data,
+      });
+    }
+  };
+}
