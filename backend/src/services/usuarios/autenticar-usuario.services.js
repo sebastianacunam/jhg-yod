@@ -15,13 +15,14 @@ export const autenticarUsuario = async ({ email, password }, res) => {
    if (!usuario.confirmed) {
       throw new ClientError('El usuario no está confirmado', 401);
    }
-
+   
    //Comprobar su password, previamente hasheada en el modelo Usuario.js
    const validatePassword = await usuario.comprobarPassword(password);
    if (!validatePassword) {
       throw new ClientError('La contraseña es incorrecta', 401);
    }
+
    const { token, expiresIn } = generateJWT(usuario._id);
    generateRefreshToken(usuario._id, res);
-   return { token, expiresIn };
+   return { token, expiresIn }
 };

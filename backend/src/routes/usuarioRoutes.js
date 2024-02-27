@@ -29,8 +29,8 @@ router.post("/google", asyncCatched(googleLogin));
 router.patch("/olvide-password/:token", asyncCatched(nuevoPassword)); //modificar y guardar password
 
 
-router.get("/perfil", checkAuth, asyncCatched(perfil)); //Ingresar al perfil solo si es el usuario
-router.get("/actual", checkAuth, asyncCatched(usuario));
+router.get("/perfil", checkAuthRefreshToken, asyncCatched(perfil)); //Ingresar al perfil solo si es el usuario
+router.get("/actual", checkAuthRefreshToken, asyncCatched(usuario));
 // router.patch("/perfil/:userId", checkAuth, asyncCatched(editarPerfil));
 
 //Admin

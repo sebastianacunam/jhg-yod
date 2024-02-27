@@ -63,9 +63,8 @@ export const authenticate = async ({ body }, res) => {
 
 export const refreshToken = (req, res) => {
   const { id } = req.id;
-  const { token, expiresIn } = generateJWT(id);
-  const user = { token, expiresIn };
-  response(res, 201, user);
+  const token = generateJWT(id);
+  response(res, 201, token);
 };
 
 /*************************************************************************/
@@ -107,15 +106,15 @@ export const nuevoPassword = async (req, res) => {
 
 /*************************************************************************/
 //Mostrar información del perfil que está logueado.
-export const perfil = async ({ usuario }, res) => {
-  const { name } = usuario;
-  const user = await profile(name);
+export const perfil = async (req , res) => {
+  const { id } = req;
+  const user = await profile(id);
   response(res, 201, user);
 };
 
-export const usuario = async ({ usuario }, res) => {
-  const { name } = usuario;
-  const user = await usuarioActual({ name });
+export const usuario = async (req, res) => {
+  const { id } = req;
+  const user = await usuarioActual(id);
   response(res, 201, user);
 };
 

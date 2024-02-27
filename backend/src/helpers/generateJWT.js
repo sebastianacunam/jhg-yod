@@ -5,7 +5,7 @@ const { JWT_SECRET, JWT_REFRESH, NODE_ENV } = envs;
 const generateJWT = (id) => {
     const expiresIn = 60 * 15;
     const token = jwt.sign({ id }, JWT_SECRET, { expiresIn });
-    return token
+    return { token, expiresIn };
 };
 
 export const generateRefreshToken = (id, res) => {

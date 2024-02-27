@@ -52,12 +52,19 @@ export function registerUser({ name, email, password1 }) {
 
 export function loginUser(payload) {
   return async function (dispatch) {
+
     try {
-      let json = await clienteAxios.post(`/users/login`, payload);
-      localStorage.setItem("token", json.data.data.token);
-      return dispatch({
+      const json2 = await clienteAxios(`/users/refresh`)
+
+      const json = await clienteAxios.post(`/users/login`, payload);
+      // localStorage.setItem("token", json.data.data.token);
+      dispatch({
         type: LOGIN_USER,
         payload: json.data.data,
+      });
+      return dispatch({
+        type: 'REFRESH_TOKEN',
+        payload: json2.data.data
       });
     } catch (e) {
       return dispatch({
@@ -68,19 +75,15 @@ export function loginUser(payload) {
   }
 }
 
-// export function refreshToken() {
-//   return async function (dispatch) {
-//     try {
-//       let json = await clienteAxios.get(`/users/refresh`);
-//       return json.data.data.token
-//     } catch (error) {
-//       return dispatch({
-//         type: LOGIN_USER,
-//         payload: { error: error.response.data.msg },
-//       });
-//     }
-//   }
-// }
+export function refreshToken() {
+  return async function (dispatch) {
+    const json = await clienteAxios(`/users/refresh`)
+    return dispatch({
+      type: 'REFRESH_TOKEN',
+      payload: json.data.data
+    });
+  };
+}
 
 
 export function resetErrorLoginUser() {
@@ -187,11 +190,12 @@ export function setStateEmail() {
 
 export function usuarioActual() {
   return async function (dispatch) {
-    const id = localStorage.getItem("token");
+    // const usuarioId = Cookies.get('token');
+    const { token } = (await clienteAxios(`/users/refresh`)).data.data
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${id}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     try {
@@ -201,7 +205,7 @@ export function usuarioActual() {
         payload: json.data.data,
       });
     } catch (e) {
-      console.log(e.response.data.data);
+      console.log(e.response);
     }
   };
 }
