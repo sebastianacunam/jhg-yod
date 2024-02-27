@@ -86,7 +86,6 @@ export function refreshToken() {
   };
 }
 
-
 export function resetErrorLoginUser() {
   return function (dispatch) {
     let nada = [];
@@ -221,7 +220,7 @@ export const comprarProducto = async (cursoId, type) => {
     );
     return data.data.error;
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 };
 
