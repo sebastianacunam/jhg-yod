@@ -55,10 +55,8 @@ export function loginUser(payload) {
   return async function (dispatch) {
 
     try {
-      const json2 = await clienteAxios(`/users/refresh`)
-
+      const json2 = await clienteAxios(`/users/refresh`);
       const json = await clienteAxios.post(`/users/login`, payload);
-      // localStorage.setItem("token", json.data.data.token);
       dispatch({
         type: LOGIN_USER,
         payload: json.data.data,
@@ -68,6 +66,7 @@ export function loginUser(payload) {
         payload: json2.data.data
       });
     } catch (e) {
+      console.log(e.message);
       return dispatch({
         type: LOGIN_USER,
         payload: { error: e.response.data.msg },
