@@ -50,10 +50,8 @@ export default function FormLogin() {
         email: '',
         password: '',
       })
-      // loginData.payload.token ? navigate("/") : null
       if (errorEmail) {
         e.preventDefault()
-        
       } else {
         dispatch(resetErrorLoginUser())      
         loginData.payload.token ? navigate('/dashboard') : null
@@ -77,6 +75,7 @@ export default function FormLogin() {
   }, [usuario]);
 
   function responseGoogle(el) {
+    console.log('el de google: ',el)
     dispatch(registroGoogle(el))
     setTimeout(function () {
       // window.location.reload(1)
