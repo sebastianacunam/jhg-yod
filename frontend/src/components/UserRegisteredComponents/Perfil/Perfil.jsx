@@ -2,9 +2,21 @@ import "./profile.css";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import { BsEnvelopeFill } from "react-icons/bs";
 import { BiSolidPencil } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usuarioActual } from "../../../redux/actions/actionUser";
+import { useDispatch, useSelector } from "react-redux";
 export default function Perfil() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState("");
+  const [editedEmail, setEditedEmail] = useState("");
+  const dispatch = useDispatch();
+  const usuarioAct = useSelector((state) => state.usuarioActual);
+  const token = useSelector((state) => state.refreshToken);
+
+  useEffect(() => {
+    token ? dispatch(usuarioActual()) : dispatch(null);
+  }, [dispatch, token]);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -12,6 +24,15 @@ export default function Perfil() {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+  };
+  const handleEditClick = () => {
+    setIsEditing(true);
+    setEditedName(usuarioAct?.name || "");
+    setEditedEmail(usuarioAct?.email || "");
+  };
+  const handleSubmit = () => {
+    setIsEditing(false);
+    dispatch();
   };
   return (
     <>
@@ -38,7 +59,8 @@ export default function Perfil() {
                 className='profile'
               />
               <h2>
-                Hans Down<span>Engineer</span>
+                {usuarioAct?.name}
+                <span>Engineer</span>
               </h2>
               <a href='#' className='info'>
                 <BsEnvelopeFill />
@@ -53,9 +75,11 @@ export default function Perfil() {
                   of snow on a small feminine target. Can you suggest something?
                   Hello...?
                 </p>
-                <input type='checkbox' id='switch' />
+                <input type='checkbox' id='switch' className='input-toggle' />
                 Recibir notificaciones por email
-                <label htmlFor='switch'>Toggle</label>
+                <label htmlFor='switch' className='input-toggle-label'>
+                  Toggle
+                </label>
               </section>
               <div className='vertical-line'></div>
               <section className='profile-p-second-wrapper'>
@@ -63,6 +87,7 @@ export default function Perfil() {
                   <h6>Mi perfil</h6>
                   <div
                     className='pencil-container'
+                    onClick={handleEditClick}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
                     <BiSolidPencil className='pencil-icon' />
@@ -72,11 +97,32 @@ export default function Perfil() {
                   </div>
                 </div>
 
-                <p>Nombre completo:</p>
-                <p>Celular:</p>
-                <p>Email:</p>
-                <p>Ubicacion:</p>
-                <p>Redes sociales:</p>
+                {isEditing ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}>
+                    <p>Nombre completo:</p>
+                    <input
+                      type='text'
+                      value={editedName}
+                      onChange={(e) => setEditedName(e.target.value)}
+                    />
+                    <p>Email:</p>
+                    <input
+                      type='email'
+                      value={editedEmail}
+                      onChange={(e) => setEditedEmail(e.target.value)}
+                    />
+                    <button onClick={handleSubmit}>Submit</button>
+                  </div>
+                ) : (
+                  <div>
+                    <p>Nombre completo: {usuarioAct?.name}</p>
+                    <p>Email: {usuarioAct?.email}</p>
+                  </div>
+                )}
               </section>
             </div>
           </figcaption>

@@ -15,10 +15,14 @@ import { getMentorias } from "../../../redux/actions/actionMentorias.js";
 import CursosNavbar from "./CursosNavbar.jsx";
 import BootcampsNavbar from "./BootcampsNavbar.jsx";
 import MentoriasNavbar from "./MentoriasNavbar.jsx";
+import ComunidadesNavbar from "./ComunidadesNavbar.jsx";
+
+
 export default function LeftMenu() {
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.refreshToken);
+
 
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
@@ -68,15 +72,15 @@ export default function LeftMenu() {
             </Link>
           </li>
           <li className='li-items'>
-            <Link to='/beneficios' className='nav-link'>
+            <div className='nav-link'>
               <BsPeopleFill />
-              Comunidades
-            </Link>
+              <ComunidadesNavbar />
+            </div>
           </li>
           <li className='li-items'>
             <Link to='/bolsa-empleo' className='nav-link'>
               <MdOutlineCases />
-              Bolsa de trabajo
+              Bolsa de empleos
             </Link>
           </li>
 

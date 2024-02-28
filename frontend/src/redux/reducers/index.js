@@ -11,7 +11,7 @@ import {
   RESET_PASSWORD,
   RESET_ERROR,
   IS_ADMIN,
-  UPDATE_NOMBRE,
+  UPDATE_USER,
   BORRAR_USUARIO,
   ACTUAL,
   //cursos
@@ -38,12 +38,13 @@ const initialState = {
   usuario: [],
   email: [],
   loginUser: false,
+  refreshToken: [],
   usuarioActual: [],
   allUsuarios: [],
   confirmacion: {},
   invalidToken: true,
   isAdmin: false,
-  updateNombre: [],
+  updateUser: [],
   borraUsuario: [],
   cursos: [],
   allCursos: [],
@@ -51,7 +52,7 @@ const initialState = {
   allBootcamps: [],
   allEmpleos: [],
   allAnuncios: [],
-  buy: []
+  buy: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -68,8 +69,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         usuario: !action.payload.error ? action.payload : null,
         email: action.payload.error ? action.payload.error : null,
-        loginUser: action.payload._id && true,
+        loginUser: action.payload && true,
       };
+    case "REFRESH_TOKEN":
+      return {
+        ...state,
+        refreshToken: action.payload.token
+      }
 
     case LOGOUT_USER:
       return {
@@ -124,10 +130,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         isAdmin: action.payload,
       };
-    case UPDATE_NOMBRE:
+    case UPDATE_USER:
       return {
         ...state,
-        updateNombre: action.payload,
+        updateUser: action.payload,
       };
     case BORRAR_USUARIO:
       return {
@@ -149,8 +155,8 @@ function rootReducer(state = initialState, action) {
     case BUY_CURSO:
       return {
         ...state,
-        buy: action.payload
-      }
+        buy: action.payload,
+      };
     //---------------------MENTORIAS----------------------------------------
     case GET_MENTORIAS:
       return {

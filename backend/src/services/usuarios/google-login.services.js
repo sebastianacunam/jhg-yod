@@ -17,7 +17,6 @@ export const googleLoginService = async (idToken) => {
 
         if (email_verified) {
             let user = await Usuario.findOne({ email }).exec();
-            console.log(user)
             if (!user) {
                 const salt = await bcrypt.genSalt(10);
                 const pass = await bcrypt.hash(idToken, salt);
@@ -30,8 +29,8 @@ export const googleLoginService = async (idToken) => {
                 });
 
                 nuevoUsuario.confirmed = true;
-                const tokenprueba = generateJWT(nuevoUsuario._id);
-                nuevoUsuario.token = tokenprueba;
+                const { token } = generateJWT(nuevoUsuario._id);
+                nuevoUsuario.token = token;
 
                 const respuesta = await nuevoUsuario.save();
                 return respuesta;
@@ -40,7 +39,7 @@ export const googleLoginService = async (idToken) => {
                 const token = generateJWT(user._id);
                 const { _id, name, email } = user;
                 return { _id, name, token, email };
-     
+
             }
         }
 

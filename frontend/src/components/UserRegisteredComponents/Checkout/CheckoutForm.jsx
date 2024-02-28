@@ -102,8 +102,9 @@ export default function CheckoutForm() {
         <div className="container-bot">
           <div className="left-side">
             <h3>{producto.name}</h3>
-            <h3>$ {producto.price} USD</h3>
+            <h3>Precio: {producto.price} USD</h3>
             <p>{producto.description}</p>
+            
           </div>
 
           <div className="right-side">

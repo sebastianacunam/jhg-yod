@@ -66,10 +66,10 @@ const usuarioSchema = mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Anuncio',
             },
-            name: String, 
+            name: String,
             description: String,
             price: Number
-            },
+        },
     ],
     bootcamps: [
         {
@@ -108,9 +108,11 @@ usuarioSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
 });
+
 usuarioSchema.methods.comprobarPassword = async function (passwordFormulario) {
     return await bcrypt.compare(passwordFormulario, this.password);
 };
+
 /*************************************************************************/
 
 
