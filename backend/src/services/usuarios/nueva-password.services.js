@@ -14,6 +14,6 @@ export const nuevaPassword = async ({ token, password }) => {
 
    await usuario.save();
 
-   return 'Contraseña modificada satisfactoriamente';
+   return { Message: 'Contraseña modificada satisfactoriamente' };
 
 };

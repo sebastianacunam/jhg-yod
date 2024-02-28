@@ -18,7 +18,6 @@ export function getAnuncios() {
   };
 }
 
-//!
 export function postAnuncios({ name, description }) {
   return async function () {
     const body = {

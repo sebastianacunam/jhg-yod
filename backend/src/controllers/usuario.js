@@ -12,6 +12,7 @@ import { getUserById } from "../services/usuarios/getUserById.js";
 import { googleLoginService } from "../services/usuarios/google-login.services.js"
 import { response } from "../utils/response.js";
 import generateJWT from "../helpers/generateJWT.js";
+import { logout } from "../services/usuarios/logout.js";
 
 
 /*************************************************************************/
@@ -56,6 +57,11 @@ export const authenticate = async ({ body }, res) => {
   const { email, password } = body;
   const user = await autenticarUsuario({ email, password }, res);
   response(res, 201, user);
+};
+
+export const logoutUser = async (req, res) => {
+  const data = await logout(res);
+  response(res, 201, data);
 };
 
 /*************************************************************************/
@@ -106,7 +112,7 @@ export const nuevoPassword = async (req, res) => {
 
 /*************************************************************************/
 //Mostrar información del perfil que está logueado.
-export const perfil = async (req , res) => {
+export const perfil = async (req, res) => {
   const { id } = req;
   const user = await profile(id);
   response(res, 201, user);

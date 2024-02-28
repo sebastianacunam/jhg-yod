@@ -75,7 +75,6 @@ export default function FormLogin() {
   }, [usuario]);
 
   function responseGoogle(el) {
-    console.log('el de google: ',el)
     dispatch(registroGoogle(el))
     setTimeout(function () {
       // window.location.reload(1)

@@ -18,5 +18,5 @@ export const olvide_password = async (email) => {
       token: usuario.token,
    });
 
-   return 'We have sent an email with the instructions';
+   return { Message: 'We have sent an email with the instructions' };
 }
