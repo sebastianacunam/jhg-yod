@@ -202,11 +202,12 @@ export function usuarioActual() {
 }
 
 export const comprarProducto = async (productId, type) => {
-  const usuarioId = localStorage.getItem("token");
+  // const usuarioId = localStorage.getItem("token");
+  const { token } = (await clienteAxios(`/users/refresh`)).data.data
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${usuarioId}`,
+      Authorization: `Bearer ${token}`,
     },
   };
   try {

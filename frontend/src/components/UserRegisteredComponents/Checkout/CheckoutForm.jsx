@@ -72,10 +72,10 @@ export default function CheckoutForm() {
             alert("Pago recibido!");
             navigate("/compra-exitosa");
           } else {
-            alert("Pago rechazado!");
+            alert("Pago rechazado! response TRUE");
           }
         } else {
-          alert("Pago rechazado!");
+          alert("Pago rechazado! NO buy.client_secret");
         }
         elements.getElement(CardElement).clear();
         setLoading(false);
