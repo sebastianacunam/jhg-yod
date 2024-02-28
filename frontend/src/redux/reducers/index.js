@@ -14,6 +14,7 @@ import {
   UPDATE_USER,
   BORRAR_USUARIO,
   ACTUAL,
+  REFRESH_TOKEN,
   //cursos
   GET_CURSOS,
   BUY_CURSO,
@@ -71,7 +72,7 @@ function rootReducer(state = initialState, action) {
         email: action.payload.error ? action.payload.error : null,
         loginUser: action.payload && true,
       };
-    case "REFRESH_TOKEN":
+    case REFRESH_TOKEN:
       return {
         ...state,
         refreshToken: action.payload.token
