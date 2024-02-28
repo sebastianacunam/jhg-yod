@@ -5,8 +5,9 @@ import { comprar_producto } from "../../services/compra-productos/comprar-produc
 // Relación entre cada tipo de Producto y el Usuario que lo Solicita/Compra.
 
 export const comprarProducto = async (req, res) => {
-  const { id, type } = req.params
-  const usuarioId = req.usuario._id;
-  const usuario = await comprar_producto(id, type, usuarioId);
+  const { productId, type } = req.params
+  const { id } = req
+  console.log(id);
+  const usuario = await comprar_producto(productId, type, id);
   response(res, 201, usuario);
 };
