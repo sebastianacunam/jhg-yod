@@ -21,11 +21,12 @@ import {
 export function registroGoogle(googleData) {
   return async function (dispatch) {
     const token = googleData.credential;
+
     try {
       const response = await clienteAxios.post(`/users/google`, {
         idToken: token,
       });
-      localStorage.setItem("token", response.data.data.token);
+      // localStorage.setItem("token", response.data.data.token);
       return dispatch({
         type: GOOGLE_LOGIN,
         payload: response.data.data,

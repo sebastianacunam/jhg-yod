@@ -19,7 +19,7 @@ import { logout } from "../services/usuarios/logout.js";
 //Crear/registrar usuario Google.
 export const googleLogin = async ({ body }, res) => {
   const { idToken } = body;
-  const user = await googleLoginService(idToken)
+  const user = await googleLoginService(idToken, res)
   response(res, 201, user)
 }
 

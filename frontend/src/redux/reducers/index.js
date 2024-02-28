@@ -14,6 +14,7 @@ import {
   UPDATE_USER,
   BORRAR_USUARIO,
   ACTUAL,
+  REFRESH_TOKEN,
   //cursos
   GET_CURSOS,
   BUY_CURSO,
@@ -32,7 +33,6 @@ import {
   //anuncios
   GET_ANUNCIOS,
   POST_ANUNCIOS,
-  REFRESH_TOKEN
 } from "../utils/constants";
 
 const initialState = {
