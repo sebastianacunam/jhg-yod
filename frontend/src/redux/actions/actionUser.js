@@ -26,7 +26,8 @@ export function registroGoogle(googleData) {
       const response = await clienteAxios.post(`/users/google`, {
         idToken: token,
       });
-      // localStorage.setItem("token", response.data.data.token);
+      const json2 = await clienteAxios(`/users/refresh`);
+      localStorage.setItem("token", json2.data.data.token);
       return dispatch({
         type: GOOGLE_LOGIN,
         payload: response.data.data,
@@ -59,6 +60,7 @@ export function loginUser(payload) {
     try {
       const json = await clienteAxios.post(`/users/login`, payload);
       const json2 = await clienteAxios(`/users/refresh`);
+      localStorage.setItem("token", json2.data.data.token);
       dispatch({
         type: LOGIN_USER,
         payload: json.data.data,
@@ -87,8 +89,9 @@ export function refreshToken() {
 }
 
 export function logoutSession() {
-  return async function(dispatch){
+  return async function (dispatch) {
     const json = await clienteAxios('/users/logout')
+    localStorage.removeItem('token')
     return dispatch({
       type: LOGOUT_USER,
       payload: json.data.data
@@ -125,10 +128,10 @@ export function validateUser(id) {
   };
 }
 
-export function authenticateUser(config) {
+export function authenticateUser() {
   return async function (dispatch) {
     try {
-      let json = await clienteAxios(`/users/perfil/`, config);
+      let json = await clienteAxios(`/users/perfil/`);
       return dispatch({
         type: AUTH_USER,
         payload: json.data,

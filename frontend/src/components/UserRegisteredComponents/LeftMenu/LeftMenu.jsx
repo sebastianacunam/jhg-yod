@@ -21,9 +21,9 @@ import ComunidadesNavbar from "./ComunidadesNavbar.jsx";
 export default function LeftMenu() {
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
-  const token = useSelector((state) => state.refreshToken);
+  // const token = useSelector((state) => state.refreshToken);
 
-
+  const token = localStorage.getItem('token')
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
     dispatch(getCursos());
