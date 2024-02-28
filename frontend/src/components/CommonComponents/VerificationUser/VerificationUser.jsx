@@ -22,5 +22,5 @@ export default function VerificationUser() {
   }, [dispatch, token])
   if (!token) "Cargando..."
 
-  return <>{token ? <Outlet /> : <Navigate to="/login" />}</>
+  return <>{token.length ? <Outlet /> : <Navigate to="/login" />}</>
 }
