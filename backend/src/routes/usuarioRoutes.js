@@ -24,7 +24,7 @@ const router = express.Router();
 
 router.post("/create", asyncCatched(createUser));
 router.post("/login", asyncCatched(authenticate));
-router.get("logout", logoutUser);
+router.get("/logout", logoutUser);
 router.get("/refresh", checkAuthRefreshToken, refreshToken);
 router.patch("/confirm/:token", asyncCatched(confirm));
 router.post("/olvide-password", asyncCatched(olvidePassword));

@@ -12,6 +12,7 @@ import { getUserById } from "../services/usuarios/getUserById.js";
 import { googleLoginService } from "../services/usuarios/google-login.services.js"
 import { response } from "../utils/response.js";
 import generateJWT from "../helpers/generateJWT.js";
+import { logout } from "../services/usuarios/logout.js";
 
 
 /*************************************************************************/

@@ -12,7 +12,7 @@ export default function Dashboard() {
   // const [refreshToken, setRefreshToken] = useState('');
 
   useEffect(() => {
-    dispatch(refreshToken())
+     dispatch(refreshToken())
     usuarioAct ? dispatch(usuarioActual()) : null;
   }, [dispatch, usuarioAct]);
 

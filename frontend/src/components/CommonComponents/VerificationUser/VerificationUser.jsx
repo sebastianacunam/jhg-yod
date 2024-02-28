@@ -7,6 +7,7 @@ export default function VerificationUser() {
   const dispatch = useDispatch()
 
   const token = useSelector((state) => state.refreshToken)
+
   useEffect(() => {
     dispatch(refreshToken())
     if (!token) {
@@ -22,5 +23,5 @@ export default function VerificationUser() {
   }, [dispatch, token])
   if (!token) "Cargando..."
 
-  return <>{token ? <Outlet /> : <Navigate to="/login" />}</>
+  return <>{token.length > 1 ? <Outlet /> : <Navigate to="/login" />}</>
 }

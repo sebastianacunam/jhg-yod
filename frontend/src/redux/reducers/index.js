@@ -32,6 +32,7 @@ import {
   //anuncios
   GET_ANUNCIOS,
   POST_ANUNCIOS,
+  REFRESH_TOKEN
 } from "../utils/constants";
 
 const initialState = {
@@ -71,7 +72,7 @@ function rootReducer(state = initialState, action) {
         email: action.payload.error ? action.payload.error : null,
         loginUser: action.payload && true,
       };
-    case "REFRESH_TOKEN":
+    case REFRESH_TOKEN:
       return {
         ...state,
         refreshToken: action.payload.token
@@ -81,12 +82,24 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         usuario: [],
+        email: [],
+        loginUser: false,
+        refreshToken: [],
         usuarioActual: [],
         allUsuarios: [],
         confirmacion: {},
-        email: [],
         invalidToken: true,
-        loginUser: false,
+        isAdmin: false,
+        updateUser: [],
+        borraUsuario: [],
+        cursos: [],
+        allCursos: [],
+        allMentorias: [],
+        allBootcamps: [],
+        allEmpleos: [],
+        allAnuncios: [],
+        buy: [],
+        mentorias: [],
       };
 
     case AUTH_USER:

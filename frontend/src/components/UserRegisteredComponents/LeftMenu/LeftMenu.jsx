@@ -5,7 +5,7 @@ import { AiFillNotification } from "react-icons/ai";
 import { AiFillRocket } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { usuarioActual } from "../../../redux/actions/actionUser";
+import { logoutSession, usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
 import "../../../assets/scss/layout/_leftMenu.scss";
@@ -31,8 +31,7 @@ export default function LeftMenu() {
   }, [dispatch, token]);
 
   function logOut() {
-    window.localStorage.removeItem("token");
-    window.location.reload();
+    return dispatch(logoutSession())
   }
 
   return (

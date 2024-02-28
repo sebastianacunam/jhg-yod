@@ -14,7 +14,8 @@ import {
   RESET_PASSWORD,
   RESET_ERROR,
   ACTUAL,
-  REFRESH_TOKEN
+  REFRESH_TOKEN,
+  LOGOUT_USER
 } from "../utils/constants.js";
 
 export function registroGoogle(googleData) {
@@ -82,6 +83,16 @@ export function refreshToken() {
       payload: json.data.data
     });
   };
+}
+
+export function logoutSession() {
+  return async function(dispatch){
+    const json = await clienteAxios('/users/logout')
+    return dispatch({
+      type: LOGOUT_USER,
+      payload: json.data.data
+    });
+  }
 }
 
 export function resetErrorLoginUser() {
