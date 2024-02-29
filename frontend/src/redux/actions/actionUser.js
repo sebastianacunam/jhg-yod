@@ -237,6 +237,17 @@ export const comprarProducto = async (productId, type) => {
   }
 };
 
+export const enviarRecibo = async (email, name, address, product) => {
+
+  let body = { email, name, address, product };
+
+  try {
+    await clienteAxios.post(`/productos/enviar-recibo`, body);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export function updateUser(id) {
   return async function (dispatch) {
     try {

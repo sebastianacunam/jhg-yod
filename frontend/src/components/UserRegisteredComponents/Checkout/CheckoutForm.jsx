@@ -3,12 +3,12 @@ import {
   CardElement,
   useStripe,
   useElements,
-  AddressElement,
+  AddressElement
 } from "@stripe/react-stripe-js";
 import { useNavigate, useParams } from "react-router";
 import { buyProducto } from "../../../redux/actions/actionCurso";
 
-import { comprarProducto } from "../../../redux/actions/actionUser";
+import { comprarProducto, enviarRecibo } from "../../../redux/actions/actionUser";
 
 import { getCursoById } from "../../../redux/actions/actionCurso";
 import { getBootcampById } from "../../../redux/actions/actionBootcamps";
@@ -17,6 +17,7 @@ import { getAnuncioById } from "../../../redux/actions/actionAnuncios";
 
 import "../../../assets/scss/layout/_checkoutForm.scss";
 import "../../../assets/scss/base/_globales.scss";
+import { useSelector } from "react-redux";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -27,6 +28,8 @@ export default function CheckoutForm() {
   const [producto, setProducto] = useState({});
   const [address, setAddress] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const userActual = useSelector((state) => state.usuarioActual);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,13 +72,15 @@ export default function CheckoutForm() {
         if (buy.client_secret) {
           const response = await comprarProducto(producto._id, producto.type);
           if (response === false) {
+            console.log(address);
+            await enviarRecibo(userActual.email, userActual.name, address.address, producto);
             alert("Pago recibido!");
             navigate("/compra-exitosa");
           } else {
-            alert("Pago rechazado! response TRUE");
+            alert("Pago rechazado!");
           }
         } else {
-          alert("Pago rechazado! NO buy.client_secret");
+          alert("Pago rechazado!");
         }
         elements.getElement(CardElement).clear();
         setLoading(false);

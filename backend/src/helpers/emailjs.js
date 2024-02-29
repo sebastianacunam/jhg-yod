@@ -53,3 +53,41 @@ export const emailOlvidePassword = async (datos) => {
             `,
   });
 };
+
+export const emailSendRecibo = async (data) => {
+
+  const { email, name, address, product } = data;
+  
+  var transport = nodemailer.createTransport({
+    host: EMAIL_HOST,
+    port: EMAIL_PORT,
+    secure: EMAIL_SECURE,
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
+    },
+  });
+
+  const info = await transport.sendMail({
+    from: '"Nestify" <nestifyla@gmail.com>',
+    to: email,
+    subject: "Nestify - Compra Realizada",
+    text: "Ha adquirido un producto de nuestra plataforma, se anexa el recibo con los datos de su compra. ¡Muchas gracias!",
+    html: `
+        <h3>Cliente: ${name}</h3>
+        <p><strong>Producto</strong>: ${product.type} | <strong>Nombre</strong>: ${product.name} | <strong>Precio</strong>: $ ${product.price} USD</p>
+        <p>${product.description}</p>
+        <h4>Datos Registrados en la Compra:</h4>
+        <p><strong>País</strong>: ${ address.country ? address.country : "No especificado" }</p>
+        <p><strong>Estado / Provincia</strong>: ${ address.state ? address.state: "No especificado" }</p>
+        <p><strong>Ciudad</strong>: ${ address.city ? address.city : "No especificado" }</p>
+        <p><strong>Dirección - Primera Línea</strong>: ${ address.line1 ? address.line1 : "No especificado" }</p>
+        <p><strong>Dirección - Segunda Línea</strong>: ${ address.line2 ? address.line2 : "No especificado" }</p>
+        <p><strong>Código Postal</strong>: ${ address.postal_code ? address.postal_code : "No especificado" } 
+        <br />
+        <p>No responda a este correo.</p>
+            `,
+  })
+
+  return { msg: "Mensaje Enviado", name: name, email: email };
+}
