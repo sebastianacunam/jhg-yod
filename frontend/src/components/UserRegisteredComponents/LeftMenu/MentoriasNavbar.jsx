@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -11,21 +10,12 @@ import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 function MentoriasNavbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsMenuOpen(true);
-  };
-  const handleMouseLeave = () => {
-    setIsMenuOpen(false);
-  };
   return (
-    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div>
       <Popover
         isLazy
-        returnFocusOnClose={false}
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
+        returnFocusOnClose={true}
+        trigger='hover'
         placement='right-start'>
         <PopoverTrigger>
           <Link className='nav-link'>
