@@ -10,11 +10,12 @@ const stripe = new Stripe(envs.STRIPE_SECRET_KEY);
 
 export const checkout_stripe = async (id, body) => {
 
-    const { type, pm } = body;
+    const { type, price, pm, description } = body;
 
     if (!type) throw new ClientError("Missing Data", 400);
 
     let product;
+    let formatPrice = price*100;
 
     switch (type) {
         case "CURSO":
@@ -39,9 +40,12 @@ export const checkout_stripe = async (id, body) => {
     if (!product) throw new ClientError("This Product wasn't Found", 404);
 
     const sessionStripe = await stripe.paymentIntents.create({
-        amount: 100000,
-        currency: "ars",
-        payment_method: pm
+        amount: formatPrice,
+        currency: "usd",
+        payment_method: pm,
+        description: description,
+        return_url: "http://localhost:5173/compra-exitosa",
+        confirm: true
     });
     if (!sessionStripe) throw new ClientError("Error Stripe Payment", 400);
 
