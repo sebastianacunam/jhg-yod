@@ -3,12 +3,12 @@ import {
   CardElement,
   useStripe,
   useElements,
-  AddressElement
+  AddressElement,
 } from "@stripe/react-stripe-js";
 import { useNavigate, useParams } from "react-router";
 import { buyProducto } from "../../../redux/actions/actionCurso";
 
-import { comprarProducto, enviarRecibo } from "../../../redux/actions/actionUser";
+import { comprarProducto } from "../../../redux/actions/actionUser";
 
 import { getCursoById } from "../../../redux/actions/actionCurso";
 import { getBootcampById } from "../../../redux/actions/actionBootcamps";
@@ -68,12 +68,15 @@ export default function CheckoutForm() {
           price: producto.price,
           description: producto.description,
           qty: 1,
-        }); // dispatch(buyCurso({ type: producto.type, pm, qty: 1 }, producto._id))
+        });
         if (buy.client_secret) {
-          const response = await comprarProducto(producto._id, producto.type);
+          const response = await comprarProducto({
+            email: userActual.email,
+            name: userActual.name,
+            address: address.address,
+            producto,
+          });
           if (response === false) {
-            console.log(address);
-            await enviarRecibo(userActual.email, userActual.name, address.address, producto);
             alert("Pago recibido!");
             navigate("/compra-exitosa");
           } else {
@@ -109,7 +112,6 @@ export default function CheckoutForm() {
             <h3>{producto.name}</h3>
             <h3>Precio: {producto.price} USD</h3>
             <p>{producto.description}</p>
-            
           </div>
 
           <div className="right-side">

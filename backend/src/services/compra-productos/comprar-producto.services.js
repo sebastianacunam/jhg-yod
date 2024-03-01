@@ -1,3 +1,4 @@
+import { emailSendRecibo } from "../../helpers/emailjs.js";
 import Usuario from "../../models/usuario.js";
 import { ClientError } from "../../utils/errors/index.js";
 import { comprar_anuncio } from "./comprarFunctions/comprar-anuncio.js";
@@ -5,7 +6,7 @@ import { comprar_bootcamp } from "./comprarFunctions/comprar-bootcamp.js";
 import { comprar_curso } from "./comprarFunctions/comprar-curso.js";
 import { comprar_mentoria } from "./comprarFunctions/comprar-mentoria.js";
 
-export const comprar_producto = async (productId, type, usuarioId) => {
+export const comprar_producto = async (productId, type, usuarioId, datosCompra) => {
 
     const usuario = await Usuario.findById(usuarioId);
     let response;
@@ -31,6 +32,8 @@ export const comprar_producto = async (productId, type, usuarioId) => {
             break;
     };
     if (!response) throw new ClientError("ERROR, Not Response", 400); 
+
+    emailSendRecibo(datosCompra);
 
     return response;
 };

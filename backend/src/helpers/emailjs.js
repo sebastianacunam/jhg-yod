@@ -56,7 +56,7 @@ export const emailOlvidePassword = async (datos) => {
 
 export const emailSendRecibo = async (data) => {
 
-  const { email, name, address, product } = data;
+  const { email, name, address, producto } = data;
   
   var transport = nodemailer.createTransport({
     host: EMAIL_HOST,
@@ -75,8 +75,8 @@ export const emailSendRecibo = async (data) => {
     text: "Ha adquirido un producto de nuestra plataforma, se anexa el recibo con los datos de su compra. ¡Muchas gracias!",
     html: `
         <h3>Cliente: ${name}</h3>
-        <p><strong>Producto</strong>: ${product.type} | <strong>Nombre</strong>: ${product.name} | <strong>Precio</strong>: $ ${product.price} USD</p>
-        <p>${product.description}</p>
+        <p><strong>Producto</strong>: ${producto.type} | <strong>Nombre</strong>: ${producto.name} | <strong>Precio</strong>: $ ${producto.price} USD</p>
+        <p>${producto.description}</p>
         <h4>Datos Registrados en la Compra:</h4>
         <p><strong>País</strong>: ${ address.country ? address.country : "No especificado" }</p>
         <p><strong>Estado / Provincia</strong>: ${ address.state ? address.state: "No especificado" }</p>
@@ -88,6 +88,4 @@ export const emailSendRecibo = async (data) => {
         <p>No responda a este correo.</p>
             `,
   })
-
-  return { msg: "Mensaje Enviado", name: name, email: email };
 }
