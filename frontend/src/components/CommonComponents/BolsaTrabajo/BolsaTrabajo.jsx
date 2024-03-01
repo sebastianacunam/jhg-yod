@@ -79,7 +79,7 @@ export default function BolsaTrabajo() {
    };
 
    return (
-      <div>
+      <div className="container-empleo-gn">
          <LeftMenu />
          <section className="conteiner-empleo">
 

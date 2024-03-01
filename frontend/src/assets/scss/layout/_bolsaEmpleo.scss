@@ -7,8 +7,13 @@
       ". header header header"
       ". content content sidebar"
       ". footer footer footer";
+  
+   margin: 0;
+   padding: 0;
 
-
+}
+.container-empleo-gn{
+   background: #F2F2F2 ;
 }
 
 
@@ -21,7 +26,7 @@
 }
 
 .conteiner-empleo aside {
-   background: rgba(128, 128, 128, 0.034);
+   background: #F2F2F2;
    grid-area: sidebar;
    width: 95%;
 }
