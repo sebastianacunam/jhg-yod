@@ -17,6 +17,7 @@ import { getAnuncioById } from "../../../redux/actions/actionAnuncios";
 
 import "../../../assets/scss/layout/_checkoutForm.scss";
 import "../../../assets/scss/base/_globales.scss";
+import { useSelector } from "react-redux";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -27,6 +28,8 @@ export default function CheckoutForm() {
   const [producto, setProducto] = useState({});
   const [address, setAddress] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const userActual = useSelector((state) => state.usuarioActual);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,17 +68,22 @@ export default function CheckoutForm() {
           price: producto.price,
           description: producto.description,
           qty: 1,
-        }); // dispatch(buyCurso({ type: producto.type, pm, qty: 1 }, producto._id))
+        });
         if (buy.client_secret) {
-          const response = await comprarProducto(producto._id, producto.type);
+          const response = await comprarProducto({
+            email: userActual.email,
+            name: userActual.name,
+            address: address.address,
+            producto,
+          });
           if (response === false) {
             alert("Pago recibido!");
             navigate("/compra-exitosa");
           } else {
-            alert("Pago rechazado! response TRUE");
+            alert("Pago rechazado!");
           }
         } else {
-          alert("Pago rechazado! NO buy.client_secret");
+          alert("Pago rechazado!");
         }
         elements.getElement(CardElement).clear();
         setLoading(false);
@@ -104,7 +112,6 @@ export default function CheckoutForm() {
             <h3>{producto.name}</h3>
             <h3>Precio: {producto.price} USD</h3>
             <p>{producto.description}</p>
-            
           </div>
 
           <div className="right-side">

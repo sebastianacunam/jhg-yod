@@ -15,7 +15,7 @@ import {
   RESET_ERROR,
   ACTUAL,
   REFRESH_TOKEN,
-  LOGOUT_USER
+  LOGOUT_USER,
 } from "../utils/constants.js";
 
 export function registroGoogle(googleData) {
@@ -56,9 +56,9 @@ export function registerUser({ name, email, password1 }) {
 
 export function loginUser(payload) {
   return async function (dispatch) {
-
     try {
       const json = await clienteAxios.post(`/users/login`, payload);
+      console.log(json);
       const json2 = await clienteAxios(`/users/refresh`);
       localStorage.setItem("token", json2.data.data.token);
       dispatch({
@@ -67,7 +67,7 @@ export function loginUser(payload) {
       });
       return dispatch({
         type: REFRESH_TOKEN,
-        payload: json2.data.data
+        payload: json2.data.data,
       });
     } catch (e) {
       return dispatch({
@@ -80,23 +80,23 @@ export function loginUser(payload) {
 
 export function refreshToken() {
   return async function (dispatch) {
-    const json = await clienteAxios(`/users/refresh`)
+    const json = await clienteAxios(`/users/refresh`);
     return dispatch({
       type: REFRESH_TOKEN,
-      payload: json.data.data
+      payload: json.data.data,
     });
   };
 }
 
 export function logoutSession() {
   return async function (dispatch) {
-    const json = await clienteAxios('/users/logout')
-    localStorage.removeItem('token')
+    const json = await clienteAxios("/users/logout");
+    localStorage.removeItem("token");
     return dispatch({
       type: LOGOUT_USER,
-      payload: json.data.data
+      payload: json.data.data,
     });
-  }
+  };
 }
 
 export function resetErrorLoginUser() {
@@ -197,7 +197,7 @@ export function setStateEmail() {
 
 export function usuarioActual() {
   return async function (dispatch) {
-    const { token } = (await clienteAxios(`/users/refresh`)).data.data
+    const { token } = (await clienteAxios(`/users/refresh`)).data.data;
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -216,24 +216,17 @@ export function usuarioActual() {
   };
 }
 
-export const comprarProducto = async (productId, type) => {
-  // const usuarioId = localStorage.getItem("token");
-  const { token } = (await clienteAxios(`/users/refresh`)).data.data
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${token}`,
-    },
-  };
+export const comprarProducto = async (datosCompra) => {
+  const { producto } = datosCompra;
+  const { type, _id } = producto;
   try {
     const data = await clienteAxios.post(
-      `/productos/comprar/${type}/${productId}`,
-      null,
-      config
+      `/productos/comprar/${type}/${_id}`,
+      datosCompra
     );
     return data.data.error;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
