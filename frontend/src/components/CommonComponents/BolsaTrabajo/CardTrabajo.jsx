@@ -3,17 +3,16 @@ import { Badge, Box, Button, Card, CardBody, CardFooter, Flex, Heading, Icon, Im
 import { format } from "@formkit/tempo";
 
 export const CardTrabajo = ({ currentJobs, handleToggleExpand, asideVisible, expandedCards }) => {
-  return currentJobs && currentJobs.map((e) => (
+   return currentJobs && currentJobs.map((e) => (
       <Box key={e.id} mb={8} mt={18}>
          <Card
             key={e.id}
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
-            style={{
-               backgroundImage: `linear-gradient(to left, #0083a3, #00adbf)`,
-            }}
+            background= '#00acbfb9'
             borderRadius='2rem'
+            border='2px solid #0083a3'
             onClick={() => handleToggleExpand(e.id)}
             cursor="pointer"
             w={asideVisible ? 1250 : 1400}
@@ -76,7 +75,9 @@ export const CardTrabajo = ({ currentJobs, handleToggleExpand, asideVisible, exp
                   <Text marginRight='-8rem' marginTop='1'><p>Remoto 🌍</p></Text>
                   <Flex justifyContent="flex-end" alignItems="center">
                      <Text marginRight='-24rem' marginTop='8'><p>{format(e.publication_date, "short")}</p></Text>
-                     <Button borderRadius='2rem' variant='solid' backgroundColor='#1c9ebc' textColor='black' marginRight='13rem' marginTop='-8rem' w="13rem" h='4rem' fontSize='1.5rem'  >
+                     <Button borderRadius='2rem' style={{
+                        backgroundColor: `#0083a3`,
+                     }} textColor='white' marginRight='13rem' marginTop='-8rem' w="13rem" h='4rem' fontSize='1.5rem'  >
                         <a href={e.url} target="_blank" rel="noopener noreferrer">
                            Ver Trabajo
                         </a>
