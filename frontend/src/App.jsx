@@ -31,11 +31,7 @@ import ProductDetail from "./components/UserRegisteredComponents/ProductDetail/P
 import CompraExitosa from "./components/UserRegisteredComponents/CompraExitosa/CompraExitosa";
 import Checkout from "./components/UserRegisteredComponents/Checkout/Checkout";
 
-
-
-
 function App() {
-
   return (
 
     <Router>
@@ -49,7 +45,7 @@ function App() {
           <Route path='/olvide-password/:token' element={<NewPassword />} />
         </Route>
 
-        <Route path='/' element={<ChakraProvider><VerificationUser  /></ChakraProvider>}>
+        <Route path='/' element={<ChakraProvider><VerificationUser /></ChakraProvider>}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/create' element={<FormAnuncio />} />
@@ -65,7 +61,7 @@ function App() {
           <Route path='/bolsa-empleo' element={<BolsaTrabajo />} />
           <Route path='/compra-exitosa' element={<CompraExitosa />} />
           <Route path='/checkout/:id' element={<Checkout />} />
-
+          
         </Route>
       </Routes>
     </Router>

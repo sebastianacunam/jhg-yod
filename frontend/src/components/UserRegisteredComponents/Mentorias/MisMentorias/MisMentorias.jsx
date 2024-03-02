@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { usuarioActual } from "../../../../redux/actions/actionUser";
 import { Link } from 'react-router-dom';
 import LeftMenu from '../../LeftMenu/LeftMenu.jsx';
-import '../../../../assets/scss/layout/_misCursos.scss'
+import '../../../../assets/scss/layout/_misProductos.scss'
 
 export default function MisMentorias() {
 
@@ -36,7 +36,7 @@ export default function MisMentorias() {
                         );
                     })
                     ) : (
-                    <div>
+                    <div className='no-producto'>
                         <p>No tienes mentorias todavía. </p>
                         <p>
                         Puedes ver nuestras mentorias &nbsp;
