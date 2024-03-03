@@ -3,15 +3,16 @@ import { uploadImage } from "../upload/uploadImage.js";
 import { ClientError } from "../../utils/errors/index.js";
 
 export const updateUser = async (userId, data) => {
-  const imageUrl = await uploadImage(data.image.tempFilePath);
-
+  console.log(userId, data);
+  // const imageUrl = await uploadImage(data.image.tempFilePath);
   const updatedUser = await Usuario.findByIdAndUpdate(
     userId,
     {
-      ...data,
+      name: data.name,
+      email: data.email,
       image: {
-        public_id: imageUrl.public_id,
-        url: imageUrl.secure_url,
+        public_id: data.image.public_id,
+        url: data.image.url,
       },
     },
     {

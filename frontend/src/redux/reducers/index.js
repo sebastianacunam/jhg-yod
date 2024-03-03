@@ -39,7 +39,7 @@ const initialState = {
   usuario: [],
   email: [],
   loginUser: false,
-  refreshToken: '',
+  refreshToken: "",
   usuarioActual: [],
   allUsuarios: [],
   confirmacion: {},
@@ -75,8 +75,8 @@ function rootReducer(state = initialState, action) {
     case REFRESH_TOKEN:
       return {
         ...state,
-        refreshToken: action.payload.token
-      }
+        refreshToken: action.payload.token,
+      };
 
     case LOGOUT_USER:
       return {
@@ -84,7 +84,7 @@ function rootReducer(state = initialState, action) {
         usuario: [],
         email: [],
         loginUser: false,
-        refreshToken: '',
+        refreshToken: "",
         usuarioActual: [],
         allUsuarios: [],
         confirmacion: {},
@@ -144,6 +144,7 @@ function rootReducer(state = initialState, action) {
         isAdmin: action.payload,
       };
     case UPDATE_USER:
+      console.log("DATA EN REDUCER", action.payload);
       return {
         ...state,
         updateUser: action.payload,
