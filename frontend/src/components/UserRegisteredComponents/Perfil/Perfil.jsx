@@ -5,6 +5,7 @@ import { BiSolidPencil } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { updateUser, usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
+import SubirImagenes from "./SubirImagenes";
 
 export default function Perfil() {
   const [isHovered, setIsHovered] = useState(false);
@@ -120,6 +121,16 @@ export default function Perfil() {
                       value={editedEmail}
                       onChange={(e) => setEditedEmail(e.target.value)}
                     />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "left",
+                        alignItems: "left",
+                        flexDirection: "row",
+                      }}>
+                      <p>Cambiar imagenes:</p>
+                      <SubirImagenes />
+                    </div>
                     <button onClick={handleSubmit}>Submit</button>
                   </div>
                 ) : (

@@ -8,6 +8,7 @@ export const updateUser = async (userId, data) => {
   const updatedUser = await Usuario.findByIdAndUpdate(
     userId,
     {
+      //!agregar descripcion?
       name: data.name,
       email: data.email,
       image: {

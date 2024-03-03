@@ -21,7 +21,7 @@
   position: relative;
   min-width: 600px;
   max-width: 1000px;
-  width: 100%;
+  width: auto;
   text-align: left;
   line-height: 1.6em;
   background-color: white;
@@ -41,7 +41,7 @@
   width: 95%;
   background-color: rgb(212, 210, 210);
   padding: 25px;
-  height: 300px;
+  height: auto;
   border-radius: 15px;
   position: absolute;
   margin-top: 250px;
@@ -204,10 +204,12 @@ input[type="checkbox"] {
     font-size: x-large;
     width: 100%;
     max-width: 1300px;
+    right: 1%;
+    
   }
-  .snip1336 figcaption {
+  /* .snip1336 figcaption {
     height: 400px;
-  }
+  } */
 }
 @media screen and (max-width: 1500px) {
   .snip1336 {
@@ -231,9 +233,9 @@ input[type="checkbox"] {
     max-width: 800px;
     left: 3%;
   }
-  .snip1336 figcaption {
+  /* .snip1336 figcaption {
     height: 300px;
-  }
+  } */
 }
 @media screen and (max-width: 1200px) {
   .snip1336 {
@@ -247,8 +249,8 @@ input[type="checkbox"] {
     max-width: 600px;
     left: 5%;
   }
-  .snip1336 figcaption {
+  /* .snip1336 figcaption {
     height: 350px;
-  }
+  } */
 }
 /* LLEGA A 850 PX COMO RESPONSIVE */
