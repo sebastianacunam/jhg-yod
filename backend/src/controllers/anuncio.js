@@ -38,12 +38,8 @@ export const findAnuncio = async ({ params }, res) => {
 // CREAR UN nuevo Anuncio
 
 export const createAnuncio = async (req, res) => {
-  const { name, description, price, category, deliver_time, location  } = req.body;
-  const idOwner = req.usuario._id
-
-  const obj = { name, description, price, category, deliver_time, location, idOwner };
-  const anuncio = await create_anuncio(obj);
-
+  const idOwner = req.id;
+  const anuncio = await create_anuncio(req.body, idOwner);
   response(res, 201, anuncio);
 };
 

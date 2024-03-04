@@ -36,7 +36,7 @@ export const createBootcamp = async ({ body }, res) => {
 // EDITAR UN Bootcamp
 
 export const editBootcamp = async ({ body, params }, res) => {
-  const data = body;  
+  const data = body;
   const { id } = params;
   const bootcamp = await edit_bootcamp(data, id);
   response(res, 200, bootcamp);

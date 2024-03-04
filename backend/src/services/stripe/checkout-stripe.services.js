@@ -15,25 +15,25 @@ export const checkout_stripe = async (id, body) => {
     if (!type) throw new ClientError("Missing Data", 400);
 
     let product;
-    let formatPrice = price*100;
+    let formatPrice = parseInt(price * 100);
 
     switch (type) {
         case "CURSO":
             product = await find_curso(id);
             break;
-    
+
         case "BOOTCAMP":
             product = await find_bootcamp(id);
             break;
-        
+
         case "MENTORIA":
             product = await find_mentoria(id);
             break;
-        
+
         case "ANUNCIO":
             product = await find_anuncio(id);
             break;
-        
+
         default:
             break;
     };
