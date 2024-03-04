@@ -230,20 +230,21 @@ export const comprarProducto = async (datosCompra) => {
   }
 };
 
-export function updateUser(id) {
+export function updateUser(userId, data) {
   return async function (dispatch) {
     try {
-      var json = await clienteAxios.patch(`/perfil/${id}`);
-      toast.success("User updated successfully");
+      let json = await clienteAxios.patch(`/perfil/${userId}`, data);
       return dispatch({
         type: UPDATE_USER,
-        payload: json.data.data,
+        payload: json.data,
       });
     } catch (error) {
-      toast.error("There was an error validating the user");
+      const errorMessage = error.response
+        ? error.response.data
+        : "Ocurrio un error";
       return dispatch({
         type: UPDATE_USER,
-        payload: error.response.data,
+        payload: errorMessage,
       });
     }
   };
