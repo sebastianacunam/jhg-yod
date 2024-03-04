@@ -5,7 +5,10 @@ import { AiFillNotification } from "react-icons/ai";
 import { AiFillRocket } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import { logoutSession, usuarioActual } from "../../../redux/actions/actionUser";
+import {
+  logoutSession,
+  usuarioActual,
+} from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
 import logout from "../../../assets/images/icons/logout.png";
 import "../../../assets/scss/layout/_leftMenu.scss";
@@ -17,13 +20,14 @@ import BootcampsNavbar from "./BootcampsNavbar.jsx";
 import MentoriasNavbar from "./MentoriasNavbar.jsx";
 import ComunidadesNavbar from "./ComunidadesNavbar.jsx";
 
+import { motion } from "framer-motion";
 
-export default function LeftMenu() {
+//eslint-disable-next-line
+export default function LeftMenu({ isOpen }) {
   const dispatch = useDispatch();
   const usuarioAct = useSelector((state) => state.usuarioActual);
   // const token = useSelector((state) => state.refreshToken);
-
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
   useEffect(() => {
     token ? dispatch(usuarioActual()) : dispatch(null);
     dispatch(getCursos());
@@ -31,13 +35,16 @@ export default function LeftMenu() {
   }, [dispatch, token]);
 
   function logOut() {
-    return dispatch(logoutSession())
+    return dispatch(logoutSession());
   }
 
   return (
     <div className='dashboard-left'>
       {/* //menu */}
-      <div className='inner-dashboard-left'>
+      <motion.div
+        className='inner-dashboard-left'
+        animate={{ width: isOpen ? "0%" : "18.75%" }}
+        transition={{ duration: 0.5 }}>
         <div className='welcome-dashboard-wrapper'>
           <p>Bienvenido a tu dashboard</p>
           <p>{usuarioAct?.name}</p>
@@ -98,7 +105,7 @@ export default function LeftMenu() {
             </Link>
           </div>
         </ul>
-      </div>
+      </motion.div>
     </div>
   );
 }

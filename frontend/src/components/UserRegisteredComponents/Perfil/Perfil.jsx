@@ -3,8 +3,10 @@ import LeftMenu from "../LeftMenu/LeftMenu";
 import { BsEnvelopeFill } from "react-icons/bs";
 import { BiSolidPencil } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import { usuarioActual } from "../../../redux/actions/actionUser";
+import { updateUser, usuarioActual } from "../../../redux/actions/actionUser";
 import { useDispatch, useSelector } from "react-redux";
+import SubirImagenes from "./SubirImagenes";
+
 export default function Perfil() {
   const [isHovered, setIsHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -15,7 +17,9 @@ export default function Perfil() {
   const token = useSelector((state) => state.refreshToken);
 
   useEffect(() => {
-    token ? dispatch(usuarioActual()) : dispatch(null);
+    if (token) {
+      dispatch(usuarioActual());
+    }
   }, [dispatch, token]);
 
   const handleMouseEnter = () => {
@@ -32,27 +36,29 @@ export default function Perfil() {
   };
   const handleSubmit = () => {
     setIsEditing(false);
-    dispatch();
+    const data = {
+      name: editedName,
+      email: editedEmail,
+      image: {
+        public_id: "23213213",
+        url: "https://facebook.com",
+      },
+    };
+    dispatch(updateUser(usuarioAct._id, data));
   };
   return (
     <>
       <div>
         <LeftMenu />
       </div>
-      <div className='' style={{ marginLeft: "400px" }}>
+      <div className='perfil-wrapper'>
         <figure className='snip1336'>
           <img
             src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg'
             alt='sample87'
           />
           <figcaption>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: "20px",
-              }}>
+            <div className='perfil-picture-wrapper'>
               <img
                 src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample4.jpg'
                 alt='profile-sample4'
@@ -115,6 +121,16 @@ export default function Perfil() {
                       value={editedEmail}
                       onChange={(e) => setEditedEmail(e.target.value)}
                     />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "left",
+                        alignItems: "left",
+                        flexDirection: "row",
+                      }}>
+                      <p>Cambiar imagenes:</p>
+                      <SubirImagenes />
+                    </div>
                     <button onClick={handleSubmit}>Submit</button>
                   </div>
                 ) : (

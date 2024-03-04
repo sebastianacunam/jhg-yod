@@ -9,20 +9,18 @@ import { register } from "../services/usuarios/register.services.js";
 import { updateUser } from "../services/usuarios/update-user.js";
 import { usuarioActual } from "../services/usuarios/usuario.services.js";
 import { getUserById } from "../services/usuarios/getUserById.js";
-import { googleLoginService } from "../services/usuarios/google-login.services.js"
+import { googleLoginService } from "../services/usuarios/google-login.services.js";
 import { response } from "../utils/response.js";
 import generateJWT from "../helpers/generateJWT.js";
 import { logout } from "../services/usuarios/logout.js";
-
 
 /*************************************************************************/
 //Crear/registrar usuario Google.
 export const googleLogin = async ({ body }, res) => {
   const { idToken } = body;
-  const user = await googleLoginService(idToken, res)
-  response(res, 201, user)
-}
-
+  const user = await googleLoginService(idToken, res);
+  response(res, 201, user);
+};
 
 /*************************************************************************/
 // Crear/registrar un usuario
@@ -35,9 +33,12 @@ export const createUser = async ({ body }, res) => {
 
 /*************************************************************************/
 //Editar usuario
-export const editUser = async (req, res) => {
-  const { userId } = req.params;
-  const data = req.body;
+export const editUser = async ({ params, body }, res) => {
+  //!data no llego aca
+  const { userId } = params;
+  console.log(userId);
+  const data = body;
+  console.log(data);
   const updatedUser = await updateUser(userId, data);
   response(res, 201, updatedUser);
 };
@@ -80,9 +81,9 @@ export const allUsers = async (req, res) => {
   response(res, 201, users);
 };
 /*************************************************************************/
-//Traer Usuarios Registrados por ID 
+//Traer Usuarios Registrados por ID
 export const userById = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   const user = await getUserById(id);
   response(res, 201, user);
 };

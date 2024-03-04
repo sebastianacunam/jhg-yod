@@ -13,6 +13,7 @@ import {
   userById,
   refreshToken,
   logoutUser,
+  editUser,
   // editarPerfil,
 
 } from "../controllers/usuario.js";
@@ -36,7 +37,7 @@ router.patch("/olvide-password/:token", ValidationNuevaPassword, validationResul
 router.post("/google", asyncCatched(googleLogin)); // Login Google
 router.get("/perfil", checkAuthRefreshToken, asyncCatched(perfil)); //Ingresar al perfil solo si es el usuario
 router.get("/actual", checkAuthRefreshToken, asyncCatched(usuario));
-// router.patch("/perfil/:userId", checkAuth, asyncCatched(editarPerfil));
+router.patch("/perfil/:userId", isValidObjectId('userId'), asyncCatched(editUser));
 
 //Admin
 router.delete("/delete/:id", isValidObjectId('id'), asyncCatched(deleteUser)); // Eliminar usuario
