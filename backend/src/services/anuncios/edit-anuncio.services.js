@@ -2,20 +2,19 @@ import Anuncio from "../../models/anuncio.js";
 import { ClientError } from "../../utils/errors/index.js";
 
 export const edit_anuncio = async (data, id) => {
-    if (id.length === 24) {
-        const anuncio = await Anuncio.findByIdAndUpdate(
-            { _id: id },
-            data,
-            { new: true }
-        );
+    const { name, description, price, category, deliver_time, location } = data;
 
-        if (!anuncio) {
-            throw new ClientError("No existe el Anuncio con ese ID", 404);
-        } else {
-            return {
-                message: "Anuncio Actualizado",
-                dataUpdated: anuncio
-            };
-        };
+    const anuncio = await Anuncio.findByIdAndUpdate(
+        { _id: id },
+        { name, description, price: parseInt(price), category, deliver_time, location },
+        { new: true }
+    );
+
+    if (!anuncio) {
+        throw new ClientError("No existe el Anuncio con ese ID", 404);
+    }
+    return {
+        Message: "Anuncio Actualizado",
+        dataUpdated: anuncio
     };
 };
