@@ -8,7 +8,7 @@ export const autenticarUsuario = async ({ email, password }, res) => {
    //Comprobar si existe el usuario
    const usuario = await Usuario.findOne({ email }).select('+password')
    if (!usuario) {
-      throw new ClientError('El usuario no existe', 404);
+      throw new ClientError('Credenciales inválidas', 401);
    }
 
    //Comprobar si el usuario está confirmado
@@ -19,7 +19,7 @@ export const autenticarUsuario = async ({ email, password }, res) => {
    //Comprobar su password, previamente hasheada en el modelo Usuario.js
    const validatePassword = await usuario.comprobarPassword(password);
    if (!validatePassword) {
-      throw new ClientError('La contraseña es incorrecta', 401);
+      throw new ClientError('Credenciales inválidas', 401);
    }
 
    const { token, expiresIn } = generateJWT(usuario._id);
