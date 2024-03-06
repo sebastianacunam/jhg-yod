@@ -6,6 +6,7 @@ import {
   PUT_ANUNCIOS,
 } from "../utils/constants";
 import { toast } from "react-toastify";
+import { ErrorHandler } from "../../utils/errorHandler.js"
 
 export function getAnuncios() {
   return async function (dispatch) {
@@ -13,7 +14,7 @@ export function getAnuncios() {
       const response = await clienteAxios.get("/anuncios");
       return dispatch({ type: GET_ANUNCIOS, payload: response.data.data });
     } catch (error) {
-      console.log(error.message);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -28,7 +29,7 @@ export function postAnuncios({ name, description }) {
       const response = await clienteAxios.post("/anuncios/create", body);
       toast.success(response.data);
     } catch (error) {
-      console.log(error);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -38,6 +39,6 @@ export async function getAnuncioById(id) {
       const json = await clienteAxios.get(`/anuncios/${id}`);
       return json.data;
   } catch(error) {
-    return error.response.data
+    throw new ErrorHandler(error.response.data.message);
   }
-};
+}
