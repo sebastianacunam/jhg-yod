@@ -7,22 +7,25 @@
       ". header header header"
       ". content content sidebar"
       ". footer footer footer";
-  
+
    margin: 0;
    padding: 0;
 
 }
-.container-empleo-gn{
-   background: #F2F2F2 ;
+
+.container-empleo-gn {
+   background: #F2F2F2;
 }
 
 
 .conteiner-empleo header {
    grid-area: header;
-   width: 160rem;
    display: flex;
-   justify-content: space-around;
    align-items: center;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   align-content: center;
+   justify-content: flex-end;
 }
 
 .conteiner-empleo aside {
@@ -42,8 +45,9 @@
 
 .conteiner-empleo main {
    grid-area: content;
-   width: 90%;
-   margin-left: 2rem;
+   width: 100%;
+   margin-left: 3rem;
+   margin-top: 3rem;
 
 }
 
@@ -56,10 +60,19 @@
 
 .aside-empleo {
    display: flex;
-   flex-direction: column;
-   gap: 10rem;
+   flex-direction: row;
+   width: 100%;
+   // flex-wrap: nowrap;
+   align-content: center;
+   justify-content: space-evenly;
+   align-items: center;
 }
 
 .div-select {
    margin-top: 3rem;
+}
+.div-select-aside{
+   display: flex;
+   flex-direction: row;
+   gap: 3rem;
 }

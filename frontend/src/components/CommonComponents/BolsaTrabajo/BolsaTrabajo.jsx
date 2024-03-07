@@ -6,7 +6,6 @@ import { getEmpleos } from "../../../redux/actions/actionEmpleos";
 import { Pagination } from "../Pagination/Pagintation";
 import { Heading, CircularProgress } from '@chakra-ui/react';
 import { CardTrabajo } from "./CardTrabajo";
-import { OcultarAside } from "./OcultarAside";
 import { Aside } from "./Aside";
 
 
@@ -18,7 +17,6 @@ export default function BolsaTrabajo() {
    const [expandedCards, setExpandedCards] = useState({});
    const [selectedJobType, setSelectedJobType] = useState(null);
    const [selectedJobType2, setSelectedJobType2] = useState(null);
-   const [asideVisible, setAsideVisible] = useState(false);
 
 
    const jobTypeOptions = [...new Set(empleos.map(empleo => empleo.job_type))]
@@ -85,30 +83,27 @@ export default function BolsaTrabajo() {
 
             {/* ----HEADER------ */}
             <header className="header-empleo">
-               {currentJobs.length ? <Heading size='lg' fontSize='50px' ml={-250}>
-                  Bolsa de empleos
-               </Heading> : ""}
+               {currentJobs.length ?
+                  <Heading size='lg' fontSize='50px' ml={-250}>
+                     Bolsa de empleos
+                  </Heading>
+                  : ""}
+               <div>
+                  {currentJobs.length ?
+                     <Aside
+                        options={options}
+                        setSelectedCategory={setSelectedCategory}
+                        selectedCategory={selectedCategory}
+                        jobTypeOptions={jobTypeOptions}
+                        setSelectedJobType2={setSelectedJobType2}
+                        selectedJobType2={selectedJobType2}
+                        aplicarFiltros={aplicarFiltros}
+                        limpiarFiltros={limpiarFiltros}
+                     />
+                     : ""}
+
+               </div>
             </header>
-
-            {/* COMPONENTE PARA MOSTRAR U OCULTAR EL ASIDE */}
-            <OcultarAside
-               currentJobs={currentJobs}
-               setAsideVisible={setAsideVisible}
-               asideVisible={asideVisible}
-            />
-
-            {/* COMPONENTE ASIDE (CONTENEDOR DE LOS FILTROS) */}
-            <Aside
-               asideVisible={asideVisible}
-               options={options}
-               setSelectedCategory={setSelectedCategory}
-               selectedCategory={selectedCategory}
-               jobTypeOptions={jobTypeOptions}
-               setSelectedJobType2={setSelectedJobType2}
-               selectedJobType2={selectedJobType2}
-               aplicarFiltros={aplicarFiltros}
-               limpiarFiltros={limpiarFiltros}
-            />
 
             {/* COMPONENTE CARD */}
             <main className="main-empleo">
@@ -116,7 +111,6 @@ export default function BolsaTrabajo() {
                   <CardTrabajo
                      currentJobs={currentJobs}
                      handleToggleExpand={handleToggleExpand}
-                     asideVisible={asideVisible}
                      expandedCards={expandedCards}
                   /> :
                   <CircularProgress
