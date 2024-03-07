@@ -64,6 +64,7 @@ export async function getMentoriaById(id) {
     const json = await clienteAxios.get(`/mentorias/${id}`);
     return json.data;
   } catch (error) {
-    throw new ErrorHandler(error.response.data.message);
+    return error.response.data
+    // throw new ErrorHandler(error.response.data.message);
   }
 }
