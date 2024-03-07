@@ -2,21 +2,21 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Badge, Box, Button, Card, CardBody, CardFooter, Flex, Heading, Icon, Image, Stack, Text } from "@chakra-ui/react";
 import { format } from "@formkit/tempo";
 
-export const CardTrabajo = ({ currentJobs, handleToggleExpand, asideVisible, expandedCards }) => {
+export const CardTrabajo = ({ currentJobs, handleToggleExpand, expandedCards }) => {
    return currentJobs && currentJobs.map((e) => (
-      <Box key={e.id} mb={8} mt={18}>
+      <Box key={e.id} mb={8} mt={10}>
          <Card
             key={e.id}
             direction={{ base: 'column', sm: 'row' }}
             overflow='hidden'
             variant='outline'
-            background= '#00acbfb9'
+            background='#00acbfb9'
             borderRadius='2rem'
             border='2px solid #0083a3'
             onClick={() => handleToggleExpand(e.id)}
             cursor="pointer"
-            w={asideVisible ? 1190 : 1300}
-            ml={28}
+            w={1300}
+            ml={52}
          >
             <Icon
                as={ChevronDownIcon}
@@ -67,7 +67,7 @@ export const CardTrabajo = ({ currentJobs, handleToggleExpand, asideVisible, exp
                            fontSize='1.3rem'
                            color="grey.300"
                            marginBottom='3rem' >
-                           {typeof e.tags === Array ? e.tags.length <= 9 ? e.tags.join(', ') : e?.tags.join(', ').slice(50, 100) : e.tags.length >= 9 ? e.tags.slice(0, 11) : e.tags}
+                           {typeof e.tags === Array ? e.tags.length <= 9 ? e.tags.join(', ') : e?.tags.join(', ').slice(50, 100) : e.tags.length >= 9 ? e.tags.slice(0, 10) : e.tags}
                         </Badge>
                      </Text>
                   )}

@@ -4,7 +4,8 @@
    text-align: center;
    justify-content: center;
    gap: 8rem;
-   margin-top: 7rem;
+   margin-top: 10rem;
+   margin-left: 20rem;
    
 }
 .conteinerPagination button{
@@ -23,9 +24,7 @@
    transition: all 150ms ease-in;
    min-height: 2.5rem;
    padding: 0.625rem 1.5rem;
-   background: linear-gradient(195deg, #49a3f1, #1A73E8);
+   background: #00acbfdc;
    color: #ffffff;
-   box-shadow: 0rem 0.1875rem 0.1875rem 0rem rgba(26, 115, 232, 0.15),0rem 0.1875rem 0.0625rem -0.125rem rgba(26, 115, 232, 0.2),0rem 0.0625rem 0.3125rem 0rem rgba(26, 115, 232, 0.15);
-   height: 10px;
-
+   height: 3rem;
 }
