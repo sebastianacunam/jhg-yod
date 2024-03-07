@@ -1,83 +1,102 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import { setToResetPassword, setStateEmail } from "../../../redux/actions/actionUser"
-import validateEmail from "../../../middleware/validateEmail"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  setToResetPassword,
+  setStateEmail,
+} from "../../../redux/actions/actionUser";
+import validateEmail from "../../../middleware/validateEmail";
+import MenuRegister from "../Menus/MenuRegister/MenuRegister";
+import Footer from "../Footer/Footer";
+import "../../../assets/scss/layout/_forgotPassword.scss";
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState("")
-  const [errors, setErrors] = useState({})
-  const respuesta = useSelector((state) => state.email)
+  const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState({});
+  const respuesta = useSelector((state) => state.email);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(setStateEmail())
-    }
-  }, [])
+      dispatch(setStateEmail());
+    };
+  }, []);
 
   const handleChange = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
     if (validateEmail(e.target.value)) {
       e.target.value.length > 40
         ? setErrors({
-          email: "Longitud inválida",
-        })
+            email: "Longitud inválida",
+          })
         : setErrors({
-          email: "Email inválido",
-        })
+            email: "Email inválido",
+          });
     } else {
       setErrors({
         email: "",
-      })
+      });
     }
-  }
+  };
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (email === "") {
       setErrors({
         email: "Campo requerido",
-      })
+      });
     } else {
-      dispatch(setToResetPassword(email))
-      setEmail("")
+      dispatch(setToResetPassword(email));
+      setEmail("");
     }
-  }
+  };
 
   return (
-    <div className="contForgotPass">
-      <div>
-        <div>
-          <h3 className="titleForgot">Ingrese su correo electrónico para recuperar su contraseña</h3>
+    <div className="cont-Forgot-Password">
+      <MenuRegister />
+      <div className="bg-form-forgot">
+        <section className="container-form-forgot">
+          <div className="info-forgot-password">
+            <div className="info-container">
+              <h4>
+                Ingrese su E-mail para recuperar su Contraseña
+              </h4>
+            </div>
 
-          <form className="formForgot" onSubmit={handleSubmit}>
-            <label className="labelForgot" htmlFor="email">e-mail</label>
-            <input className="inputForgot"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              id="email"
-              type="email"
-              placeholder="Reset email"
-            />
-            {errors.email && (
-              <div>
-                <p>{errors.email}</p>
+            <form className="form-forgot-password" onSubmit={handleSubmit}>
+              <div className="input-group">
+                <input
+                  className="input-forgot"
+                  required
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                  id="email"
+                  type="email"
+                />
+                <label className="label-forgot" htmlFor="email">
+                  E-mail
+                </label>
+                {errors.email && (
+                  <p className="forgot-password-error">{errors.email}</p>
+                )}
               </div>
-            )}
-            {respuesta.msg ? (
-              <Link to="/login">
-                {" "}
-                <button  type="submitForgot">VOLVER</button>{" "}
-              </Link>
-            ) : (
-              <button  className="btnForgot" type="submit">Resetear password</button>
-            )}
-          </form>
-        </div>
+              {respuesta.msg ? (
+                <Link to="/login">
+                  {" "}
+                  <button type="submitForgot">VOLVER</button>{" "}
+                </Link>
+              ) : (
+                <button className="btn-new-password" type="submit">
+                  Restablecer Contraseña
+                </button>
+              )}
+            </form>
+          </div>
+        </section>
       </div>
+      <Footer />
     </div>
-  )
+  );
 }

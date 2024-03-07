@@ -23,11 +23,18 @@
 .menu2-register{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    gap: 3vw;
     margin-top: 25px;
     margin-right: 250px;
 }
 
 .menu1-register{
     margin-left: 250px;
+}
+
+.sub-link {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
