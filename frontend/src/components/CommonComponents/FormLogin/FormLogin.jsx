@@ -88,8 +88,7 @@ export default function FormLogin() {
       <section className="container-form-register">
         <div className="info-register">
           <div className="info-container-login">
-            <h4>Login</h4>
-
+            <h3>Bienvenido</h3>
           </div>
           <form className="form-register" onSubmit={handleSubmit}>
 
