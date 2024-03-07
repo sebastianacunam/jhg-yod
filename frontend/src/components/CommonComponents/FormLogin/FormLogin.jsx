@@ -9,6 +9,8 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../../../assets/scss/layout/_formLogin.scss'
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function FormLogin() {
@@ -46,6 +48,7 @@ export default function FormLogin() {
     let val = validate(usuario.email, usuario.password)
     if (Object.keys(val).length === 0) {
       const loginData = await dispatch(loginUser(usuario))
+      console.log(await loginData);
       setUsuario({
         email: '',
         password: '',
@@ -53,7 +56,7 @@ export default function FormLogin() {
       if (errorEmail) {
         e.preventDefault()
       } else {
-        dispatch(resetErrorLoginUser())      
+        dispatch(resetErrorLoginUser())
         loginData.payload.token ? navigate('/dashboard') : null
       }
     } else setErrors(val)
@@ -92,6 +95,7 @@ export default function FormLogin() {
 
           </div>
           <form className="form-register" onSubmit={handleSubmit}>
+      <ToastContainer limit={1}/>
 
             <div className='input-group'>
               <input className="input-register" required type="text" id='email' name="email" onChange={handleChange} value={usuario.email} />

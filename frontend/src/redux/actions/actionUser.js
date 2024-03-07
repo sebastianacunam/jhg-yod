@@ -1,5 +1,7 @@
 import clienteAxios from "../../config/clienteAxios";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ErrorHandler } from "../../utils/errorHandler.js"
 import {
   GOOGLE_LOGIN,
   // IS_ADMIN,
@@ -34,6 +36,7 @@ export function registroGoogle(googleData) {
       });
     } catch (err) {
       toast.error(err);
+      throw new ErrorHandler(err.response.data.message);
     }
   };
 }
@@ -49,7 +52,7 @@ export function registerUser({ name, email, password1 }) {
       const response = await clienteAxios.post(`/users/create`, body);
       toast.success(response.data);
     } catch (e) {
-      console.log(e.response.data.msg);
+      throw new ErrorHandler(e.response.data.message);
     }
   };
 }
@@ -58,7 +61,6 @@ export function loginUser(payload) {
   return async function (dispatch) {
     try {
       const json = await clienteAxios.post(`/users/login`, payload);
-      console.log(json);
       const json2 = await clienteAxios(`/users/refresh`);
       localStorage.setItem("token", json2.data.data.token);
       dispatch({
@@ -70,32 +72,42 @@ export function loginUser(payload) {
         payload: json2.data.data,
       });
     } catch (e) {
-      return dispatch({
-        type: LOGIN_USER,
-        payload: { error: e.response.data.msg },
+      toast.error(e.response.data.message, {
+        position: "top-center",
+        style: { marginTop: "20rem", },
+        theme: "colored"
       });
+      throw new ErrorHandler(e.response.data.message);
     }
   };
 }
 
 export function refreshToken() {
   return async function (dispatch) {
-    const json = await clienteAxios(`/users/refresh`);
-    return dispatch({
-      type: REFRESH_TOKEN,
-      payload: json.data.data,
-    });
+    try {
+      const json = await clienteAxios(`/users/refresh`);
+      return dispatch({
+        type: REFRESH_TOKEN,
+        payload: json.data.data,
+      });
+    } catch (error) {
+      throw new ErrorHandler(error.response.data.message);
+    }
   };
 }
 
 export function logoutSession() {
   return async function (dispatch) {
-    const json = await clienteAxios("/users/logout");
-    localStorage.removeItem("token");
-    return dispatch({
-      type: LOGOUT_USER,
-      payload: json.data.data,
-    });
+    try {
+      const json = await clienteAxios("/users/logout");
+      localStorage.removeItem("token");
+      return dispatch({
+        type: LOGOUT_USER,
+        payload: json.data.data,
+      });
+    } catch (error) {
+      throw new ErrorHandler(error.response.data.message);
+    }
   };
 }
 
@@ -110,6 +122,7 @@ export function resetErrorLoginUser() {
 }
 
 export function validateUser(id) {
+  const customId = "custom-id-yes";
   return async function (dispatch) {
     try {
       var json = await clienteAxios.patch(`/users/confirm/${id}`);
@@ -119,11 +132,17 @@ export function validateUser(id) {
         payload: json.data.data,
       });
     } catch (error) {
-      toast.error("There was an error validating the user");
-      return dispatch({
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        style: { marginTop: "20rem", },
+        theme: "colored",
+        toastId: customId
+      });
+      dispatch({
         type: VALIDATE_USER,
         payload: error.response.data,
       });
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -137,7 +156,7 @@ export function authenticateUser() {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error.response.data);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -157,10 +176,11 @@ export function setToResetPassword(data) {
       });
     } catch (error) {
       toast.error(error.response.data.msg);
-      return dispatch({
+      dispatch({
         type: SEND_EMAIL_TO_RESET_PASSWORD,
         payload: { error: error.response.data.msg },
       });
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -177,10 +197,11 @@ export function resetPassword(data) {
         payload: json.data,
       });
     } catch (error) {
-      return dispatch({
+      dispatch({
         type: RESET_PASSWORD,
         payload: { error: error.response.data.msg },
       });
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -211,7 +232,7 @@ export function usuarioActual() {
         payload: json.data.data,
       });
     } catch (e) {
-      console.log(e.response);
+      throw new ErrorHandler(e.response.data.message);
     }
   };
 }
@@ -226,7 +247,7 @@ export const comprarProducto = async (datosCompra) => {
     );
     return data.data.error;
   } catch (error) {
-    console.log(error);
+    throw new ErrorHandler(error.response.data.message);
   }
 };
 
@@ -242,10 +263,11 @@ export function updateUser(userId, data) {
       const errorMessage = error.response
         ? error.response.data
         : "Ocurrio un error";
-      return dispatch({
+      dispatch({
         type: UPDATE_USER,
         payload: errorMessage,
       });
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
