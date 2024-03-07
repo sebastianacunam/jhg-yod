@@ -5,6 +5,7 @@ import {
   PUT_BOOTCAMPS,
 } from "../utils/constants";
 import { toast } from "react-toastify";
+import { ErrorHandler } from "../../utils/errorHandler.js"
 
 export function getBootcamps() {
   return async function (dispatch) {
@@ -15,12 +16,12 @@ export function getBootcamps() {
         payload: response.data
       });
     } catch (error) {
-      console.log(error.message);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
 
-//!
+
 export function postBootcamps({ name, description }) {
   return async function () {
     const body = {
@@ -31,18 +32,18 @@ export function postBootcamps({ name, description }) {
       const response = await clienteAxios.post("/bootcamps/create", body);
       toast.success(response.data);
     } catch (error) {
-      console.log(error);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
-//!
+
 export function deleteBootcamps(id) {
   return async function (dispatch) {
     try {
       const response = await clienteAxios.delete(`/bootcamps/delete/${id}`);
       return dispatch({ type: DELETE_BOOTCAMPS, payload: response.data });
     } catch (error) {
-      console.log(error.message);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -56,7 +57,7 @@ export function updateBootcamps(id, updatedData) {
       );
       return dispatch({ type: PUT_BOOTCAMPS, payload: response.data });
     } catch (error) {
-      console.log(error.message);
+      throw new ErrorHandler(error.response.data.message);
     }
   };
 }
@@ -67,6 +68,6 @@ export async function getBootcampById(id) {
       return json.data;
 
   } catch(error) {
-    return error.response.data
+    throw new ErrorHandler(error.response.data.message);
   }
-};
+}

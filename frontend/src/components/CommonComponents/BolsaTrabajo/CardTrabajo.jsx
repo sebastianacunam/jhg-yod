@@ -15,7 +15,8 @@ export const CardTrabajo = ({ currentJobs, handleToggleExpand, asideVisible, exp
             border='2px solid #0083a3'
             onClick={() => handleToggleExpand(e.id)}
             cursor="pointer"
-            w={asideVisible ? 1250 : 1400}
+            w={asideVisible ? 1190 : 1300}
+            ml={28}
          >
             <Icon
                as={ChevronDownIcon}
