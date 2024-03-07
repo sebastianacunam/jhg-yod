@@ -189,7 +189,7 @@ export function resetPassword(data) {
   const { token, password } = data;
   return async function (dispatch) {
     try {
-      let json = await clienteAxios.post(`/users/olvide-password/${token}`, {
+      let json = await clienteAxios.patch(`/users/olvide-password/${token}`, {
         password,
       });
       return dispatch({
