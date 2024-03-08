@@ -30,10 +30,7 @@ export default function MenuRegister() {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
     )
 }   
