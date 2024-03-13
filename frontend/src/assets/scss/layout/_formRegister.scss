@@ -8,11 +8,12 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 24%;
+    width: 325px;// 24%;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 9.5px;
-    margin-top: -20px;
+    margin-top: -40px;
+    margin-bottom: 50px;
     box-shadow: 0rem 0.25rem 1.25rem 0rem rgba(0, 0, 0, 0.14),0rem 0.4375rem 0.625rem -0.3125rem rgba(76, 175, 79, 0.4);
 }
 
@@ -141,4 +142,26 @@
 .info-login-register2{
     font-size: 14.5px;
     color: #1A73E8;
+}
+
+.box-login-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+@media (max-width: 385px) {
+    .container-form-register {
+        width: 260px;
+    }
+    .info-container > p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .container-form-register {
+        width: 240px;
+    }
 }

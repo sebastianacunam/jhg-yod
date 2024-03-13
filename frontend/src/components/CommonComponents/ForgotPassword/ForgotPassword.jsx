@@ -59,9 +59,7 @@ export default function ForgotPassword() {
         <section className="container-form-forgot">
           <div className="info-forgot-password">
             <div className="info-container">
-              <h4>
-                Ingrese su E-mail para recuperar su Contraseña
-              </h4>
+              <h4>Ingrese su E-mail para recuperar su Contraseña</h4>
             </div>
 
             <form className="form-forgot-password" onSubmit={handleSubmit}>

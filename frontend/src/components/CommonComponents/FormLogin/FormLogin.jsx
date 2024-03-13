@@ -115,7 +115,7 @@ export default function FormLogin() {
               </div>
               <div>
                 <Link to='/olvide-password'>
-                  <p className='info-login-register2'>Reseteala acá</p>
+                  <p className='info-login-register2'>Restablécela acá</p>
                 </Link>
               </div>
             </div>
@@ -125,12 +125,12 @@ export default function FormLogin() {
               </div>
               <div>
                 <Link to='/register'>
-                  <p className='info-login-register2'>registrate</p>
+                  <p className='info-login-register2'>Regístrate</p>
                 </Link>
               </div>
             </div>
           </form>
-          <div>
+          <div className="div-google-btn">
             <GoogleOAuthProvider clientId={`${import.meta.env.VITE_URL_CLIENT_ID}`} >
               <GoogleLogin login_uri="" onSuccess={responseGoogle} />
             </GoogleOAuthProvider>
